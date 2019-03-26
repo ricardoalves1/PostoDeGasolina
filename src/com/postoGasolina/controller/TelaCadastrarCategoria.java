@@ -62,7 +62,7 @@ public class TelaCadastrarCategoria implements Initializable {
 			} else {
 				s = new JFXSnackbar(borderPane);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				s.show("Campos obrigatÛrios n„o informado", 4000);
+				s.show("Campos obrigat√≥rios n√£o informado", 4000);
 			}
 
 		});

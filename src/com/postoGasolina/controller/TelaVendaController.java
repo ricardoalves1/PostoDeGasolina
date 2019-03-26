@@ -17,6 +17,7 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.FuncionarioDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Cliente;
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Funcionario;
@@ -84,7 +85,7 @@ public class TelaVendaController implements Initializable {
 
 	@FXML
 	private JFXTreeTableView<VendaClass> treeTableViewVenda;
-	
+
 	private JFXSnackbar snackBar;
 
 	private int idTipoCombustivel;
@@ -108,7 +109,7 @@ public class TelaVendaController implements Initializable {
 	private static int idItemPedido;
 	private static int idtabela = 1;
 	private BigDecimal totalCalculado = new BigDecimal("0");
-	
+
 	static JFXTextField mensagem = new JFXTextField("0");
 
 	@Override
@@ -130,10 +131,10 @@ public class TelaVendaController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	@FXML
-	void mouseEventCompra(MouseEvent event) { 
+	void mouseEventCompra(MouseEvent event) {
 		if (!lista_itensPedido.isEmpty()) {
 			campoDesconto.setNumber(RecebePedido.getDesconto());
 		}
@@ -143,19 +144,19 @@ public class TelaVendaController implements Initializable {
 		}
 		if(mensagem.getText().equals("1")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Venda efetuada com sucesso", 4000);
 			mensagem.setText("0");
 		}
 		if(mensagem.getText().equals("3")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Desconto adicionado com sucesso", 4000);
 			mensagem.setText("0");
 		}
 		if(mensagem.getText().equals("4")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Cliente cadastrado com sucesso", 4000);
 			mensagem.setText("0");
 		}
@@ -209,7 +210,7 @@ public class TelaVendaController implements Initializable {
 						}
 					}
 
-					if (qtdAtualizado.compareTo(new BigDecimal(campoQuantidade.getText())) == -1) { /// È
+					if (qtdAtualizado.compareTo(new BigDecimal(campoQuantidade.getText())) == -1) { /// √©
 						System.out.println("entou 3"); /// menorr
 						qtdCombustivel = false;
 
@@ -232,7 +233,7 @@ public class TelaVendaController implements Initializable {
 						}
 					}
 
-					if (qtdAtualizado.compareTo(new BigDecimal(campoQuantidade.getText())) == -1) { /// È
+					if (qtdAtualizado.compareTo(new BigDecimal(campoQuantidade.getText())) == -1) { /// √©
 						/// menorr
 						qtdProduto = false;
 					}
@@ -248,27 +249,27 @@ public class TelaVendaController implements Initializable {
 					carregarTabela();
 
 					carregarTotalVenda();
-					
+
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+					//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Produto adicionado com sucesso", 4000);
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Essa quandidade n„o possui em estoque", 4000); 
-					
+					//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+					snackBar.show("Essa quandidade n√£o possui em estoque", 4000);
+
 				}
 
 			} else {
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Informa quantidade", 4000); 
+				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+				snackBar.show("Informa quantidade", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona um produto", 4000); 
+			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			snackBar.show("Seleciona um produto", 4000);
 		}
 
 	}
@@ -290,7 +291,7 @@ public class TelaVendaController implements Initializable {
 	@FXML
 	void btnDesconto(ActionEvent event) {
 		RecebePedido.setTotal_pagar(campoTotalVenda.getNumber());
-		new Main().carregarTelaDesconto();
+		new Tela().carregarTelaDesconto();
 	}
 
 	@FXML
@@ -299,7 +300,7 @@ public class TelaVendaController implements Initializable {
 			new RecebePedido(0, comboBoxFuncionario.getValue(), comboBoxCliente.getValue(), new Fluxo_caixa(),
 					campoTotalVenda.getNumber(), campoDesconto.getNumber(), "", lista_itensPedido);
 
-			new Main().carregarTelaFecharVenda();
+			new Tela().carregarTelaFecharVenda();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -316,28 +317,28 @@ public class TelaVendaController implements Initializable {
 				int id = Integer
 						.valueOf(treeTableViewVenda.getSelectionModel().getSelectedItem().getValue().toString());
 
-				
+
 				for (int i = 0; i < lista_itensPedido.size(); ++i) {
 					if (lista_itensPedido.get(i).getIdItem() == id) {
 						lista_itensPedido.remove(i);
 
 						carregarTabela();
 						carregarTotalVenda();
-						
+
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Produto removido com sucesso", 4000);
-						
+
 						break;
 					}
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
- 
+
 		}else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona produto na tabela", 4000);
 		}
 	}
@@ -397,7 +398,7 @@ public class TelaVendaController implements Initializable {
 		campoPreco.setLabelFloat(true);
 		campoTotal.setLabelFloat(true);
 		campoQuantidade.setLabelFloat(true);
-		campoPreco.setPromptText("PreÁo");
+		campoPreco.setPromptText("Pre√ßo");
 		campoTotal.setPromptText("Total");
 		campoQuantidade.setPromptText("Quantidade *");
 
@@ -442,7 +443,7 @@ public class TelaVendaController implements Initializable {
 		comboBoxFuncionario.getStylesheets().add(style);
 		comboBoxFuncionario.getStyleClass().add("formata-campo");
 		comboBoxFuncionario.setPrefWidth(367);
-		comboBoxFuncionario.setPromptText("Pesquisar Funcion·rio ...");
+		comboBoxFuncionario.setPromptText("Pesquisar Funcion√°rio ...");
 		comboBoxFuncionario.setPadding(new Insets(0, 0, 0, -10));
 		comboBoxFuncionario.setFocusTraversable(false);
 		new AutoShowComboBoxHelper(comboBoxFuncionario);
@@ -465,7 +466,7 @@ public class TelaVendaController implements Initializable {
 					e.printStackTrace();
 				}
 			} else {
-				comboBoxFuncionario.setPromptText("Pesquisar Funcion·rio ...");
+				comboBoxFuncionario.setPromptText("Pesquisar Funcion√°rio ...");
 			}
 		});
 
@@ -503,7 +504,7 @@ public class TelaVendaController implements Initializable {
 
 				@Override
 				public void changed(ObservableValue<? extends Produto_loja> observable, Produto_loja oldValue,
-						Produto_loja newValue) {
+									Produto_loja newValue) {
 
 					campoQuantidade.setText("0");
 					campoPreco.setNumber(BigDecimal.ZERO);
@@ -608,11 +609,11 @@ public class TelaVendaController implements Initializable {
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<VendaClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(150);
-		JFXTreeTableColumn<VendaClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRI«√O");
+		JFXTreeTableColumn<VendaClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRI√á√ÉO");
 		colunaNome.setPrefWidth(300);
 		JFXTreeTableColumn<VendaClass, String> colunaQuantidade = new JFXTreeTableColumn<>("QUANTIDADE");
 		colunaQuantidade.setPrefWidth(200);
-		JFXTreeTableColumn<VendaClass, String> colunaPreco = new JFXTreeTableColumn<>("PRE«O");
+		JFXTreeTableColumn<VendaClass, String> colunaPreco = new JFXTreeTableColumn<>("PRE√áO");
 		colunaPreco.setPrefWidth(150);
 		JFXTreeTableColumn<VendaClass, String> colunaTotal = new JFXTreeTableColumn<>("TOTAL");
 		colunaTotal.setPrefWidth(150);
@@ -684,7 +685,7 @@ public class TelaVendaController implements Initializable {
 		StringProperty idProduto;
 
 		public VendaClass(int id, String nome, BigDecimal quantidade, BigDecimal preco, BigDecimal total,
-				int idProduto) {
+						  int idProduto) {
 			super();
 			this.id = new SimpleStringProperty(String.valueOf(id));
 			this.nome = new SimpleStringProperty(nome);
@@ -734,8 +735,8 @@ public class TelaVendaController implements Initializable {
 		}
 
 		public RecebePedido(int id_pedido_venda, Funcionario funcionario, Cliente cliente, Fluxo_caixa fluxoCaixa,
-				BigDecimal total_pagar, BigDecimal desconto, String forma_pagamento,
-				ObservableList<Item_pedido> itens_pedido) {
+							BigDecimal total_pagar, BigDecimal desconto, String forma_pagamento,
+							ObservableList<Item_pedido> itens_pedido) {
 			RecebePedido.id_pedido_venda = id_pedido_venda;
 			RecebePedido.funcionario = funcionario;
 			RecebePedido.cliente = cliente;
@@ -830,6 +831,6 @@ public class TelaVendaController implements Initializable {
 
 	@FXML
 	void adicionarCliente(MouseEvent event) {
-		new Main().carregarTelaCadastroRapidoClientes();
+		new Tela().carregarTelaCadastroRapidoClientes();
 	}
 }

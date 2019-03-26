@@ -271,7 +271,7 @@ public class TelaGerenciarClienteController implements Initializable {
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigatórios não informado", 4000); 
+					snackBar.show("Campos obrigatÃ³rios nÃ£o informado", 4000);
 				}
 
 			} catch (Exception e) {
@@ -312,7 +312,7 @@ public class TelaGerenciarClienteController implements Initializable {
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigatórios não informado", 4000); 
+				snackBar.show("Campos obrigatÃ³rios nÃ£o informado", 4000);
 			}
 
 		}
@@ -328,7 +328,7 @@ public class TelaGerenciarClienteController implements Initializable {
 		comboBoxSexo.getItems().addAll("Masculino", "Feminino");
 		comboBoxEstado.getItems().addAll("AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT",
 				"PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RS", "SC", "SE", "SP", "TO");
-		comboBoxEstatadoCivil.getItems().addAll("Solteiro", "Casado", "Divorciado", "Separado", "Viúvo");
+		comboBoxEstatadoCivil.getItems().addAll("Solteiro", "Casado", "Divorciado", "Separado", "ViÃºvo");
 
 	}
 
@@ -398,7 +398,7 @@ public class TelaGerenciarClienteController implements Initializable {
 
 		ObservableList<ClienteFisicaClass> lista_clientes = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe anônima
+		// carregando registros com os campos da coluna da classe anÃ´nima
 		try {
 			sqlClienteFisica.listar().forEach(cliente -> {
 				lista_clientes.add(new ClienteFisicaClass(String.valueOf(cliente.getId_cliente_fisica()),
@@ -481,7 +481,7 @@ public class TelaGerenciarClienteController implements Initializable {
 		// comboBoxEstado.getValidators().add(validacao);
 		// comboBoxEstatadoCivil.getValidators().add(validacao);
 		// comboBoxSexo.setValue(null);
-		validacao.setMessage("Campo obrigatório");
+		validacao.setMessage("Campo obrigatÃ³rio");
 
 		campoRg.setOnKeyReleased(event -> {
 			TextFieldFormatter ttf = new TextFieldFormatter();
@@ -503,7 +503,7 @@ public class TelaGerenciarClienteController implements Initializable {
 					if(!cpf){
 						snackBar = new JFXSnackbar(borderPaneTabela);
 			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("CPF Inválido", 6000);
+						snackBar.show("CPF InvÃ¡lido", 6000);
 						campoCpf.setText(""); 
 					}
 				}
@@ -567,14 +567,14 @@ public class TelaGerenciarClienteController implements Initializable {
 				campoCelular.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Número cadastrado com sucesso", 4000); 
+				snackBar.show("NÃºmero cadastrado com sucesso", 4000);
 			}
 			if (!campoTelefone.getText().isEmpty()) {
 				lista_telefones.add(new Telefone(0, campoTelefone.getText()));
 				campoTelefone.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Número cadastrado com sucesso", 4000); 
+				snackBar.show("NÃºmero cadastrado com sucesso", 4000);
 			}
 
 		} else if (treeTableViewClienteFisica.getSelectionModel().getSelectedIndex() != -1) {
@@ -590,7 +590,7 @@ public class TelaGerenciarClienteController implements Initializable {
 					campoCelular.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
 			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Número cadastrado com sucesso", 4000); 
+					snackBar.show("NÃºmero cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -607,7 +607,7 @@ public class TelaGerenciarClienteController implements Initializable {
 					campoTelefone.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
 		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Número cadastrado com sucesso", 4000); 
+					snackBar.show("NÃºmero cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -620,7 +620,7 @@ public class TelaGerenciarClienteController implements Initializable {
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
 			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Campos obrigatórios não informado", 4000); 
+			snackBar.show("Campos obrigatÃ³rios nÃ£o informado", 4000);
 		}
 
 		listViewTelefones.setItems(lista_telefones);
@@ -637,7 +637,7 @@ public class TelaGerenciarClienteController implements Initializable {
 						lista_telefones.remove(i);
 						snackBar = new JFXSnackbar(borderPaneTabela);
 						String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Número removido com sucesso", 4000); 
+						snackBar.show("NÃºmero removido com sucesso", 4000);
 					}
 				}
 
@@ -655,7 +655,7 @@ public class TelaGerenciarClienteController implements Initializable {
 						
 						snackBar = new JFXSnackbar(borderPaneTabela);
 				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Número removido com sucesso", 4000); 
+						snackBar.show("NÃºmero removido com sucesso", 4000);
 					}
 				}
 				try {
@@ -668,7 +668,7 @@ public class TelaGerenciarClienteController implements Initializable {
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Seleciona número na tabela", 4000); 
+				snackBar.show("Seleciona nÃºmero na tabela", 4000);
 			}
 
 			listViewTelefones.setItems(lista_telefones);

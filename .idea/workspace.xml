@@ -1,7 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="933c54ea-e9c6-491a-ab9c-630cf9a09c31" name="Default Changelist" comment="" />
+    <list default="true" id="933c54ea-e9c6-491a-ab9c-630cf9a09c31" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/postoGasolina/main/Tela.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaAbrirCaixaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaAbrirCaixaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarBombaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarBombaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarCargoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarCargoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarCategoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarCategoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarDesconto2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController$TipoCombbustivelClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController$TipoCombbustivelClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastroRapidoClientesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCadastroRapidoClientesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$CompraClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$CompraClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$RecebePedidoCompra.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController$RecebePedidoCompra.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaCompraController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaEnviarEmailAniversarioController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaEnviarEmailAniversarioController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaFecharCaixaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaFecharCaixaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaFinalizarVenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaFinalizarVenda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerarCupomDescontoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerarCupomDescontoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController$LicencaAutorizacaoClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController$LicencaAutorizacaoClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$CaixaClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$CaixaClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$CaixaFClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController$CaixaFClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCaixaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarClienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarClienteJuridica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarClienteJuridica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCombustivelController$CombustivelClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCombustivelController$CombustivelClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCombustivelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarCombustivelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$FidelizacaoClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController$FidelizacaoClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController$FuncionarioClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController$FuncionarioClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarFuncionariosController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarProdutos$ProdutoClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarProdutos$ProdutoClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarProdutos.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaGerenciarProdutos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaLoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaPrincipalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaRecuperarSenhaController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaRecuperarSenhaController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaRecuperarSenhaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaRecuperarSenhaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$RecebePedido.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$RecebePedido.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$VendaClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController$VendaClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/controller/TelaVendaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Posto/com/postoGasolina/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaAbrirCaixaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaAbrirCaixaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarBombaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarBombaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCargoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCargoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCategoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastroRapidoClientesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastroRapidoClientesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCompraController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFecharCaixaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFecharCaixaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFinalizarVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFinalizarVenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerarCupomDescontoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerarCupomDescontoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCaixaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCaixaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteJuridica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteJuridica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCombustivelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCombustivelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFornecedores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFornecedores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFuncionariosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarOrgaoGovernamental.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarOrgaoGovernamental.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarPermissoesFuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarPermissoesFuncionariosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarProdutos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarProdutos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaPrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaPrincipalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaRecuperarSenhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaRecuperarSenhaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaVendaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaVendaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/postoGasolina/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/postoGasolina/main/Main.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +145,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+            <state relative-caret-position="318">
+              <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#939#940#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/main/Tela.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8874">
+              <caret line="534" lean-forward="true" selection-start-line="534" selection-end-line="534" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,6 +169,26 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>carregarTelaFecharCaixa</find>
+      <find>services</find>
+      <find>5</find>
+      <find>venda</find>
+      <find>compra</find>
+      <find>/*</find>
+      <find>�</find>
+      <find>Main()</find>
+      <find>carregarTela</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,10 +200,42 @@
         <option value="$PROJECT_DIR$/src/com/postoGasolina/model/Email.java" />
         <option value="$PROJECT_DIR$/src/com/postoGasolina/dao/ConexaoUtil.java" />
         <option value="$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_cliente_fisica.sql" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCaixaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCompraController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCombustivelController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaAbrirCaixaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarBombaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCargoController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCategoria.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto2.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastroRapidoClientesController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFecharCaixaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFinalizarVenda.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerarCupomDescontoController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteJuridica.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFornecedores.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFuncionariosController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarOrgaoGovernamental.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarPermissoesFuncionariosController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarProdutos.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaLoginController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaPrincipalController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaRecuperarSenhaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/TelaVendaController.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/controller/MenuItem.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/postoGasolina/main/Tela.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1" />
     <option name="y" value="18" />
     <option name="width" value="1346" />
@@ -63,29 +246,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Posto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Posto" type="462c0819:PsiDirectoryNode" />
+              <item name="PostoDeGasolina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PostoDeGasolina" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Posto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Posto" type="462c0819:PsiDirectoryNode" />
+              <item name="PostoDeGasolina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PostoDeGasolina" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Posto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Posto" type="462c0819:PsiDirectoryNode" />
+              <item name="PostoDeGasolina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PostoDeGasolina" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="postoGasolina" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Posto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Posto" type="462c0819:PsiDirectoryNode" />
+              <item name="PostoDeGasolina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PostoDeGasolina" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="postoGasolina" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PostoDeGasolina" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PostoDeGasolina" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="postoGasolina" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
@@ -99,7 +289,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553629902971" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553641287182" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Posto" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -165,17 +356,17 @@
       <updated>1553621419781</updated>
       <workItem from="1553621425207" duration="6750000" />
       <workItem from="1553633953614" duration="461000" />
+      <workItem from="1553635059686" duration="6225000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7211000" />
+    <option name="totallyTimeSpent" value="13436000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25037822" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -194,7 +385,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32850242" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.28663447" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -210,180 +401,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarPermissoesFuncionariosController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/Cliente_fisica.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/CaixaDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-935">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/LicencaAutorizacaoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/Email.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/ConexaoUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/ClienteFisicaDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4381">
-          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/BombaDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_fluxo_caixa.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="30" column="32" lean-forward="true" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_fornecedor.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="25" column="50" lean-forward="true" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_orgao.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="28" column="35" lean-forward="true" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_pedido_compra.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="31" column="35" lean-forward="true" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_pessoa.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" column="42" lean-forward="true" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_telefone_orgao.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="54" lean-forward="true" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_unidade_medida.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="55" lean-forward="true" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_bico.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="45" column="59" lean-forward="true" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_bomba.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="32" column="36" lean-forward="true" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_categoria.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="20" lean-forward="true" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_cargo.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="28" column="57" lean-forward="true" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_cliente_juridica.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_tipo_combustivel.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="55" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_endereco.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="2" lean-forward="true" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_combustivel.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="44" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_funcionario.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="35" column="47" lean-forward="true" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/backupMysql/db_posto_gasolina_tb_produto.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -461,12 +478,342 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/main/Main.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/application/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="144" column="22" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFidelizacaoClientesController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <caret line="731" column="30" selection-start-line="731" selection-start-column="30" selection-end-line="731" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarTipoCombustivelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="242" column="22" selection-start-line="242" selection-start-column="22" selection-end-line="242" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCombustivelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="485" column="22" selection-start-line="485" selection-start-column="22" selection-end-line="485" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/stage/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="662" column="22" selection-start-line="662" selection-start-column="22" selection-end-line="662" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCompraController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="215" column="19" selection-start-line="215" selection-start-column="19" selection-end-line="215" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCargoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarCategoria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarDesconto2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarUnidadeMedidaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastroRapidoClientesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="92" column="50" selection-start-line="92" selection-start-column="50" selection-end-line="92" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaEnviarEmailAniversarioController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="108" column="42" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFecharCaixaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="89" column="46" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaFinalizarVenda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="117" column="49" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteJuridica.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarClienteController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="571" column="12" selection-start-line="571" selection-start-column="12" selection-end-line="571" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarCaixaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="231" column="22" selection-start-line="231" selection-start-column="22" selection-end-line="231" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerarCupomDescontoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="165" column="30" selection-start-line="165" selection-start-column="30" selection-end-line="165" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFornecedores.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="623" column="41" selection-start-line="623" selection-start-column="41" selection-end-line="623" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarFuncionariosController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="225" column="39" selection-start-line="225" selection-start-column="39" selection-end-line="225" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarOrgaoGovernamental.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="599" column="41" selection-start-line="599" selection-start-column="41" selection-end-line="599" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarPermissoesFuncionariosController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6870">
+          <caret line="472" column="51" lean-forward="true" selection-start-line="472" selection-start-column="51" selection-end-line="472" selection-end-column="51" />
+          <folding>
+            <element signature="e#12280#12281#0" expanded="true" />
+            <element signature="e#12309#12310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciarProdutos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
+          <folding>
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#2832#2833#0" expanded="true" />
+            <element signature="e#15717#15718#0" expanded="true" />
+            <element signature="e#15762#15763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaLoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaPrincipalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="154" column="26" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaRecuperarSenhaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaVendaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="291" column="38" selection-start-line="291" selection-start-column="38" selection-end-line="291" selection-end-column="38" />
+          <folding>
+            <element signature="e#5149#5150#0" expanded="true" />
+            <element signature="e#5178#5179#0" expanded="true" />
+            <element signature="e#24520#24521#0" expanded="true" />
+            <element signature="e#24565#24566#0" expanded="true" />
+            <element signature="e#26041#26042#0" expanded="true" />
+            <element signature="e#26072#26073#0" expanded="true" />
+            <element signature="e#26136#26137#0" expanded="true" />
+            <element signature="e#26191#26192#0" expanded="true" />
+            <element signature="e#26239#26240#0" expanded="true" />
+            <element signature="e#26266#26267#0" expanded="true" />
+            <element signature="e#26330#26331#0" expanded="true" />
+            <element signature="e#26377#26378#0" expanded="true" />
+            <element signature="e#26417#26418#0" expanded="true" />
+            <element signature="e#26440#26441#0" expanded="true" />
+            <element signature="e#26492#26493#0" expanded="true" />
+            <element signature="e#26531#26532#0" expanded="true" />
+            <element signature="e#26578#26579#0" expanded="true" />
+            <element signature="e#26604#26605#0" expanded="true" />
+            <element signature="e#26666#26667#0" expanded="true" />
+            <element signature="e#26711#26712#0" expanded="true" />
+            <element signature="e#26758#26759#0" expanded="true" />
+            <element signature="e#26785#26786#0" expanded="true" />
+            <element signature="e#26848#26849#0" expanded="true" />
+            <element signature="e#26895#26896#0" expanded="true" />
+            <element signature="e#27271#27272#0" expanded="true" />
+            <element signature="e#27302#27303#0" expanded="true" />
+            <element signature="e#27369#27370#0" expanded="true" />
+            <element signature="e#27424#27425#0" expanded="true" />
+            <element signature="e#27489#27490#0" expanded="true" />
+            <element signature="e#27517#27518#0" expanded="true" />
+            <element signature="e#27688#27689#0" expanded="true" />
+            <element signature="e#27715#27716#0" expanded="true" />
+            <element signature="e#27771#27772#0" expanded="true" />
+            <element signature="e#27818#27819#0" expanded="true" />
+            <element signature="e#27873#27874#0" expanded="true" />
+            <element signature="e#27927#27928#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/MenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+          <folding>
+            <element signature="e#1576#1577#0" expanded="true" />
+            <element signature="e#1619#1620#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaAbrirCaixaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="102" column="32" selection-start-line="102" selection-start-column="31" selection-end-line="102" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaCadastrarBombaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-750">
+          <caret line="349" column="69" selection-start-line="349" selection-start-column="69" selection-end-line="349" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/BombaDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1258">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/AcheiCep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1178">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/Bico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/Bomba.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/model/BuscaCnpj.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/controller/TelaGerenciaLicencasAutorizacoesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="541" lean-forward="true" selection-start-line="541" selection-end-line="541" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/dao/InterfaceDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/main/Tela.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8874">
+          <caret line="534" lean-forward="true" selection-start-line="534" selection-end-line="534" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/postoGasolina/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
           </folding>
         </state>
       </provider>

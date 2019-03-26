@@ -87,7 +87,7 @@ public class TelaFecharCaixaController implements Initializable {
 			} else {
 				s = new JFXSnackbar(gridPaneBottom);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				s.show("Campos ObrigatÛrios n„o informado", 4000); 
+				s.show("Campos Obrigat√≥rios n√£o informado", 4000);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

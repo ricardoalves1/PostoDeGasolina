@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Login;
 
@@ -104,7 +105,7 @@ public class TelaPrincipalController implements Initializable {
 					borderPaneCenter.setCenter(null);
 					// 4 é venda
 					TelaAbrirCaixaController.AbrirTela.setText("4");
-					new Main().carregarTelaAbrirCaixa();
+					new Tela().carregarTelaAbrirCaixa();
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
@@ -119,7 +120,7 @@ public class TelaPrincipalController implements Initializable {
 			if (Fluxo_caixa.getStatus().equals("Fechado")) {
 				try {
 					borderPaneCenter.setCenter(null);
-					new Main().carregarTelaAbrirCaixa();
+					new Tela().carregarTelaAbrirCaixa();
 					// 5 é compra
 					TelaAbrirCaixaController.AbrirTela.setText("5");
 				} catch (Exception e) {
@@ -136,7 +137,7 @@ public class TelaPrincipalController implements Initializable {
 			// usuário"));
 			dialogTrocarUsuarioLayout.setBody(new Text("Deseja realmente sair ?"));
 			btnOK.setOnAction(e -> {
-				new Main().carregarTelaLogin();
+				new Tela().carregarTelaLogin();
 			});
 			btnCANCELAR.setOnAction(e -> {
 				dialogTrocarUsuario.close();
@@ -149,7 +150,7 @@ public class TelaPrincipalController implements Initializable {
 
 		menuData.add(new Pair<String, Runnable>("Sair", () -> {
 			if (Fluxo_caixa.getStatus().equals("Aberto")) {
-				new Main().carregarTelaFecharCaixa();
+				new Tela().carregarTelaFecharCaixa();
 			} else if (Fluxo_caixa.getStatus().equals("Fechado")) {
 				new Main().getStage().close();
 			}

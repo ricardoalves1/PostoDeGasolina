@@ -19,6 +19,7 @@ import com.postoGasolina.dao.BombaDao;
 import com.postoGasolina.dao.CombustiveisDao;
 import com.postoGasolina.dao.TipoCombustivelDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Bico;
 import com.postoGasolina.model.Bomba;
 import com.postoGasolina.model.Combustivel;
@@ -110,18 +111,18 @@ public class TelaGerenciarCombustivelController implements Initializable {
 				limparCampos();
 				snackBar = new JFXSnackbar(borderPaneTabela);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Combustível removido com sucesso", 4000);
+				snackBar.show("Combustï¿½vel removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Combustível sendo utilizado", 4000);
+				snackBar.show("Combustï¿½vel sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
 		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona combustível na tabela", 4000);
+			snackBar.show("Seleciona combustï¿½vel na tabela", 4000);
 		}
 	}
 
@@ -170,7 +171,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
 				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Combustível cadastrado com sucesso", 4000);
+						snackBar.show("Combustï¿½vel cadastrado com sucesso", 4000);
 
 					} else {
 						snackBar = new JFXSnackbar(borderPaneTabela);
@@ -181,7 +182,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
 				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigatórios não informados", 4000);
+					snackBar.show("Campos obrigatï¿½rios nï¿½o informados", 4000);
 				}
 
 			} catch (Exception e) {
@@ -232,7 +233,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
 				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Combustível alterado com sucesso", 4000);
+						snackBar.show("Combustï¿½vel alterado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -251,7 +252,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigatórios não informados", 4000); 
+				snackBar.show("Campos obrigatï¿½rios nï¿½o informados", 4000); 
 			}
 		}
 	}
@@ -295,12 +296,12 @@ public class TelaGerenciarCombustivelController implements Initializable {
 		JFXTreeTableColumn<CombustivelClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(50);
 		JFXTreeTableColumn<CombustivelClass, String> colunaTipoCombustivel = new JFXTreeTableColumn<>(
-				"Tipo de combustíveis");
+				"Tipo de combustï¿½veis");
 		colunaTipoCombustivel.setPrefWidth(185);
 		JFXTreeTableColumn<CombustivelClass, String> colunaEstoqueDisponivel = new JFXTreeTableColumn<>(
-				"Est. disponível");
+				"Est. disponï¿½vel");
 		colunaEstoqueDisponivel.setPrefWidth(110);
-		JFXTreeTableColumn<CombustivelClass, String> colunaPreco = new JFXTreeTableColumn<>("Preço");
+		JFXTreeTableColumn<CombustivelClass, String> colunaPreco = new JFXTreeTableColumn<>("Preï¿½o");
 		colunaPreco.setPrefWidth(105);
 		JFXTreeTableColumn<CombustivelClass, String> colunaBomba = new JFXTreeTableColumn<>("Bomba");
 		colunaBomba.setPrefWidth(84);
@@ -372,7 +373,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 		ObservableList<CombustivelClass> lista_combustivel = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe anônima
+		// carregando registros com os campos da coluna da classe anï¿½nima
 		/*
 		 * try {
 		 * 
@@ -479,10 +480,10 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 	void preencherComboBox() {
 		btnTipoCombustivel.setOnMouseClicked(event -> {
-			new Main().carregarTipoCombustivel();
+			new Tela().carregarTipoCombustivel();
 		});
 		btnBomba.setOnMouseClicked(event -> {
-			new Main().carregarTelaCadastrarBomba();
+			new Tela().carregarTelaCadastrarBomba();
 		});
 
 		// IMPORTANTE ATUALIZA COMBOBOX

@@ -109,7 +109,7 @@ public class TelaGerarCupomDescontoController implements Initializable {
 
 				document.open();
 
-				// par·grafo
+				// par√°grafo
 				Paragraph paragraph = new Paragraph();
 
 				// nova linha
@@ -124,7 +124,7 @@ public class TelaGerarCupomDescontoController implements Initializable {
 				PdfPCell cell1 = new PdfPCell(new Phrase("Cliente"));
 				cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				pdfTable.addCell(cell1);
-				cell1 = new PdfPCell(new Phrase("Tipo de serviÁo"));
+				cell1 = new PdfPCell(new Phrase("Tipo de servi√ßo"));
 				cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				pdfTable.addCell(cell1);
 				cell1 = new PdfPCell(new Phrase("Desconto"));
@@ -149,21 +149,21 @@ public class TelaGerarCupomDescontoController implements Initializable {
 
 				snackBar = new JFXSnackbar(borderPane);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("RelatÛrio gerado com sucesso", 4000);
+				snackBar.show("Relat√≥rio gerado com sucesso", 4000);
 
 				campoTipoServico.setText("");
 				campoValor.setNumber(BigDecimal.ZERO);
 			} else {
 				snackBar = new JFXSnackbar(borderPane);
 		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos ObrigatÛrios n„o informado", 4000);
+				snackBar.show("Campos Obrigat√≥rios n√£o informado", 4000);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			JFXSnackbar s = new JFXSnackbar(borderPane);
 		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			s.show("Cliente n„o possui cadastro completo", 4000);
+			s.show("Cliente n√£o possui cadastro completo", 4000);
 		}
 
 	}

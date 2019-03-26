@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
 import com.postoGasolina.dao.PermissoesDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Login;
 
 import javafx.animation.FadeTransition;
@@ -52,7 +53,7 @@ public class TelaLoginController implements Initializable {
 	@FXML
 	private BorderPane borderPaneCenter;
 
-	// recebe um resultado do mÈtodo
+	// recebe um resultado do m√©todo
 	private byte result = 0;
 
 	@FXML
@@ -77,11 +78,11 @@ public class TelaLoginController implements Initializable {
 
 	@FXML
 	private GridPane gridPaneCenter;
-	
+
 	@FXML
-    private Hyperlink btnRecuperarSenha;
-	
-	private JFXSnackbar snackBar; 
+	private Hyperlink btnRecuperarSenha;
+
+	private JFXSnackbar snackBar;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -92,9 +93,9 @@ public class TelaLoginController implements Initializable {
 				validarLogin();
 			}
 		});
-		
+
 		btnRecuperarSenha.setOnAction(e->{
-			new Main().carregarTelaRecuperarSenha();
+			new Tela().carregarTelaRecuperarSenha();
 		});
 	}
 
@@ -109,13 +110,13 @@ public class TelaLoginController implements Initializable {
 			if(result){
 				Login login = !new PermissoesDao().pesquisar(campoEmail.getText(), campoSenha.getText()).isEmpty() ?
 						new PermissoesDao().pesquisar(campoEmail.getText(), campoSenha.getText()).get(0) : null;
-						
+
 				TelaPrincipalController.login = login;
-				new Main().carregarTelaPrincipal();
+				new Tela().carregarTelaPrincipal();
 			} else{
 				snackBar = new JFXSnackbar(borderPaneCenter);
-	//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("E-mail e/ou senha inv·lidos", 4000); 
+				//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+				snackBar.show("E-mail e/ou senha inv√°lidos", 4000);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -124,7 +125,7 @@ public class TelaLoginController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 	void slideShow() {
 		try {

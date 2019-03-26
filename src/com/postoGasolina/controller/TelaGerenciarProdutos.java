@@ -20,6 +20,7 @@ import com.postoGasolina.dao.CategoriaDao;
 import com.postoGasolina.dao.ProdutosDao;
 import com.postoGasolina.dao.UnidadeMedidaDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Categoria;
 import com.postoGasolina.model.Produto;
 import com.postoGasolina.model.Unidade_medida;
@@ -86,18 +87,18 @@ public class TelaGerenciarProdutos implements Initializable {
 	private JFXTreeTableView<ProdutoClass> treeTableViewProduto;
 
 	private int idProduto;
-	
+
 	private JFXSnackbar snackBar;
-	
+
 	@FXML
 	private NumeroTextField campoQuantidade = new NumeroTextField(null);
 	@FXML
 	private NumeroTextField campoEstoqueMinimo = new NumeroTextField(null);
 	@FXML
 	private NumeroTextField campoEstoqueMaximo = new NumeroTextField(null);
-	
+
 	@FXML
-	private NumeroTextField campoPreco = new NumeroTextField(BigDecimal.ZERO, 
+	private NumeroTextField campoPreco = new NumeroTextField(BigDecimal.ZERO,
 			NumberFormat.getCurrencyInstance(new Locale("pt","BR")));
 
 	@Override
@@ -120,7 +121,7 @@ public class TelaGerenciarProdutos implements Initializable {
 		campoQuantidade.getStyleClass().add("formata-campo");
 		campoQuantidade.setUnFocusColor(Color.WHITE);
 		campoQuantidade.setFocusColor(Color.WHITE);
-		campoQuantidade.setPromptText("Estoque dispon�vel *");
+		campoQuantidade.setPromptText("Estoque disponível *");
 		campoQuantidade.setLabelFloat(true);
 		gridPaneTop.add(campoQuantidade, 1, 2);
 		gridPaneTop.setMargin(campoQuantidade, new Insets(0, 167, 0, 0));
@@ -129,7 +130,7 @@ public class TelaGerenciarProdutos implements Initializable {
 		campoEstoqueMinimo.getStyleClass().add("formata-campo");
 		campoEstoqueMinimo.setUnFocusColor(Color.WHITE);
 		campoEstoqueMinimo.setFocusColor(Color.WHITE);
-		campoEstoqueMinimo.setPromptText("Estoque m�nimo *");
+		campoEstoqueMinimo.setPromptText("Estoque mínimo *");
 		campoEstoqueMinimo.setLabelFloat(true);
 		gridPaneTop.add(campoEstoqueMinimo, 0, 4);
 		gridPaneTop.setMargin(campoEstoqueMinimo, new Insets(0, 10, 20, 260));
@@ -138,28 +139,28 @@ public class TelaGerenciarProdutos implements Initializable {
 		campoEstoqueMaximo.getStyleClass().add("formata-campo");
 		campoEstoqueMaximo.setUnFocusColor(Color.WHITE);
 		campoEstoqueMaximo.setFocusColor(Color.WHITE);
-		campoEstoqueMaximo.setPromptText("Estoque m�ximo *");
+		campoEstoqueMaximo.setPromptText("Estoque máximo *");
 		campoEstoqueMaximo.setLabelFloat(true);
 		gridPaneTop.add(campoEstoqueMaximo, 1, 4);
 		gridPaneTop.setMargin(campoEstoqueMaximo, new Insets(0, 350, 20, 0));
-		
+
 		campoPreco.getStylesheets().add(style);
 		campoPreco.getStyleClass().add("formata-campo");
 		campoPreco.setUnFocusColor(Color.WHITE);
 		campoPreco.setFocusColor(Color.WHITE);
-		campoPreco.setPromptText("Pre�o *");
+		campoPreco.setPromptText("Preço *");
 		campoPreco.setLabelFloat(true);
 		gridPaneTop.add(campoPreco, 1, 4);
 		gridPaneTop.setMargin(campoPreco, new Insets(0,10, 20, 330));
-		
+
 		btnUnidadeMedida.setOnMouseClicked(event ->{
-			new Main().carregarTelaUnidadeMedida();
+			new Tela().carregarTelaUnidadeMedida();
 		});
 		btnCategoria.setOnMouseClicked(event ->{
-			new Main().carregarTelaCategoria();
+			new Tela().carregarTelaCategoria();
 		});;
-		
-		
+
+
 		comboboxCategoria.focusedProperty().addListener((observable, oldValue, newValue) ->{
 			if(comboboxCategoria.isFocused()){
 				try {
@@ -186,7 +187,7 @@ public class TelaGerenciarProdutos implements Initializable {
 				}
 			}
 		});;
-		
+
 		campoCodigoProduto.setOnKeyReleased(event -> {
 			TextFieldFormatter ttf = new TextFieldFormatter();
 			ttf.setCaracteresValidos("0123456789");
@@ -194,7 +195,7 @@ public class TelaGerenciarProdutos implements Initializable {
 			ttf.setTf(campoCodigoProduto);
 			ttf.formatter();
 		});
-		
+
 		checkBoxNaoControlarEstoque.setOnAction(event ->{
 			verificarCheckBox();
 		});
@@ -209,20 +210,20 @@ public class TelaGerenciarProdutos implements Initializable {
 				new ProdutosDao().remover(idProduto);
 				carregarTabela();
 				limparcampos();
-				
+
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Produto removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Produto sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona produto na tabela", 4000);
 		}
 	}
@@ -236,7 +237,7 @@ public class TelaGerenciarProdutos implements Initializable {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@FXML
@@ -255,12 +256,12 @@ public class TelaGerenciarProdutos implements Initializable {
 										comboboxUnidadeMedida.getValue().getNome()),
 								campoDescricao.getText(), campoQuantidade.getNumber(), campoPreco.getNumber(), campoEstoqueMaximo.getNumber(),
 								campoEstoqueMinimo.getNumber(),checkBoxNaoControlarEstoque.isSelected()));
-						
+
 						carregarTabela();
 						limparcampos();
-						
+
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Produto cadastrado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
@@ -270,12 +271,12 @@ public class TelaGerenciarProdutos implements Initializable {
 						e.printStackTrace();
 					}
 
-					
+
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat�rios n�o informado", 4000);
+					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+					snackBar.show("Campos obrigatï¿½rios nï¿½o informado", 4000);
 				}
 
 			} catch (Exception e) {
@@ -300,7 +301,7 @@ public class TelaGerenciarProdutos implements Initializable {
 							campoEstoqueMinimo.getNumber(),checkBoxNaoControlarEstoque.isSelected()));
 					carregarTabela();
 					limparcampos();
-					
+
 					snackBar = new JFXSnackbar(borderPaneTabela);
 					String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Produto alterado com sucesso", 4000);
@@ -312,12 +313,12 @@ public class TelaGerenciarProdutos implements Initializable {
 					e.printStackTrace();
 				}
 
-				 
+
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigat�rios n�o informado", 4000);
+				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
+				snackBar.show("Campos obrigatï¿½rios nï¿½o informado", 4000);
 			}
 
 		}
@@ -329,12 +330,12 @@ public class TelaGerenciarProdutos implements Initializable {
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<ProdutoClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(70);
-		JFXTreeTableColumn<ProdutoClass, String> colunaDescricao = new JFXTreeTableColumn<>("Descri��o");
+		JFXTreeTableColumn<ProdutoClass, String> colunaDescricao = new JFXTreeTableColumn<>("Descrição");
 		colunaDescricao.setPrefWidth(300);
 		JFXTreeTableColumn<ProdutoClass, String> colunaEstoqueDisponivel = new JFXTreeTableColumn<>(
-				"Estoque dispon�vel");
+				"Estoque disponível");
 		colunaEstoqueDisponivel.setPrefWidth(150);
-		JFXTreeTableColumn<ProdutoClass, String> colunaPreco = new JFXTreeTableColumn<>("Pre�o");
+		JFXTreeTableColumn<ProdutoClass, String> colunaPreco = new JFXTreeTableColumn<>("Preço");
 		colunaPreco.setPrefWidth(150);
 		JFXTreeTableColumn<ProdutoClass, String> colunaUnidadeMedida = new JFXTreeTableColumn<>("Unidade medida");
 		colunaUnidadeMedida.setPrefWidth(120);
@@ -407,7 +408,7 @@ public class TelaGerenciarProdutos implements Initializable {
 							|| person.getValue().categoria.get().toLowerCase().contains(pesquisa.toLowerCase())
 							|| person.getValue().unidadeMedida.get().toLowerCase().contains(pesquisa.toLowerCase())
 
-			);
+					);
 		});
 		carregarDados();
 	}
@@ -423,7 +424,7 @@ public class TelaGerenciarProdutos implements Initializable {
 		StringProperty categoria;
 
 		public ProdutoClass(int id, String descricao, BigDecimal estoqueDisponivel, BigDecimal preco,
-				String unidadeMedida, String categoria) {
+							String unidadeMedida, String categoria) {
 
 			this.id = new SimpleStringProperty(String.valueOf(id));
 			this.descricao = new SimpleStringProperty(descricao);
@@ -465,12 +466,12 @@ public class TelaGerenciarProdutos implements Initializable {
 		checkBoxNaoControlarEstoque.setSelected(false);
 		verificarCheckBox();
 		comboboxCategoria.setValue(null);
-		comboboxUnidadeMedida.setValue(null); 
+		comboboxUnidadeMedida.setValue(null);
 	}
-	
+
 	public void carregarDados() {
 		// TODO Auto-generated method stub
-		
+
 		treeTableViewProduto.setOnMouseClicked(event -> {
 			if (treeTableViewProduto.getSelectionModel().getSelectedIndex() != -1) {
 				idProduto = Integer.parseInt(String.valueOf(
@@ -480,7 +481,7 @@ public class TelaGerenciarProdutos implements Initializable {
 					new ProdutosDao().listar().forEach(produto -> {
 
 						if (produto.getId_produto() == idProduto) {
-							campoCodigoProduto.setText(String.valueOf(produto.getCodigo_produto())); 
+							campoCodigoProduto.setText(String.valueOf(produto.getCodigo_produto()));
 							campoDescricao.setText(produto.getDescricao());
 							campoEstoqueMaximo.setNumber(produto.getEstoque_max());
 							campoEstoqueMinimo.setNumber(produto.getEstoque_min());
@@ -506,7 +507,7 @@ public class TelaGerenciarProdutos implements Initializable {
 			campoEstoqueMaximo.setNumber(BigDecimal.ONE);
 			campoEstoqueMinimo.setNumber(BigDecimal.ONE);
 			campoQuantidade.setNumber(BigDecimal.ONE);
-			
+
 			campoEstoqueMaximo.setEditable(false);
 			campoEstoqueMinimo.setEditable(false);
 			campoQuantidade.setEditable(false);

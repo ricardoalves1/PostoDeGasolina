@@ -134,7 +134,7 @@ public class TelaCadastrarBombaController implements Initializable {
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat髍ios n鉶 informado", 4000); 
+					snackBar.show("Campos obrigat贸rios n茫o informado", 4000);
 				}
 
 			} catch (Exception e) {
@@ -160,7 +160,7 @@ public class TelaCadastrarBombaController implements Initializable {
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat髍ios n鉶 informado", 4000); 		
+					snackBar.show("Campos obrigat贸rios n茫o informado", 4000);
 					}
 
 			} catch (Exception e) {
@@ -210,7 +210,7 @@ public class TelaCadastrarBombaController implements Initializable {
 				} else{
 					snackBar = new JFXSnackbar(borderPaneTabela);
 			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat髍ios n鉶 informado", 4000);
+					snackBar.show("Campos obrigat贸rios n茫o informado", 4000);
 				}
 
 			} else if (treeTableViewBomba.getSelectionModel().getSelectedIndex() != -1) {
@@ -237,7 +237,7 @@ public class TelaCadastrarBombaController implements Initializable {
 				}else{
 					snackBar = new JFXSnackbar(borderPaneTabela);
 			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat髍ios n鉶 informado", 4000);
+					snackBar.show("Campos obrigat贸rios n茫o informado", 4000);
 				}
 			}
 
@@ -329,7 +329,7 @@ public class TelaCadastrarBombaController implements Initializable {
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<BombaClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(50);
-		JFXTreeTableColumn<BombaClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRI敲O");
+		JFXTreeTableColumn<BombaClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRI脟脙O");
 		colunaNome.setPrefWidth(100);
 
 		colunaId.setCellValueFactory((TreeTableColumn.CellDataFeatures<BombaClass, String> param) -> {
@@ -347,7 +347,7 @@ public class TelaCadastrarBombaController implements Initializable {
 
 		ObservableList<BombaClass> lista_bombas = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe an鬾ima
+		// carregando registros com os campos da coluna da classe an么nima
 		try {
 			new BombaDao().listar().forEach(bomba -> {
 				lista_bombas.add(new BombaClass(bomba.getId_bomba(), bomba.getDescricao()));

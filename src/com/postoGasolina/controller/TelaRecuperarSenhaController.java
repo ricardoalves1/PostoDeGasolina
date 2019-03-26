@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import com.postoGasolina.main.Tela;
 import org.apache.commons.mail.EmailException;
 
 import com.jfoenix.controls.JFXButton;
@@ -57,7 +58,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 	@FXML
 	private BorderPane borderPaneCenter;
 
-	// recebe um resultado do método
+	// recebe um resultado do mÃ©todo
 	private byte result = 0;
 
 	@FXML
@@ -88,7 +89,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 
 	@FXML
 	private ImageView imgLoad;
-	
+
 	private JFXSnackbar snackBar;
 
 	@Override
@@ -96,7 +97,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 		slideShow();
 		logoTransition();
 		linkVoltar.setOnAction(e -> {
-			new Main().carregarTelaLogin();
+			new Tela().carregarTelaLogin();
 		});
 	}
 
@@ -305,7 +306,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 									// litando dados do login
 									Login l = !new PermissoesDao().pesquisar(campoEmail.getText()).isEmpty()
 											? new PermissoesDao().pesquisar(campoEmail.getText()).get(0) : null;
-									// envia o email pro usuário com a nova
+									// envia o email pro usuÃ¡rio com a nova
 									// senha
 									new Email().enviarNovaSenha(campoEmail.getText(),
 											l != null ? l.getFuncionario().getPessoa().getNome() : "", novaSenha);
@@ -323,7 +324,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 								} else {
 									javafx.application.Platform.runLater(() -> {
 										snackBar = new JFXSnackbar(borderPaneCenter);
-										snackBar.show("Conexão com a internet indisponível", 6000);
+										snackBar.show("ConexÃ£o com a internet indisponÃ­vel", 6000);
 										imgLoad.setImage(null);
 
 									});
@@ -337,7 +338,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 										.toExternalForm();
 								javafx.application.Platform.runLater(() -> {
 									snackBar = new JFXSnackbar(borderPaneCenter);
-									snackBar.show("Não foi possível enviar E-mail", 4000);
+									snackBar.show("NÃ£o foi possÃ­vel enviar E-mail", 4000);
 									imgLoad.setImage(null);
 								});
 							} catch (ClassNotFoundException e) {
@@ -348,7 +349,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 										.toExternalForm();
 								javafx.application.Platform.runLater(() -> {
 									snackBar = new JFXSnackbar(borderPaneCenter);
-									snackBar.show("Não foi possível enviar E-mail", 4000);
+									snackBar.show("NÃ£o foi possÃ­vel enviar E-mail", 4000);
 									imgLoad.setImage(null);
 								});
 							} catch (SQLException e) {
@@ -356,7 +357,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 								e.printStackTrace();
 								javafx.application.Platform.runLater(() -> {
 									snackBar = new JFXSnackbar(borderPaneCenter);
-									snackBar.show("Não foi possível enviar E-mail", 4000);
+									snackBar.show("NÃ£o foi possÃ­vel enviar E-mail", 4000);
 									imgLoad.setImage(null);
 								});
 							}
@@ -367,7 +368,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 									.toExternalForm();
 							javafx.application.Platform.runLater(() -> {
 								snackBar = new JFXSnackbar(borderPaneCenter);
-								snackBar.show("E-mail inválido", 4000);
+								snackBar.show("E-mail invÃ¡lido", 4000);
 								imgLoad.setImage(null);
 							});
 
@@ -379,7 +380,7 @@ public class TelaRecuperarSenhaController implements Initializable {
 						String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						javafx.application.Platform.runLater(() -> {
 							snackBar = new JFXSnackbar(borderPaneCenter);
-							snackBar.show("Não foi possível enviar E-mail", 4000);
+							snackBar.show("NÃ£o foi possÃ­vel enviar E-mail", 4000);
 							imgLoad.setImage(null);
 						});
 					} catch (SQLException e) {
@@ -389,12 +390,12 @@ public class TelaRecuperarSenhaController implements Initializable {
 						String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						javafx.application.Platform.runLater(() -> {
 							snackBar = new JFXSnackbar(borderPaneCenter);
-							snackBar.show("Não foi possível enviar E-mail", 4000);
+							snackBar.show("NÃ£o foi possÃ­vel enviar E-mail", 4000);
 							imgLoad.setImage(null);
 						});
 					}
 
-				} 
+				}
 			}).start();
 
 		} else {

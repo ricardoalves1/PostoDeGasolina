@@ -18,6 +18,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.CompraDao;
 import com.postoGasolina.dao.FornecedoresDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Fluxo_caixa2;
 import com.postoGasolina.model.Fornecedor;
@@ -212,7 +213,7 @@ public class TelaCompraController implements Initializable {
 	@FXML
 	void btnDesconto(ActionEvent event) {
 		RecebePedidoCompra.setTotal_pagar(campoTotalCompra.getNumber());
-		new Main().carregarTelaDesconto2();
+		new Tela().carregarTelaDesconto2();
 	}
 
 	@FXML
@@ -343,7 +344,7 @@ public class TelaCompraController implements Initializable {
 		campoPreco.setLabelFloat(true);
 		campoTotal.setLabelFloat(true);
 		campoQuantidade.setLabelFloat(true);
-		campoPreco.setPromptText("Preço");
+		campoPreco.setPromptText("Preï¿½o");
 		campoTotal.setPromptText("Total");
 		campoQuantidade.setPromptText("Quantidade *");
 		
@@ -550,11 +551,11 @@ public class TelaCompraController implements Initializable {
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<CompraClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(150);
-		JFXTreeTableColumn<CompraClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRIÇÃO");
+		JFXTreeTableColumn<CompraClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRIï¿½ï¿½O");
 		colunaNome.setPrefWidth(300);
 		JFXTreeTableColumn<CompraClass, String> colunaQuantidade = new JFXTreeTableColumn<>("QUANTIDADE");
 		colunaQuantidade.setPrefWidth(200);
-		JFXTreeTableColumn<CompraClass, String> colunaPreco = new JFXTreeTableColumn<>("PREÇO");
+		JFXTreeTableColumn<CompraClass, String> colunaPreco = new JFXTreeTableColumn<>("PREï¿½O");
 		colunaPreco.setPrefWidth(150);
 		JFXTreeTableColumn<CompraClass, String> colunaTotal = new JFXTreeTableColumn<>("TOTAL");
 		colunaTotal.setPrefWidth(150);
@@ -762,7 +763,7 @@ public class TelaCompraController implements Initializable {
 
 	@FXML
 	void adicionarFornecedor(MouseEvent event) {
-		new Main().carregarTelaFornecedorUtilitaria();
+		new Tela().carregarTelaFornecedorUtilitaria();
 	}
 
 }

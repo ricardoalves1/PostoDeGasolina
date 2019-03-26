@@ -28,6 +28,7 @@ import com.postoGasolina.dao.LicencaAutorizacaoDao;
 import com.postoGasolina.dao.OrgaoGovernamentalDao;
 import com.postoGasolina.main.Main;
 //import com.postoGasolina.model.Funcionario;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.*;
 //import com.postoGasolina.model.Licença_autorizacao;
 //import com.postoGasolina.model.Orgao_governamental;
@@ -129,7 +130,7 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 
 	@FXML
 	void btnAdicionarOrgao(MouseEvent event) {
-		new Main().carregarTelaOrgaoUtilitaria();
+		new Tela().carregarTelaOrgaoUtilitaria();
 	}
 
 	@FXML

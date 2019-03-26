@@ -46,9 +46,6 @@ public class TelaCadastrarDesconto2 implements Initializable {
 		carregarComponents();
 		carregarEventos();
 	}
-	public BigDecimal pegarValorTotalComDesconto(){
-		return campoTotalFinalApagar.getNumber();
-	}
 
 	@FXML
 	void btnExcluir(ActionEvent event) {
@@ -64,11 +61,17 @@ public class TelaCadastrarDesconto2 implements Initializable {
 	@FXML
 	void btnSalvar(ActionEvent event) {
 		try{
-				TelaCompraController.RecebePedidoCompra.setDesconto(RecebePedidoCompra.getDesconto().add(campoSubTotal.getNumber().subtract(campoTotalFinalApagar.getNumber())));
-			
-				TelaCompraController.mensagem.setText("1");
-				Stage stage = (Stage) btnVoltar.getScene().getWindow();
-			 stage.close();
+			TelaCompraController.RecebePedidoCompra.setDesconto(
+					RecebePedidoCompra.getDesconto().add(
+							campoSubTotal.getNumber().subtract(
+									campoTotalFinalApagar.getNumber()
+							)
+					)
+			);
+
+			TelaCompraController.mensagem.setText("1");
+			Stage stage = (Stage) btnVoltar.getScene().getWindow();
+			stage.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

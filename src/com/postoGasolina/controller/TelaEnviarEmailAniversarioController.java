@@ -96,7 +96,7 @@ public class TelaEnviarEmailAniversarioController implements Initializable{
 							imageAdicionar.setImage(new Image(new File("/com/postoGasolina/img/TelaVenda/Mail.gif").toString()));
 							s = new JFXSnackbar(borderPane);
 				//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-							s.show("N„o foi possivel enviar e-mail", 4000);
+							s.show("N√£o foi possivel enviar e-mail", 4000);
 						});
 					}
 					
@@ -106,7 +106,7 @@ public class TelaEnviarEmailAniversarioController implements Initializable{
 			imageAdicionar.setImage(new Image(new File("/com/postoGasolina/img/TelaVenda/Mail.gif").toString()));
 			s = new JFXSnackbar(borderPane);
 		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			s.show("Campos obrigatÛrios n„o informado", 4000);
+			s.show("Campos obrigat√≥rios n√£o informado", 4000);
 		}
 		 
 		//new Email().enviarEmail();

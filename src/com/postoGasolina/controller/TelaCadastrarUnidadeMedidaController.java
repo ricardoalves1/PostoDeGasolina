@@ -66,7 +66,7 @@ public class TelaCadastrarUnidadeMedidaController implements Initializable {
     		} else {
 				snackBar = new JFXSnackbar(borderPane);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigatÛrios n„o informado", 4000); 
+				snackBar.show("Campos obrigat√≥rios n√£o informado", 4000);
     		}
     		
     		

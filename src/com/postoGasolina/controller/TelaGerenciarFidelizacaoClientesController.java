@@ -22,6 +22,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.ClienteFisicaDao;
 import com.postoGasolina.dao.ClienteJuridicaDao;
 import com.postoGasolina.main.Main;
+import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Cliente_Gasto;
 import com.postoGasolina.util.NumeroTextField;
 
@@ -151,7 +152,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
@@ -241,7 +242,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 										cliente.getGastoAnual(), cliente.getGastoTotal(),
 										cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 												.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-												: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+												: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 														: "Cadastro Incompleto",
 										cliente.getTipo_cliente(), cliente.getEmail()));
 
@@ -313,7 +314,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
@@ -377,7 +378,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
@@ -441,7 +442,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
@@ -504,7 +505,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
@@ -607,7 +608,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 				lista_clientes.add(new FidelizacaoClass(cliente.getCliente(), cliente.getGastoMensal(),
 						cliente.getGastoAnual(), cliente.getGastoTotal(), cliente.getDataNascimento() != null
 								? cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-								: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
+								: cliente.getTipo_cliente().equals("cliente_juridica") ? "Nï¿½o possui"
 										: "Cadastro Incompleto",
 						cliente.getTipo_cliente(), cliente.getEmail()));
 			}
@@ -693,18 +694,18 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 				if (!nome.isEmpty() && !nome.equals("null")) {
 					nomeCliente.setText(nome);
-					new Main().carregarTelaGerarCupomDesconto();
+					new Tela().carregarTelaGerarCupomDesconto();
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Esse cliente não possui cadastro completo", 4000);
+					snackBar.show("Esse cliente nï¿½o possui cadastro completo", 4000);
 					
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				snackBar = new JFXSnackbar(borderPaneTabela);
 		///		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Esse cliente não possui cadastro completo", 4000);
+				snackBar.show("Esse cliente nï¿½o possui cadastro completo", 4000);
 			}
 
 		} else {
@@ -728,18 +729,18 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 				if (!email.isEmpty() && !email.equals("null")) {
 					nomeCliente.setText(nome);
 					emailCliente.setText(email);
-					new Main().carregarTelaEnviarEmailAniversario();
+					new Tela().carregarTelaEnviarEmailAniversario();
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Esse cliente não possui E-mail", 4000);
+					snackBar.show("Esse cliente nï¿½o possui E-mail", 4000);
 				
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				snackBar = new JFXSnackbar(borderPaneTabela);
 			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Esse cliente não possui E-mail", 4000);
+				snackBar.show("Esse cliente nï¿½o possui E-mail", 4000);
 			
 			}
 

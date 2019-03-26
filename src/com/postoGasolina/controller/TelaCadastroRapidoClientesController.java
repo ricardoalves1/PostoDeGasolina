@@ -56,7 +56,7 @@ public class TelaCadastroRapidoClientesController implements Initializable {
 					if(!cpf){
 						s = new JFXSnackbar(borderPane);
 		//				String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						s.show("CPF Inv·lido", 6000);
+						s.show("CPF Inv√°lido", 6000);
 						campoCpf.setText(""); 
 					}
 				}
@@ -91,7 +91,7 @@ public class TelaCadastroRapidoClientesController implements Initializable {
 		} else {
 		s = new JFXSnackbar(borderPane);
 	//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-		s.show("Campos obrigatÛrios n„o informado", 4000);
+		s.show("Campos obrigat√≥rios n√£o informado", 4000);
 		}
 	}
 }

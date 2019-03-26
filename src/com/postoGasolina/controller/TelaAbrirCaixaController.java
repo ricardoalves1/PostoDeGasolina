@@ -101,7 +101,7 @@ public class TelaAbrirCaixaController implements Initializable {
 		} else {
 			snackBar = new JFXSnackbar(gridPaneBottom);
 			//String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Campos ObrigatÛrios n„o informado", 4000); 
+			snackBar.show("Campos Obrigat√≥rios n√£o informado", 4000);
 		}
 	}
 
