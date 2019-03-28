@@ -477,10 +477,6 @@ public class TelaGerenciarClienteController implements Initializable {
 		campoCep.getValidators().add(validacao);
 		campoCpf.getValidators().add(validacao);
 		campoNome.getValidators().add(validacao);
-		// comboBoxDataNascimento.getre
-		// comboBoxEstado.getValidators().add(validacao);
-		// comboBoxEstatadoCivil.getValidators().add(validacao);
-		// comboBoxSexo.setValue(null);
 		validacao.setMessage("Campo obrigatório");
 
 		campoRg.setOnKeyReleased(event -> {
@@ -502,7 +498,6 @@ public class TelaGerenciarClienteController implements Initializable {
 					boolean cpf = new CPF(campoCpf.getText()).isCPF();
 					if(!cpf){
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("CPF Inválido", 6000);
 						campoCpf.setText(""); 
 					}

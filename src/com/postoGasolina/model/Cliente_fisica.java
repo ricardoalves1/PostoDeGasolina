@@ -17,7 +17,18 @@ public class Cliente_fisica {
 	private String email;
 	private String informacao;
 	private ObservableList<Telefone> listaTelefone = FXCollections.observableArrayList();
-	
+
+	public Cliente_fisica(Builder builder) {
+		this.id_cliente_fisica = builder.id_cliente_fisica;
+		this.pessoa = builder.pessoa;
+		this.endereco = builder.endereco;
+		this.pai = builder.pai;
+		this.mae = builder.mae;
+		this.email = builder.email;
+		this.informacao = builder.informacao;
+		this.listaTelefone = builder.listaTelefone;
+	}
+
 	public Cliente_fisica(int id_cliente_fisica,Pessoa pessoa, Endereco endereco){
 		this.id_cliente_fisica = id_cliente_fisica;
 		this.pessoa = pessoa;
@@ -35,6 +46,54 @@ public class Cliente_fisica {
 		this.listaTelefone = listaTelefone;
 	}
 
+	public static class Builder {
+
+		private final int id_cliente_fisica;
+		private final Pessoa pessoa;
+		private final Endereco endereco;
+		private String pai;
+		private String mae;
+		private String email;
+		private String informacao;
+		private ObservableList<Telefone> listaTelefone = FXCollections.observableArrayList();
+
+		public Builder(int id_cliente_fisica, Pessoa pessoa, Endereco endereco) {
+			this.id_cliente_fisica = id_cliente_fisica;
+			this.pessoa = pessoa;
+			this.endereco = endereco;
+		}
+
+		public Builder comPai(String pai) {
+			this.pai = pai;
+			return this;
+		}
+
+		public Builder comMae(String mae) {
+			this.mae = mae;
+			return this;
+		}
+
+		public Builder comEmail(String email) {
+			this.email = email;
+			return this;
+		}
+
+		public Builder comInformacao(String informacao) {
+			this.informacao = informacao;
+			return this;
+		}
+
+		public Builder comTelefone(ObservableList<Telefone> listaTelefone) {
+			this.listaTelefone = listaTelefone;
+			return this;
+		}
+
+		public Cliente_fisica build() {
+			return new Cliente_fisica(this);
+		}
+
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente_fisica [id_cliente_fisica=" + id_cliente_fisica + ", pessoa=" + pessoa + ", endereco="
@@ -43,10 +102,6 @@ public class Cliente_fisica {
 
 	public int getId_cliente_fisica() {
 		return id_cliente_fisica;
-	}
-
-	public void setId_cliente_fisica(int id_cliente_fisica) {
-		this.id_cliente_fisica = id_cliente_fisica;
 	}
 
 	public Pessoa getPessoa() {
@@ -69,16 +124,8 @@ public class Cliente_fisica {
 		return pai;
 	}
 
-	public void setPai(String pai) {
-		this.pai = pai;
-	}
-
 	public String getMae() {
 		return mae;
-	}
-
-	public void setMae(String mae) {
-		this.mae = mae;
 	}
 
 	public String getEmail() {
@@ -93,20 +140,12 @@ public class Cliente_fisica {
 		return informacao;
 	}
 
-	public void setInformacao(String informacao) {
-		this.informacao = informacao;
-	}
-
 	public ObservableList<Telefone> getListaTelefone() {
 		return listaTelefone;
 	}
 
-	public void setListaTelefone(ObservableList<Telefone> listaTelefone) {
-		this.listaTelefone = listaTelefone;
-	}
-
 	public static byte cadastrar(Cliente_fisica clienteFisica) {
-		// Validaçoes
+		// ValidaÃ§oes
 
 		try {
 			new ClienteFisicaDao().cadastrar(clienteFisica);
@@ -118,7 +157,7 @@ public class Cliente_fisica {
 	}
 
 	public static byte alterar(Cliente_fisica clienteFisica) {
-		// Validaçoes
+		// ValidaÃ§oes
 
 		try {
 			new ClienteFisicaDao().alterar(clienteFisica);

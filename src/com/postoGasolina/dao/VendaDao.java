@@ -35,7 +35,7 @@ public class VendaDao{
 		if (pedido.getCliente() == null) {
 			statement.setNull(1, java.sql.Types.INTEGER);
 			statement.setNull(2, java.sql.Types.INTEGER);
-			statement.setString(7, "Anônimo");
+			statement.setString(7, "AnÃ´nimo");
 		} else {
 			if (pedido.getCliente().getTipoCliente().equals("cliente_fisica"))
 				statement.setInt(1, pedido.getCliente().getCliente_fisica().getId_cliente_fisica());
@@ -189,18 +189,24 @@ public class VendaDao{
 								rs2.getBigDecimal("preco_unitario"), rs2.getBigDecimal("quantidade"),
 								rs2.getString("tipo_produto"), rs2.getBigDecimal("total"), 0));
 			}
-			
-			lista_pedidos.add(new Pedido_venda(rs.getInt("id_pedido_venda"),
-					new FuncionarioDao().pesquisarId(rs.getInt("id_funcionario_fk")).get(0), 
-					new Cliente(new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).size() != 0 ?
-							new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).get(0) : null,
-							new ClienteJuridicaDao().pesquisar(rs.getInt("id_cliente_juridica_fk")).size() != 0 ?
-							new ClienteJuridicaDao().pesquisar(rs.getInt("id_cliente_juridica_fk")).get(0) : null,
-							rs.getString("tipo_cliente")),
-					new CaixaDao().pesquisar(rs.getInt("id_fluxo_caixa_fk")).get(0),
-					rs.getBigDecimal("total_pagar"), rs.getBigDecimal("desconto"), rs.getString("forma_pagamento"),
-					
-					itens_pedido));
+
+			lista_pedidos.add(
+					new Pedido_venda(
+						rs.getInt("id_pedido_venda"),
+						new FuncionarioDao().pesquisarId(rs.getInt("id_funcionario_fk")).get(0),
+						new Cliente(
+								new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).size() != 0 ?
+									new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).get(0) :
+									new ClienteJuridicaDao().pesquisar(rs.getInt("id_cliente_juridica_fk")).get(0),
+								rs.getString("tipo_cliente")
+						),
+						new CaixaDao().pesquisar(rs.getInt("id_fluxo_caixa_fk")).get(0),
+						rs.getBigDecimal("total_pagar"),
+						rs.getBigDecimal("desconto"),
+						rs.getString("forma_pagamento"),
+						itens_pedido
+					)
+			);
 			
 			rs2.close();
 

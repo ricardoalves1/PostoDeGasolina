@@ -6,12 +6,11 @@ import java.sql.SQLException;
 
 
 public class ConexaoUtil {
-	private static ConexaoUtil conexaoUtil;
-	
+	private static ConexaoUtil conexaoUtil = new ConexaoUtil();
+
+	private ConexaoUtil() {}
+
 	public static ConexaoUtil getInstance(){
-		if(conexaoUtil == null){
-			conexaoUtil = new ConexaoUtil();
-		}
 		return conexaoUtil;
 	}
 	
@@ -21,25 +20,8 @@ public class ConexaoUtil {
 		String url = "jdbc:mysql://localhost/db_posto_gasolina";
         String usuario = "root";
         String senha = "";
-        Connection con = DriverManager.getConnection(url, usuario, senha);
-		
-		
-		return con;
-	}
-	/*
-	public static void main(String[] args){
-	try {
-			System.out.println(getInstance().getConnection());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	*/
 
+		return DriverManager.getConnection(url, usuario, senha);
+	}
 
 }

@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.postoGasolina.iterator.Iterator;
+import com.postoGasolina.iterator.MenuDataIterator;
 import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Fluxo_caixa;
@@ -85,7 +87,7 @@ public class TelaPrincipalController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		menuData.add(new Pair<String, Runnable>("Gerenciar", () -> {
-			createContentMenuGerenciar();
+			createContentMenuGerenciar(0);
 
 		}));
 		menuData.add(new Pair<String, Runnable>("Caixas", () -> {
@@ -107,7 +109,6 @@ public class TelaPrincipalController implements Initializable {
 					TelaAbrirCaixaController.AbrirTela.setText("4");
 					new Tela().carregarTelaAbrirCaixa();
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 			}
@@ -115,6 +116,7 @@ public class TelaPrincipalController implements Initializable {
 				carregarTelaVenda();
 			}
 		}));
+
 		menuData.add(new Pair<String, Runnable>("Compras", () -> {
 
 			if (Fluxo_caixa.getStatus().equals("Fechado")) {
@@ -124,7 +126,6 @@ public class TelaPrincipalController implements Initializable {
 					// 5 é compra
 					TelaAbrirCaixaController.AbrirTela.setText("5");
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 			}
@@ -132,9 +133,8 @@ public class TelaPrincipalController implements Initializable {
 				carregarTelaCompra();
 			}
 		}));
+
 		menuData.add(new Pair<String, Runnable>("Trocar de usuário", () -> {
-			// dialogTrocarUsuarioLayout.setHeading(new Text("Trocar de
-			// usuário"));
 			dialogTrocarUsuarioLayout.setBody(new Text("Deseja realmente sair ?"));
 			btnOK.setOnAction(e -> {
 				new Tela().carregarTelaLogin();
@@ -153,6 +153,7 @@ public class TelaPrincipalController implements Initializable {
 				new Tela().carregarTelaFecharCaixa();
 			} else if (Fluxo_caixa.getStatus().equals("Fechado")) {
 				new Main().getStage().close();
+				new Tela().fecharStage();
 			}
 		}));
 
@@ -178,7 +179,7 @@ public class TelaPrincipalController implements Initializable {
 		menuData2.add(new Pair<String, Runnable>("Autorizações e licenças", () -> {
 			carregarTelaGerenciaLicencasAutorizacoes();
 		}));
-		menuData2.add(new Pair<String, Runnable>("Voltar", () -> createContentVoltar()));
+		menuData2.add(new Pair<String, Runnable>("Voltar", () -> createContentMenuGerenciar(1) ));
 
 		validarPermissao();
 
@@ -188,7 +189,6 @@ public class TelaPrincipalController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				if (newValue.equals("1")) {
 					carregarTelaGerenciarClientesJuridica();
 				} else if (newValue.equals("0")) {
@@ -196,11 +196,11 @@ public class TelaPrincipalController implements Initializable {
 				}
 			}
 		});
+
 		TelaAbrirCaixaController.AbrirTela.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				System.out.println(newValue);
 				if (newValue.equals("1")) {
 					carregarTelaVenda();
@@ -218,14 +218,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciaOrgãoGovernamental.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -239,14 +233,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader
 							.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TelaCompra.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -260,14 +248,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciaLicencasAutorizacoes.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -281,14 +263,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarClientesJuridica.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -302,14 +278,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarClientes.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -323,14 +293,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader
 							.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TelaVenda.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -344,14 +308,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarFornecedores.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -365,14 +323,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarFuncionarios.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -386,14 +338,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarFidelizacaoClientes.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -407,14 +353,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarCombustivel.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -428,14 +368,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarProdutos.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -449,14 +383,8 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(
 							getClass().getClassLoader().getResource("com/postoGasolina/view/TelaGerenciarCaixa.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -470,62 +398,47 @@ public class TelaPrincipalController implements Initializable {
 					Region pane = FXMLLoader.load(getClass().getClassLoader()
 							.getResource("com/postoGasolina/view/TelaGerenciarPermissoesFuncionarios.fxml"));
 
-					FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
-					ft.setFromValue(0.0);
-					ft.setToValue(1.0);
-					ft.play();
-
-					Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+					transition(pane);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}).start();
 	}
 
+	private void transition(Region pane) {
+		FadeTransition ft = new FadeTransition(Duration.millis(1500), pane);
+		ft.setFromValue(0.0);
+		ft.setToValue(1.0);
+		ft.play();
+
+		Platform.runLater(() -> borderPaneCenter.setCenter(pane));
+	}
+
 	// Menu
 	private Parent createContent() {
 
-		double lineX = WIDTH / 2 - 130;
-		double lineY = HEIGHT / 3 - 80;
-		double lineX2 = WIDTH / 2 + 50;
-		double lineY2 = HEIGHT / 3 + 5;
+		double lineX = (double) WIDTH / 2 - 130;
+		double lineY = (double) HEIGHT / 3 - 80;
+		double lineX2 = (double) WIDTH / 2 + 50;
+		double lineY2 = (double) HEIGHT / 3 + 5;
 		adicionarLinha(lineX2, lineY2);
-		adicionarMenu(lineX + 5, lineY + 5);
+		adicionarMenu(1,lineX + 5, lineY + 5);
 
 		startAnimation();
 
 		return borderPaneTelaPrincipal;
 	}
 
-	private Parent createContentVoltar() {
-		menuBox.getChildren().clear();
-		vboxRight.getChildren().clear();
-
-		double lineX = WIDTH / 2 - 130;
-		double lineY = HEIGHT / 3 - 80;
-		double lineX2 = WIDTH / 2 + 50;
-		double lineY2 = HEIGHT / 3 + 5;
-		// adicionarLinha(lineX2, lineY2);
-		adicionarMenu(lineX + 5, lineY + 5);
-
-		startAnimationSubMenu();
-
-		return borderPaneTelaPrincipal;
-	}
-
-	private Parent createContentMenuGerenciar() {
+	private Parent createContentMenuGerenciar(int menu) {
 
 		menuBox.getChildren().clear();
 		vboxRight.getChildren().clear();
 
-		double lineX = WIDTH / 2 - 130;
-		double lineY = HEIGHT / 3 - 80;
-		double lineX2 = WIDTH / 2 + 50;
-		double lineY2 = HEIGHT / 3 + 5;
-		// adicionarLinha(lineX2, lineY2);
-		adicionarSubMenuGerenciar(lineX + 5, lineY + 5);
+		double lineX = (double) WIDTH / 2 - 130;
+		double lineY = (double) HEIGHT / 3 - 80;
+
+		adicionarMenu(menu, lineX + 5, lineY + 5);
 
 		startAnimationSubMenu();
 
@@ -578,13 +491,23 @@ public class TelaPrincipalController implements Initializable {
 		st.play();
 	}
 
-	private void adicionarMenu(double x, double y) {
+	private void adicionarMenu(int menu, double x, double y) {
 
 		try {
 			menuBox.setTranslateX(x);
 			menuBox.setTranslateY(y);
+
+			List<Pair<String, Runnable>> menuData = FXCollections.observableArrayList();
+			if (menu == 1) {
+				menuData = this.menuData;
+			}
+			else {	// Submenu Gerenciar
+				menuData = this.menuData2;
+			}
+
 			menuData.forEach(data -> {
 				MenuItem item = new MenuItem(data.getKey());
+
 				item.setOnAction(data.getValue());
 				item.setTranslateX(-300);
 
@@ -598,42 +521,16 @@ public class TelaPrincipalController implements Initializable {
 
 			vboxRight.getChildren().add(menuBox);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
 
-	private void adicionarSubMenuGerenciar(double x, double y) {
-
-		try {
-			menuBox.setTranslateX(x);
-			menuBox.setTranslateY(y);
-			menuData2.forEach(data2 -> {
-				MenuItem item = new MenuItem(data2.getKey());
-				item.setOnAction(data2.getValue());
-				item.setTranslateX(-300);
-
-				Rectangle clip = new Rectangle(234, 41);
-				clip.translateXProperty().bind(item.translateXProperty().negate());
-
-				item.setClip(clip);
-
-				menuBox.getChildren().addAll(item);
-			});
-
-			vboxRight.getChildren().add(menuBox);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
 
 	@FXML
 	void btnFacebookOnAction(ActionEvent event) {
 		try {
 			Desktop.getDesktop().browse(new URI("https://pt-br.facebook.com/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -643,7 +540,6 @@ public class TelaPrincipalController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.instagram.com/?hl=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -653,7 +549,6 @@ public class TelaPrincipalController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.snapchat.com/l/pt-br/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -663,128 +558,82 @@ public class TelaPrincipalController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://twitter.com/signup?lang=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void validarPermissao() {
+	// Padrão Iterator
+	private void removeMenuData(String key, int menu) {
 
+		List<Pair<String, Runnable>> itens;
+
+		itens = (menu == 1) ? menuData : menuData2;
+
+		Iterator menuDataIterator = new MenuDataIterator(itens);
+
+		while (menuDataIterator.hasNext()) {
+			Pair<String, Runnable> item = (Pair<String, Runnable>) menuDataIterator.next();
+
+			if (item.getKey().equals(key)) {
+				itens.remove(item);
+			}
+		}
+
+	}
+
+	public void validarPermissao() {
 		if (login != null) {
 			try {
 
 				if (!login.isG_caixa()) {
-					for (int i = 0; i < menuData.size(); ++i) {
-						if (menuData.get(i).getKey().equals("Caixa")) {
-							menuData.remove(i);
-						}
-						;
-					}
+					removeMenuData("Caixa",1);
 				}
 
 				if (!login.isG_produtos()) {
-					for (int i = 0; i < menuData.size(); ++i) {
-						if (menuData.get(i).getKey().equals("Produtos")) {
-							menuData.remove(i);
-						}
-						;
-					}
+					removeMenuData("Produtos", 1);
+				}
 
-				}
-				;
 				if (!login.isG_combustivel()) {
-					for (int i = 0; i < menuData.size(); ++i) {
-						if (menuData.get(i).getKey().equals("combustíveis")) {
-							menuData.remove(i);
-						}
-						;
-					}
+					removeMenuData("combustíveis", 1);
 				}
-				;
+
 				if (!login.isG_venda_produtos()) {
-					for (int i = 0; i < menuData.size(); ++i) {
-						if (menuData.get(i).getKey().equals("Venda")) {
-							menuData.remove(i);
-						}
-						;
-					}
+					removeMenuData("Venda", 1);
 				}
-				;
+
 				if (!login.isG_compra_produtos()) {
-					for (int i = 0; i < menuData.size(); ++i) {
-						if (menuData.get(i).getKey().equals("Compra")) {
-							menuData.remove(i);
-						}
-						;
-					}
+					removeMenuData("Compra", 1);
 				}
-				;
+
 				if (!login.isG_funcionario()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Funcionários")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Funcionários", 0);
 				}
-				;
+
 				if (!login.isG_clientes()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Clientes")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Clientes", 0);
 				}
-				;
+
 				if (!login.isG_fidelizacao()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("fidelização de clientes")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("fidelização de clientes", 0);
 				}
-				;
+
 				if (!login.isG_fornecedores()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Fornecedores")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Fornecedores", 0);
 				}
-				;
+
 				if (!login.isG_orgao()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Órgãos")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Órgãos", 0);
 				}
-				;
+
 				if (!login.isG_permissoes()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Permissões")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Permissões", 0);
 				}
-				;
+
 				if (!login.isG_autorizacao_licenca()) {
-					for (int i = 0; i < menuData2.size(); ++i) {
-						if (menuData2.get(i).getKey().equals("Autorizações e licenças")) {
-							menuData2.remove(i);
-						}
-						;
-					}
+					removeMenuData("Autorizações e licenças", 0);
 				}
-				;
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}

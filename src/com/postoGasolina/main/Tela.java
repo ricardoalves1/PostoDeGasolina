@@ -25,18 +25,6 @@ public class Tela {
         stage = new Stage();
     }
 
-    public void fecharStage2() {
-        verificaMaximizadoOuTelaCheia();
-        stageAux.close();
-        stageAux = new Stage();
-    }
-
-    public void fecharStage3() {
-        verificaMaximizadoOuTelaCheia();
-        stageAux2.close();
-        stageAux2 = new Stage();
-    }
-
     public void verificaMaximizadoOuTelaCheia() {
         // seta os valores de tela cheia e maximizado
         stageAux = new Stage();
@@ -288,7 +276,6 @@ public class Tela {
 
     public void carregarTelaPrincipal() {
         try {
-            //stage = new Main().getStage();
             // fecho o tela anterior
             fecharStage();
             // carrego a nova tela
@@ -307,7 +294,6 @@ public class Tela {
     // Telas
     public void carregarTelaRecuperarSenha() {
         try {
-            //stage = new Main().getStage();
             // fecho o tela anterior
             fecharStage();
             // carrego a nova tela
@@ -327,7 +313,6 @@ public class Tela {
     public void carregarTelaLogin() {
         // TODO Auto-generated method stub
         try {
-            //stage = new Main().getStage();
             fecharStage();
             root = FXMLLoader.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TelaLogin.fxml"));
             configurarTela();
@@ -338,11 +323,7 @@ public class Tela {
     }
 
     public boolean fullscreen() {
-        if (stage.isFullScreen()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (stage.isFullScreen());
     }
 
     public void carregarTelaCargo() {
@@ -474,7 +455,7 @@ public class Tela {
         // TODO Auto-generated method stub
         try {
             rootAux = FXMLLoader.load(getClass().getClassLoader()
-                    .getResource("com/postoGasolina/view/TelaGerenciaOrg?oGovernamental2.fxml"));
+                    .getResource("com/postoGasolina/view/TelaGerenciaOrgãoGovernamental2.fxml"));
 
             configurarTelaUtilitaria4();
             // atualizarTela();

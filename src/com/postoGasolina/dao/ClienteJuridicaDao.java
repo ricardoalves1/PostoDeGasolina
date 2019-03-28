@@ -30,11 +30,10 @@ public class ClienteJuridicaDao implements InterfaceDao<Cliente_juridica> {
 
 	@Override
 	public void cadastrar(Cliente_juridica clienteJuridica) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-			// prepara conexão
+			// prepara conexÃ£o
 			connection = ConexaoUtil.getInstance().getConnection();
 
-			// ADICIONA ENDEREÇO
+			// ADICIONA ENDEREÃ‡O
 			sql = "insert into tb_endereco(cep, endereco, numero, complemento, bairro, uf, cidade)values(?,?,?,?,?,?,?)";
 			
 		
@@ -192,7 +191,7 @@ public class ClienteJuridicaDao implements InterfaceDao<Cliente_juridica> {
 				lista_telefones.add(new Telefone(rs2.getInt("id_cliente_juridica_fk"), rs2.getString("telefone")));
 			}
 			listaclientes.add(
-					// é um cliente
+					// Ã‰ um cliente
 					new Cliente_juridica(rs.getInt("id_cliente_juridica"),
 							
 							// tem um endereco
@@ -240,7 +239,7 @@ public class ClienteJuridicaDao implements InterfaceDao<Cliente_juridica> {
 				lista_telefones.add(new Telefone(rs2.getInt("id_cliente_juridica_fk"), rs2.getString("telefone")));
 			}
 			listaclientes.add(
-					// é um cliente
+					// Ã‰ um cliente
 					new Cliente_juridica(rs.getInt("id_cliente_juridica"),
 							
 							// tem um endereco

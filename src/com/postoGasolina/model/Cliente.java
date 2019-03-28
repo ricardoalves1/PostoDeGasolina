@@ -18,11 +18,24 @@ public class Cliente {
 	public Cliente(){
 		
 	}
-	public Cliente(Cliente_fisica cliente_fisica, Cliente_juridica cliente_juridica,
-			String tipoCliente) {
+
+	public Cliente(Cliente_fisica cliente_fisica, String tipoCliente) {
 		this.cliente_fisica = cliente_fisica;
+		this.tipoCliente = tipoCliente;
+	}
+
+	public Cliente(Cliente_juridica cliente_juridica, String tipoCliente) {
 		this.cliente_juridica = cliente_juridica;
 		this.tipoCliente = tipoCliente;
+	}
+
+	public Cliente(Object cliente, String tipoCliente) {
+		if (cliente instanceof Cliente_fisica) {
+			new Cliente((Cliente_fisica) cliente, tipoCliente);
+		}
+		else {
+			new Cliente((Cliente_juridica) cliente, tipoCliente);
+		}
 	}
 	
 	@Override
@@ -36,40 +49,27 @@ public class Cliente {
 		return cliente_fisica;
 	}
 
-	public void setCliente_fisica(Cliente_fisica cliente_fisica) {
-		this.cliente_fisica = cliente_fisica;
-	}
-
 	public Cliente_juridica getCliente_juridica() {
 		return cliente_juridica;
-	}
-
-	public void setCliente_juridica(Cliente_juridica cliente_juridica) {
-		this.cliente_juridica = cliente_juridica;
 	}
 
 	public String getTipoCliente() {
 		return tipoCliente;
 	}
 
-	public void setTipoCliente(String tipoCliente) {
-		this.tipoCliente = tipoCliente;
-	}
-
-	
 	public ObservableList<Cliente> listar(){
 		ObservableList<Cliente> lista_clientes = FXCollections.observableArrayList();
 		
 		
 		try {
-			//listando cliente física
+			//listando cliente fÃ­sica
 			new ClienteFisicaDao().listar().forEach(clienteFisica ->{
-				lista_clientes.add(new Cliente(clienteFisica,null,"cliente_fisica"));
+				lista_clientes.add(new Cliente(clienteFisica,"cliente_fisica"));
 			});
 			
-			//listando cliente jurídica
+			//listando cliente jurÃ­dica
 			new ClienteJuridicaDao().listar().forEach(clienteJuridica ->{
-				lista_clientes.add(new Cliente(null, clienteJuridica, "cliente_juridica"));
+				lista_clientes.add(new Cliente(clienteJuridica, "cliente_juridica"));
 			});
 			
 		} catch (ClassNotFoundException e) {
@@ -80,14 +80,7 @@ public class Cliente {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 		return lista_clientes;
 	}
-	
-	
-	
-	
 
 }
