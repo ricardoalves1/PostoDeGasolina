@@ -1,6 +1,7 @@
 # Gerenciador de Posto de Combustíveis
 
-[<h3>Projeto Original</h3>](https://github.com/gdwrt/PostoDeGasolina)
+## Projeto Original
+[<h4>PostoDeGasolina<h4>](https://github.com/gdwrt/PostoDeGasolina)
 
 ## Como executar (Projeto Original e Refatorado):
 
