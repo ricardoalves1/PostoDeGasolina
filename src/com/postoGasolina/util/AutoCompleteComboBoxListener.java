@@ -31,10 +31,7 @@ public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
         this.comboBox.getEditor().focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue observable, Boolean oldValue, Boolean newValue) {
-                if (newValue) {
-                    // in focus
-                }
-                else {
+                if (!newValue) {
                     lastLength = 0;
                     sb.delete(0, sb.length());
                     selectClosestResultBasedOnTextFieldValue(false, false);

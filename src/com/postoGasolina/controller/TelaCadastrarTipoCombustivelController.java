@@ -15,7 +15,6 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.TipoCombustivelDao;
 import com.postoGasolina.dao.UnidadeMedidaDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Tipo_combustivel;
 import com.postoGasolina.model.Unidade_medida;
@@ -83,14 +82,11 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 		carregarComboBox();
 		formatarDecimal();
 		carregarLabelFloat();
 
 		carregarTabela();
-		
 	}
 
 	@FXML
@@ -106,20 +102,15 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 				limparcampos();
 				
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Tipo combust�vel removido com sucesso", 4000); 
+				snackBar.show("Tipo combustível removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Tipo combust�vel sendo utilizado", 4000); 
-				
+				snackBar.show("Tipo combustível sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona tipo de combust�vel na tabela", 4000); 
+			snackBar.show("Seleciona tipo de combustível na tabela", 4000);
 		}
 
 	}
@@ -139,28 +130,32 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 						&& campoEstoqueMaximo.getNumber() != null && campoEstoqueMinimo.getNumber() != null
 						&& !campoNome.getText().isEmpty()) {
 
-					new TipoCombustivelDao().cadastrar(new Tipo_combustivel(0,
-							new Unidade_medida(
-									comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getId_unidade_medida(),
-									comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getNome()),
-							campoNome.getText(), campoQuantidade.getNumber(), campoEstoqueMaximo.getNumber(),
-							campoEstoqueMinimo.getNumber()));
+					new TipoCombustivelDao().cadastrar(
+							new Tipo_combustivel(
+									0,
+									new Unidade_medida(
+											comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getId_unidade_medida(),
+											comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getNome()
+									),
+									campoNome.getText(),
+									campoQuantidade.getNumber(),
+									campoEstoqueMaximo.getNumber(),
+									campoEstoqueMinimo.getNumber()
+							)
+					);
 
 					carregarTabela();
 					limparcampos();
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Tipo combust�vel cadastrado com sucesso", 4000); 
+					snackBar.show("Tipo combustível cadastrado com sucesso", 4000);
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat�rios n�o informado", 4000); 
+					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -175,12 +170,19 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 					&& !campoNome.getText().isEmpty()) {
 
 				try {
-					new TipoCombustivelDao().alterar(new Tipo_combustivel(idTipoCombustivel,
-							new Unidade_medida(
-									comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getId_unidade_medida(),
-									comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getNome()),
-							campoNome.getText(), campoQuantidade.getNumber(), campoEstoqueMaximo.getNumber(),
-							campoEstoqueMinimo.getNumber()));
+					new TipoCombustivelDao().alterar(
+							new Tipo_combustivel(
+									idTipoCombustivel,
+									new Unidade_medida(
+											comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getId_unidade_medida(),
+											comboBoxUnidadeMedida.getSelectionModel().getSelectedItem().getNome()
+									),
+									campoNome.getText(),
+									campoQuantidade.getNumber(),
+									campoEstoqueMaximo.getNumber(),
+									campoEstoqueMinimo.getNumber()
+							)
+					);
 					
 
 					carregarTabela();
@@ -188,27 +190,23 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
 					String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Tipo combust�vel alterado com sucesso", 4000); 
+					snackBar.show("Tipo combustível alterado com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
 				String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigat�rios n�o informado", 4000); 
+				snackBar.show("Campos obrigatórios não informado", 4000);
 			}
 
 		}
 	}
 
 	public void carregarDados() {
-		// TODO Auto-generated method stub
-
 		treeTableViewTipoCombustivel.setOnMouseClicked(event -> {
 
 			if (treeTableViewTipoCombustivel.getSelectionModel().getSelectedIndex() != -1) {
@@ -218,7 +216,6 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 				try {
 
 					new TipoCombustivelDao().listar().forEach(tipoCombustivel -> {
-
 						if (tipoCombustivel.getId_tipo_combustivel() == idTipoCombustivel) {
 
 							campoNome.setText(tipoCombustivel.getNome());
@@ -230,7 +227,6 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -242,22 +238,18 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 		btnUnidadeMedida.setOnMouseClicked(event -> {
 			new Tela().carregarTelaUnidadeMedida2();
 		});
-		;
 
 		comboBoxUnidadeMedida.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (comboBoxUnidadeMedida.isFocused()) {
 				try {
 					comboBoxUnidadeMedida.setItems(new UnidadeMedidaDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-
 
 	}
 
@@ -291,9 +283,7 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 
 			campoNome.setFocusTraversable(false);
 
-			// gridPaneTipoCombustivel.add(campo,0,3);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
@@ -301,9 +291,9 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 
 	void carregarLabelFloat() {
 		campoEstoqueMaximo.setLabelFloat(true);
-		campoEstoqueMaximo.setPromptText("Estoque m�ximo *");
+		campoEstoqueMaximo.setPromptText("Estoque máximo *");
 		campoEstoqueMinimo.setLabelFloat(true);
-		campoEstoqueMinimo.setPromptText("Estoque m�nimo *");
+		campoEstoqueMinimo.setPromptText("Estoque mínimo *");
 		campoNome.setLabelFloat(true);
 		campoQuantidade.setLabelFloat(true);
 		campoQuantidade.setPromptText("Quantidade *");
@@ -325,7 +315,7 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<TipoCombbustivelClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(50);
-		JFXTreeTableColumn<TipoCombbustivelClass, String> colunaNome = new JFXTreeTableColumn<>("Descri��o");
+		JFXTreeTableColumn<TipoCombbustivelClass, String> colunaNome = new JFXTreeTableColumn<>("Descrição");
 		colunaNome.setPrefWidth(200);
 		JFXTreeTableColumn<TipoCombbustivelClass, String> colunaQuantidade = new JFXTreeTableColumn<>("Quantidade");
 		colunaQuantidade.setPrefWidth(120);
@@ -352,7 +342,7 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 
 		ObservableList<TipoCombbustivelClass> lista_tiposCombustiveis = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe an�nima
+		// carregando registros com os campos da coluna da classe anônima
 		try {
 			new TipoCombustivelDao().listar().forEach(tipoCombustivel -> {
 				lista_tiposCombustiveis.add(new TipoCombbustivelClass(tipoCombustivel.getId_tipo_combustivel(),
@@ -361,7 +351,6 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 				));
 			});
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -409,7 +398,6 @@ public class TelaCadastrarTipoCombustivelController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewTipoCombustivel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

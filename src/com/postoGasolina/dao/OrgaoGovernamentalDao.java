@@ -1,14 +1,12 @@
 package com.postoGasolina.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.postoGasolina.model.Orgao_governamental;
-import com.postoGasolina.model.ConverterDate;
 import com.postoGasolina.model.Endereco;
 import com.postoGasolina.model.Telefone;
 
@@ -26,10 +24,10 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 
 	public void cadastrar(Orgao_governamental orgao) throws ClassNotFoundException, SQLException {
 
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection();
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "insert into tb_endereco(cep, endereco, numero, complemento, bairro, uf, cidade)values(?,?,?,?,?,?,?)";
 
 		statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -75,7 +73,6 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 				statement.setString(2, telefone.getTelefone());
 				statement.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -88,10 +85,10 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 
 	public void alterar(Orgao_governamental orgao) throws SQLException, ClassNotFoundException {
 
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection(); 
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "update tb_endereco set cep=?, endereco=?, numero=?, complemento=?, bairro=?, uf=?, cidade=? where id_endereco=?";
 
 		statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -124,7 +121,6 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 	}
 
 	public void remover(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		
@@ -143,13 +139,10 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 	
 		connection.close();
 		statement.close();
-		
-	
 
 	}
 
 	public ObservableList<Orgao_governamental> listar() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
 		listaclientes = FXCollections.observableArrayList();
 
@@ -160,40 +153,13 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 		statement = connection.prepareStatement(sql);
 
 		rs = statement.executeQuery();
-		while (rs.next()) {
-			ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
-			ResultSet rs2;
-			sql = "select * from tb_telefone_orgao where id_orgao_fk=?";
-			statement = connection.prepareStatement(sql);
-			statement.setInt(1, rs.getInt("id_orgao"));
-			rs2 = statement.executeQuery();
-			while (rs2.next()) {
-				lista_telefones.add(new Telefone(rs2.getInt("id_orgao_fk"), rs2.getString("telefone")));
-			}
-			listaclientes.add(
-					
-					new Orgao_governamental(rs.getInt("id_orgao"),
-							
-							new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-									rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-									rs.getString("cidade"), rs.getString("uf")),
-							
-							
-							rs.getString("nome"), rs.getString("sigla"), rs.getString("observacao"),
-							rs.getString("email"), rs.getString("cnpj"), 
-							
-							lista_telefones));
 
-			rs2.close();
-		}
-		connection.close();
-		statement.close();
-		rs.close();
+		consultaOrgao();
 
 		return listaclientes;
 	}
+
 	public ObservableList<Orgao_governamental> pesquisarId(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
 		listaclientes = FXCollections.observableArrayList();
 
@@ -205,6 +171,14 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 		statement.setInt(1, id);
 
 		rs = statement.executeQuery();
+
+		consultaOrgao();
+
+		return listaclientes;
+	}
+
+	private void consultaOrgao() throws SQLException, ClassNotFoundException {
+
 		while (rs.next()) {
 			ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
 			ResultSet rs2;
@@ -215,19 +189,30 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 			while (rs2.next()) {
 				lista_telefones.add(new Telefone(rs2.getInt("id_orgao_fk"), rs2.getString("telefone")));
 			}
-			listaclientes.add(
-					
-					new Orgao_governamental(rs.getInt("id_orgao"),
-							
-							new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-									rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-									rs.getString("cidade"), rs.getString("uf")),
-							
-							
-							rs.getString("nome"), rs.getString("sigla"), rs.getString("observacao"),
-							rs.getString("email"), rs.getString("cnpj"), 
-							
-							lista_telefones));
+
+			Endereco endereco = new Endereco.Builder()
+					.endereco(rs.getString("endereco"))
+					.cep(rs.getString("cep"))
+					.idEndereco(rs.getInt("id_endereco"))
+					.numero(rs.getString("numero"))
+					.complemento(rs.getString("complemento"))
+					.bairro(rs.getString("bairro"))
+					.cidade(rs.getString("cidade"))
+					.estado(rs.getString("uf"))
+					.build();
+
+			Orgao_governamental orgao = new Orgao_governamental(
+					rs.getInt("id_orgao"),
+					endereco,
+					rs.getString("nome"),
+					rs.getString("sigla"),
+					rs.getString("observacao"),
+					rs.getString("email"),
+					rs.getString("cnpj"),
+					lista_telefones
+			);
+
+			listaclientes.add(orgao);
 
 			rs2.close();
 		}
@@ -235,28 +220,25 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 		statement.close();
 		rs.close();
 
-		return listaclientes;
 	}
 
 	public void excluirTelefone(Telefone telefone) throws SQLException, ClassNotFoundException {
 
 		sql = "delete from tb_telefone_orgao where ? and telefone = ?";
 
-		connection = ConexaoUtil.getInstance().getConnection();
-
-		statement = connection.prepareStatement(sql);
-		statement.setInt(1, telefone.getId_responsavel_telefone());
-		statement.setString(2, telefone.getTelefone());
-		statement.execute();
-
-		connection.close();
-		statement.close();
+		alterarTelefone(sql, telefone);
 
 	}
 
 	public void adicionarTelefone(Telefone telefone) throws ClassNotFoundException, SQLException {
 		sql = "insert into tb_telefone_orgao(id_orgao_fk, telefone)values(?,?)";
 
+		alterarTelefone(sql, telefone);
+
+	}
+
+	private void alterarTelefone(String sql, Telefone telefone) throws ClassNotFoundException, SQLException {
+
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		statement = connection.prepareStatement(sql);
@@ -268,4 +250,5 @@ public class OrgaoGovernamentalDao implements InterfaceDao<Orgao_governamental>{
 		statement.close();
 
 	}
+
 }

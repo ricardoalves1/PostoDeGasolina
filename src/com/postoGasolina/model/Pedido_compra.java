@@ -27,20 +27,8 @@ public class Pedido_compra {
 		this.itens_pedido = itens_pedido;
 	}
 
-	public int getId_pedido_compra() {
-		return id_pedido_compra;
-	}
-
-	public void setId_pedido_compra(int id_pedido_compra) {
-		this.id_pedido_compra = id_pedido_compra;
-	}
-
 	public Fornecedor getFornecedor() {
 		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
 	}
 
 	public Fluxo_caixa2 getFluxo_caixa() {
@@ -53,10 +41,6 @@ public class Pedido_compra {
 
 	public String getNome_responsavel() {
 		return nome_responsavel;
-	}
-
-	public void setNome_responsavel(String nome_responsavel) {
-		this.nome_responsavel = nome_responsavel;
 	}
 
 	public BigDecimal getTotal_pagar() {
@@ -78,10 +62,5 @@ public class Pedido_compra {
 	public ObservableList<Item_pedido> getItens_pedido() {
 		return itens_pedido;
 	}
-
-	public void setItens_pedido(ObservableList<Item_pedido> itens_pedido) {
-		this.itens_pedido = itens_pedido;
-	}
-	
 	
 }

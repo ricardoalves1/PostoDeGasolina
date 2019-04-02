@@ -29,61 +29,53 @@ public class Cliente_fisica {
 		this.listaTelefone = builder.listaTelefone;
 	}
 
-	public Cliente_fisica(int id_cliente_fisica,Pessoa pessoa, Endereco endereco){
-		this.id_cliente_fisica = id_cliente_fisica;
-		this.pessoa = pessoa;
-		this.endereco = endereco;
-	}
-	public Cliente_fisica(int id_cliente_fisica, Pessoa pessoa, Endereco endereco, String pai, String mae, String email,
-			String informacao, ObservableList<Telefone> listaTelefone) {
-		this.id_cliente_fisica = id_cliente_fisica;
-		this.pessoa = pessoa;
-		this.endereco = endereco;
-		this.pai = pai;
-		this.mae = mae;
-		this.email = email;
-		this.informacao = informacao;
-		this.listaTelefone = listaTelefone;
-	}
-
 	public static class Builder {
 
-		private final int id_cliente_fisica;
-		private final Pessoa pessoa;
-		private final Endereco endereco;
+		private int id_cliente_fisica;
+		private Pessoa pessoa;
+		private Endereco endereco;
 		private String pai;
 		private String mae;
 		private String email;
 		private String informacao;
 		private ObservableList<Telefone> listaTelefone = FXCollections.observableArrayList();
 
-		public Builder(int id_cliente_fisica, Pessoa pessoa, Endereco endereco) {
+		public Builder id(int id_cliente_fisica) {
 			this.id_cliente_fisica = id_cliente_fisica;
-			this.pessoa = pessoa;
-			this.endereco = endereco;
+			return this;
 		}
 
-		public Builder comPai(String pai) {
+		public Builder pessoa(Pessoa pessoa) {
+			this.pessoa = pessoa;
+			return this;
+		}
+
+		public Builder endereco(Endereco endereco) {
+			this.endereco = endereco;
+			return this;
+		}
+
+		public Builder pai(String pai) {
 			this.pai = pai;
 			return this;
 		}
 
-		public Builder comMae(String mae) {
+		public Builder mae(String mae) {
 			this.mae = mae;
 			return this;
 		}
 
-		public Builder comEmail(String email) {
+		public Builder email(String email) {
 			this.email = email;
 			return this;
 		}
 
-		public Builder comInformacao(String informacao) {
+		public Builder informacao(String informacao) {
 			this.informacao = informacao;
 			return this;
 		}
 
-		public Builder comTelefone(ObservableList<Telefone> listaTelefone) {
+		public Builder telefone(ObservableList<Telefone> listaTelefone) {
 			this.listaTelefone = listaTelefone;
 			return this;
 		}
@@ -150,7 +142,6 @@ public class Cliente_fisica {
 		try {
 			new ClienteFisicaDao().cadastrar(clienteFisica);
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -162,7 +153,6 @@ public class Cliente_fisica {
 		try {
 			new ClienteFisicaDao().alterar(clienteFisica);
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;

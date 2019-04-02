@@ -125,17 +125,13 @@ public class TelaGerenciarFornecedores implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		preencherComboBox();
 		try {
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		validacaoCampos();
-
 	}
 
 	@FXML
@@ -150,18 +146,14 @@ public class TelaGerenciarFornecedores implements Initializable {
 				limparCampos();
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Fornecedor removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Não foi possivel remover fornecedor", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona fornecedor na tabela", 4000);
 		}
 	}
@@ -181,38 +173,48 @@ public class TelaGerenciarFornecedores implements Initializable {
 						&& !campoCnpj.getText().isEmpty() && !campoRazaoSocial.getText().isEmpty()
 						&& !campoCep.getText().isEmpty()) {
 
-					try {
-						new FornecedoresDao().cadastrar(new Fornecedor(0,
-								new Endereco(0, campoCep.getText().replaceAll("[.]", ""), campoEndereco.getText(),
-										campoNumero.getText(), campoComplemento.getText(), campoBairro.getText(),
-										campoCidade.getText(), comboBoxEstado.getValue()),
-								campoRazaoSocial.getText(), campoCnpj.getText(), campoIe.getText(),
-								campoEmail.getText(), campoSite.getText(), campoStatus.getText(),
-								textAreaInformacao.getText(), comboBoxDataSituacao.getValue(), lista_telefones));
+						Endereco endereco = new Endereco.Builder()
+								.cep(campoCep.getText().replaceAll("[.]", ""))
+								.endereco(campoEndereco.getText())
+								.idEndereco(0)
+								.numero(campoNumero.getText())
+								.complemento(campoComplemento.getText())
+								.bairro(campoBairro.getText())
+								.cidade(campoCidade.getText())
+								.estado(comboBoxEstado.getValue())
+								.build();
+
+						new FornecedoresDao().cadastrar(
+								new Fornecedor(
+										0,
+										endereco,
+										campoRazaoSocial.getText(),
+										campoCnpj.getText(),
+										campoIe.getText(),
+										campoEmail.getText(),
+										campoSite.getText(),
+										campoStatus.getText(),
+										textAreaInformacao.getText(),
+										comboBoxDataSituacao.getValue(),
+										lista_telefones
+								)
+						);
 
 						carregarTabela();
 						limparCampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Fornecedor cadastrado com sucesso", 4000);
 
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
 
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -228,32 +230,48 @@ public class TelaGerenciarFornecedores implements Initializable {
 					&& !campoCep.getText().isEmpty()) {
 
 				try {
-					new FornecedoresDao().alterar(new Fornecedor(idFornecedor,
-							new Endereco(idEndereco, campoCep.getText().replaceAll("[.]", ""), campoEndereco.getText(),
-									campoNumero.getText(), campoComplemento.getText(), campoBairro.getText(),
-									campoCidade.getText(), comboBoxEstado.getValue()),
-							campoRazaoSocial.getText(), campoCnpj.getText(), campoIe.getText(), campoEmail.getText(),
-							campoSite.getText(), campoStatus.getText(), textAreaInformacao.getText(),
-							comboBoxDataSituacao.getValue(), lista_telefones));
+
+					Endereco endereco = new Endereco.Builder()
+							.cep(campoCep.getText().replaceAll("[.]", ""))
+							.endereco(campoEndereco.getText())
+							.idEndereco(idEndereco)
+							.numero(campoNumero.getText())
+							.complemento(campoComplemento.getText())
+							.bairro(campoBairro.getText())
+							.cidade(campoCidade.getText())
+							.estado(comboBoxEstado.getValue())
+							.build();
+
+					new FornecedoresDao().alterar(
+							new Fornecedor(
+									idFornecedor,
+									endereco,
+									campoRazaoSocial.getText(),
+									campoCnpj.getText(),
+									campoIe.getText(),
+									campoEmail.getText(),
+									campoSite.getText(),
+									campoStatus.getText(),
+									textAreaInformacao.getText(),
+									comboBoxDataSituacao.getValue(),
+									lista_telefones
+							)
+					);
 
 					carregarTabela();
 					limparCampos();
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Fornecedor alterado com sucesso", 4000);
 
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos obrigatórios não informado", 4000);
 			}
 
@@ -262,7 +280,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 	}
 
 	private void visualizarDados() {
-		// TODO Auto-generated method stub
 
 		treeTableViewFornecedores.setOnMouseClicked(event -> {
 			if (treeTableViewFornecedores.getSelectionModel().getSelectedIndex() != -1) {
@@ -297,7 +314,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -353,7 +369,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 						cliente.getCnpj(), cliente.getEndereco().getId_endereco(), cliente.getStatus()));
 			});
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -406,10 +421,8 @@ public class TelaGerenciarFornecedores implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewFornecedores);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	void validacaoCampos() {
@@ -426,7 +439,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 					boolean cpf = new CNPJ(campoCnpj.getText()).isCNPJ();
 					if (!cpf) {
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("CNPJ Inválido", 6000);
 						campoCnpj.setText("");
 					} else {
@@ -436,7 +448,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 								BuscaCnpj empresa = new BuscaCnpj(campoCnpj.getText());
 
 								Platform.runLater(() -> {
-
 									comboBoxEstado.setValue(empresa.getUf());
 								});
 
@@ -456,29 +467,21 @@ public class TelaGerenciarFornecedores implements Initializable {
 								comboBoxDataSituacao.setValue(dataFormatada);
 								textAreaInformacao.setText(empresa.getTAtividadePrincipal());
 
-								try {
+								telefone1 = "";
+								for (String telefone : empresa.getListaTelefones()) {
 
-									telefone1 = "";
-									for (String telefone : empresa.getListaTelefones()) {
-
-										if (telefone.replaceAll(" ", "").equals(telefone1.replaceAll(" ", ""))) {
-											lista_telefones.add(new Telefone(0, telefone));
-											listViewTelefones.setItems(lista_telefones);
-										}
-
-										telefone1 = telefone;
+									if (telefone.replaceAll(" ", "").equals(telefone1.replaceAll(" ", ""))) {
+										lista_telefones.add(new Telefone(0, telefone));
+										listViewTelefones.setItems(lista_telefones);
 									}
-								} catch (Exception e) {
-									// TODO: handle exception
-									e.printStackTrace();
-								}
 
+									telefone1 = telefone;
+								}
 							}
 						}).start();
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		});
@@ -520,7 +523,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 					}).start();
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -537,7 +539,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 				campoCelular.setText("");
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número adicionado com sucesso", 4000);
 			}
 			if (!campoTelefone.getText().isEmpty()) {
@@ -545,7 +546,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 				campoTelefone.setText("");
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número adicionado com sucesso", 4000);
 			}
 
@@ -562,13 +562,10 @@ public class TelaGerenciarFornecedores implements Initializable {
 					campoCelular.setText("");
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Número adicionado com sucesso", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -578,10 +575,8 @@ public class TelaGerenciarFornecedores implements Initializable {
 					new FornecedoresDao().adicionarTelefone(new Telefone(idFornecedor, campoTelefone.getText()));
 					campoTelefone.setText("");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -602,7 +597,6 @@ public class TelaGerenciarFornecedores implements Initializable {
 							.equals(listViewTelefones.getSelectionModel().getSelectedItem().toString())) {
 						lista_telefones.remove(i);
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Número removido com sucesso", 4000);
 					}
 				}
@@ -620,23 +614,17 @@ public class TelaGerenciarFornecedores implements Initializable {
 							.equals(listViewTelefones.getSelectionModel().getSelectedItem().toString())) {
 						lista_telefones.remove(i);
 						snackBar = new JFXSnackbar(borderPaneTabela);
-		//				String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Número removido com sucesso", 4000);
 					}
 				}
-				try {
-					new FornecedoresDao().excluirTelefone(new Telefone(idFornecedor, telefone));
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				new FornecedoresDao().excluirTelefone(new Telefone(idFornecedor, telefone));
 			}
 
 			listViewTelefones.setItems(lista_telefones);
 
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

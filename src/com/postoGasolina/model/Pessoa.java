@@ -2,7 +2,6 @@ package com.postoGasolina.model;
 
 import java.time.LocalDate;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class Pessoa{
@@ -40,42 +39,43 @@ public class Pessoa{
 		public int getId_pessoa() {
 			return id_pessoa;
 		}
-		public void setId_pessoa(int id_pessoa) {
-			this.id_pessoa = id_pessoa;
-		}
+
 		public String getNome() {
 			return nome;
 		}
+
 		public void setNome(String nome) {
 			this.nome = nome;
 		}
+
 		public LocalDate getData_nascimento() {
 			return data_nascimento;
 		}
-		public void setData_nascimento(LocalDate data_nascimento) {
-			this.data_nascimento = data_nascimento;
-		}
+
 		public char getSexo() {
 			return sexo;
 		}
+
 		public void setSexo(char sexo) {
 			this.sexo = sexo;
 		}
+
 		public String getEstado_civil() {
 			return estado_civil;
 		}
-		public void setEstado_civil(String estado_civil) {
-			this.estado_civil = estado_civil;
-		}
+
 		public String getRg() {
 			return rg;
 		}
+
 		public void setRg(String rg) {
 			this.rg = rg;
 		}
+
 		public String getCpf() {
 			return cpf;
 		}
+
 		public void setCpf(String cpf) {
 			this.cpf = cpf;
 		}

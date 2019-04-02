@@ -9,14 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-import com.postoGasolina.model.Cargo;
 import com.postoGasolina.model.ConverterDate;
-import com.postoGasolina.model.Endereco;
 import com.postoGasolina.model.Licença_autorizacao;
-import com.postoGasolina.model.Licença_autorizacao;
-import com.postoGasolina.model.Pessoa;
-import com.postoGasolina.model.Telefone;
-import com.postoGasolina.util.Data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +24,6 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
     private int idLa = 0;
 
     public void cadastrar(Licença_autorizacao lA) throws ClassNotFoundException, SQLException {
-
         // prepara conexão
         connection = ConexaoUtil.getInstance().getConnection();
 
@@ -56,7 +49,6 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
     }
 
     public void alterar(Licença_autorizacao lA) throws SQLException, ClassNotFoundException {
-
         // prepara conexão
         connection = ConexaoUtil.getInstance().getConnection();
 
@@ -80,11 +72,9 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
 
         statement.close();
         connection.close();
-
     }
 
     public void remover(int id) throws ClassNotFoundException, SQLException {
-        // TODO Auto-generated method stub
         connection = ConexaoUtil.getInstance().getConnection();
 
         sql = "delete from tb_licenca_autorizacao where id_licenca_autorizacao=?";
@@ -94,12 +84,9 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
 
         connection.close();
         statement.close();
-
     }
 
     public ObservableList<Licença_autorizacao> listar() throws ClassNotFoundException, SQLException {
-        // TODO Auto-generated method stub
-
         listaLA = FXCollections.observableArrayList();
 
         connection = ConexaoUtil.getInstance().getConnection();
@@ -129,7 +116,6 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
     }
 
     public void atualizaVStatus(LocalDate data) throws SQLException, ClassNotFoundException {
-
         connection = ConexaoUtil.getInstance().getConnection();
 
         sql = "update tb_licenca_autorizacao set status=? where data_expiracao=?";
@@ -144,7 +130,6 @@ public class LicencaAutorizacaoDao implements InterfaceDao<Licença_autorizacao>
     }
 
     public void atualizaAStatus(LocalDate data) throws SQLException, ClassNotFoundException {
-
         connection = ConexaoUtil.getInstance().getConnection();
 
         sql = "update tb_licenca_autorizacao set status=? where data_expiracao=?";

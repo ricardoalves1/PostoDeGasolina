@@ -27,13 +27,7 @@ public class MenuItem extends Pane {
 		Rectangle bg = new Rectangle();
 		bg.setWidth(234);
 		bg.setHeight(41);
-		// bg.setStroke(Color.color(1, 1, 1, 0.15));
-		// bg.setEffect(new GaussianBlur());
 
-		/*
-		 * bg.fillProperty().bind( Bindings.when(pressedProperty()) .then(Color.color(1,
-		 * 1, 1, 0.75)) .otherwise(Color.color(1, 1, 1, 0.15)) );
-		 */
 		Image img = new Image("/com/postoGasolina/img/TelaPrincipal/2.png");
 		bg.setFill(new ImagePattern(img));
 

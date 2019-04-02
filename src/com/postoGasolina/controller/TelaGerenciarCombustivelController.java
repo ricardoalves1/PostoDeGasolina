@@ -18,7 +18,6 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.BombaDao;
 import com.postoGasolina.dao.CombustiveisDao;
 import com.postoGasolina.dao.TipoCombustivelDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Bico;
 import com.postoGasolina.model.Bomba;
@@ -93,10 +92,8 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		preencherComboBox();
 		carregarTabela();
-
 	}
 
 	@FXML
@@ -110,19 +107,15 @@ public class TelaGerenciarCombustivelController implements Initializable {
 				carregarTabela();
 				limparCampos();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Combust�vel removido com sucesso", 4000);
+				snackBar.show("Combustível removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Combust�vel sendo utilizado", 4000);
+				snackBar.show("Combustível sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona combust�vel na tabela", 4000);
+			snackBar.show("Seleciona combustível na tabela", 4000);
 		}
 	}
 
@@ -150,10 +143,8 @@ public class TelaGerenciarCombustivelController implements Initializable {
 						}
 					}
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -170,23 +161,19 @@ public class TelaGerenciarCombustivelController implements Initializable {
 						limparCampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Combust�vel cadastrado com sucesso", 4000);
+						snackBar.show("Combustível cadastrado com sucesso", 4000);
 
 					} else {
 						snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Bico sendo utilizado", 4000);
 					}
 				} else {
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat�rios n�o informados", 4000);
+					snackBar.show("Campos obrigatórios não informados", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -200,66 +187,46 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					.parseInt(treeTableViewCombustivel.getSelectionModel().getSelectedItem().getValue().toString());
 
 			boolean achouBico = false;
-			
-			/*
-			try {
-				for (Combustivel combustivel : new CombustiveisDao().listar()) {
-					if (comboBoxBomba.getValue().getId_bomba() == combustivel.getBomba().getId_bomba()
-							&& combomBoxBico.getValue().getId_bico() == combustivel.getBico().getId_bico()) {
-						achouBico = true;
-					}
-				}
-				
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}*/
 
 			if (achouBico == false) {
 
-
 					try {
-						new CombustiveisDao().alterar(new Combustivel(idCombustivel,
-								comboboxTipoCombustivel.getSelectionModel().getSelectedItem(),
-								comboBoxBomba.getSelectionModel().getSelectedItem(),
-								combomBoxBico.getSelectionModel().getSelectedItem(), campoDescricao.getText(),
-								campoPreco.getNumber()));
+						new CombustiveisDao().alterar(
+								new Combustivel(
+										idCombustivel,
+										comboboxTipoCombustivel.getSelectionModel().getSelectedItem(),
+										comboBoxBomba.getSelectionModel().getSelectedItem(),
+										combomBoxBico.getSelectionModel().getSelectedItem(),
+										campoDescricao.getText(),
+										campoPreco.getNumber()
+								)
+						);
 
 						carregarTabela();
 						limparCampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Combust�vel alterado com sucesso", 4000);
+						snackBar.show("Combustível alterado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 				} else {
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Bico sendo utilizado", 4000);
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigat�rios n�o informados", 4000); 
+				snackBar.show("Campos obrigatórios não informados", 4000);
 			}
 		}
 	}
 
 	public void carregarDados() {
-		// TODO Auto-generated method stub
-
 		treeTableViewCombustivel.setOnMouseClicked(event -> {
 			if (treeTableViewCombustivel.getSelectionModel().getSelectedIndex() != -1) {
 				idCombustivel = Integer
@@ -268,7 +235,6 @@ public class TelaGerenciarCombustivelController implements Initializable {
 				try {
 
 					new CombustiveisDao().listar().forEach(combustivel -> {
-
 						if (combustivel.getId_combustivel() == idCombustivel) {
 
 							campoDescricao.setText(combustivel.getDescricao());
@@ -280,12 +246,10 @@ public class TelaGerenciarCombustivelController implements Initializable {
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		// }
 	}
 
 	void carregarTabela() {
@@ -296,12 +260,12 @@ public class TelaGerenciarCombustivelController implements Initializable {
 		JFXTreeTableColumn<CombustivelClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(50);
 		JFXTreeTableColumn<CombustivelClass, String> colunaTipoCombustivel = new JFXTreeTableColumn<>(
-				"Tipo de combust�veis");
+				"Tipo de combustíveis");
 		colunaTipoCombustivel.setPrefWidth(185);
 		JFXTreeTableColumn<CombustivelClass, String> colunaEstoqueDisponivel = new JFXTreeTableColumn<>(
-				"Est. dispon�vel");
+				"Est. disponível");
 		colunaEstoqueDisponivel.setPrefWidth(110);
-		JFXTreeTableColumn<CombustivelClass, String> colunaPreco = new JFXTreeTableColumn<>("Pre�o");
+		JFXTreeTableColumn<CombustivelClass, String> colunaPreco = new JFXTreeTableColumn<>("Preço");
 		colunaPreco.setPrefWidth(105);
 		JFXTreeTableColumn<CombustivelClass, String> colunaBomba = new JFXTreeTableColumn<>("Bomba");
 		colunaBomba.setPrefWidth(84);
@@ -320,6 +284,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 			else
 				return colunaId.getComputedValue(param);
 		});
+
 		colunaTipoCombustivel
 				.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 					if (colunaTipoCombustivel.validateValue(param))
@@ -327,6 +292,7 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					else
 						return colunaTipoCombustivel.getComputedValue(param);
 				});
+
 		colunaEstoqueDisponivel
 				.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 					if (colunaEstoqueDisponivel.validateValue(param))
@@ -334,36 +300,42 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					else
 						return colunaEstoqueDisponivel.getComputedValue(param);
 				});
+
 		colunaPreco.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaPreco.validateValue(param))
 				return param.getValue().getValue().preco;
 			else
 				return colunaPreco.getComputedValue(param);
 		});
+
 		colunaBomba.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaBomba.validateValue(param))
 				return param.getValue().getValue().bomba;
 			else
 				return colunaBomba.getComputedValue(param);
 		});
+
 		colunaBico.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaBico.validateValue(param))
 				return param.getValue().getValue().bico;
 			else
 				return colunaBico.getComputedValue(param);
 		});
+
 		colunaUnidadeMedida.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaUnidadeMedida.validateValue(param))
 				return param.getValue().getValue().unidadeMedida;
 			else
 				return colunaUnidadeMedida.getComputedValue(param);
 		});
+
 		colunaEstoqueMinimo.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaEstoqueMinimo.validateValue(param))
 				return param.getValue().getValue().estoqueMinimo;
 			else
 				return colunaEstoqueMinimo.getComputedValue(param);
 		});
+
 		colunaEstoqueMaximo.setCellValueFactory((TreeTableColumn.CellDataFeatures<CombustivelClass, String> param) -> {
 			if (colunaEstoqueMaximo.validateValue(param))
 				return param.getValue().getValue().estoqueMaximo;
@@ -373,31 +345,22 @@ public class TelaGerenciarCombustivelController implements Initializable {
 
 		ObservableList<CombustivelClass> lista_combustivel = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe an�nima
-		/*
-		 * try {
-		 * 
-		 * 
-		 * sqlClienteFisica.listar().forEach(cliente -> { lista_clientes.add(new
-		 * CombustivelClass(String.valueOf(cliente.getId_cliente_fisica()),
-		 * cliente.getPessoa().getNome(), cliente.getPessoa().getCpf(),
-		 * String.valueOf(cliente.getPessoa().getId_pessoa()),
-		 * String.valueOf(cliente.getEndereco().getId_endereco()))); });
-		 * 
-		 * 
-		 * 
-		 * } catch (ClassNotFoundException | SQLException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
+
 		try {
 			new CombustiveisDao().listar().forEach(combustivel -> {
-				lista_combustivel.add(new CombustivelClass(combustivel.getId_combustivel(),
-						combustivel.getTipoCombustivel().getNome(), combustivel.getTipoCombustivel().getQuantidade(),
-						combustivel.getPreco_venda(), combustivel.getBomba().getDescricao(),
-						combustivel.getBico().getDescricao(),
-						combustivel.getTipoCombustivel().getUnidade_medida().getNome(),
-						combustivel.getTipoCombustivel().getEstoque_minimo(),
-						combustivel.getTipoCombustivel().getEstoque_maximo()));
+				lista_combustivel.add(
+						new CombustivelClass(
+								combustivel.getId_combustivel(),
+								combustivel.getTipoCombustivel().getNome(),
+								combustivel.getTipoCombustivel().getQuantidade(),
+								combustivel.getPreco_venda(),
+								combustivel.getBomba().getDescricao(),
+								combustivel.getBico().getDescricao(),
+								combustivel.getTipoCombustivel().getUnidade_medida().getNome(),
+								combustivel.getTipoCombustivel().getEstoque_minimo(),
+								combustivel.getTipoCombustivel().getEstoque_maximo()
+						)
+				);
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -440,8 +403,6 @@ public class TelaGerenciarCombustivelController implements Initializable {
 		StringProperty estoqueMinimo;
 		StringProperty estoqueMaximo;
 
-		// StringProperty telefones[];
-
 		@Override
 		public String toString() {
 			return String.valueOf(id.getValue());
@@ -472,7 +433,6 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewCombustivel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -493,10 +453,8 @@ public class TelaGerenciarCombustivelController implements Initializable {
 					comboBoxBomba.setItems(new BombaDao().listar());
 					combomBoxBico.setValue(null);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -514,10 +472,8 @@ public class TelaGerenciarCombustivelController implements Initializable {
 						});
 					
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -529,10 +485,8 @@ public class TelaGerenciarCombustivelController implements Initializable {
 				try {
 					comboboxTipoCombustivel.setItems(new TipoCombustivelDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

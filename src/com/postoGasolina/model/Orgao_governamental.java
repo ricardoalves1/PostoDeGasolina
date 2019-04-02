@@ -36,42 +36,47 @@ public class Orgao_governamental {
 	public int getId_orgao() {
 		return id_orgao;
 	}
-	public void setId_orgao(int id_orgao) {
-		this.id_orgao = id_orgao;
-	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getSigla() {
 		return sigla;
 	}
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
+
 	public String getObservacao() {
 		return observacao;
 	}
+
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
+
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}

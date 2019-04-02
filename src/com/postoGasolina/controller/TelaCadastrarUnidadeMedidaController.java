@@ -37,7 +37,6 @@ public class TelaCadastrarUnidadeMedidaController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		carregarAcoes();
 		carregarLista();
 	}
@@ -53,19 +52,15 @@ public class TelaCadastrarUnidadeMedidaController implements Initializable {
     				limparCampo();
 
     				snackBar = new JFXSnackbar(borderPane);
-    		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-    				snackBar.show("Unidade de medida cadastrada com sucesso", 4000); 
+    				snackBar.show("Unidade de medida cadastrada com sucesso", 4000);
     				
     			} catch (ClassNotFoundException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			} catch (SQLException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
     		} else {
 				snackBar = new JFXSnackbar(borderPane);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos obrigatórios não informado", 4000);
     		}
     		
@@ -82,45 +77,39 @@ public class TelaCadastrarUnidadeMedidaController implements Initializable {
     				limparCampo();
     				
     				snackBar = new JFXSnackbar(borderPane);
-    			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-    				snackBar.show("Uni. de medida removida com sucesso", 4000); 
+    				snackBar.show("Uni. de medida removida com sucesso", 4000);
     				
     			} catch (ClassNotFoundException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     				
     				snackBar = new JFXSnackbar(borderPane);
-    	//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
     				snackBar.show("Uni. medida sendo utilizada", 4000);
     			} catch (SQLException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     				snackBar = new JFXSnackbar(borderPane);
-    		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
     				snackBar.show("Uni. medida sendo utilizada", 4000);
     			}
         	
     		}else {
     			snackBar = new JFXSnackbar(borderPane);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Selecione Uni. medida na tabela", 4000); 
+				snackBar.show("Selecione Uni. medida na tabela", 4000);
     		}
     	});
-    		 
     	
     }
+
     void carregarLista(){
     	try {
 			listViewUnidadeMedida.setItems(new UnidadeMedidaDao().listar());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+
     void limparCampo(){
     	campoNome.setText("");
     }
+
 }

@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.sound.midi.Soundbank;
-
 import com.postoGasolina.model.Cliente_Gasto;
 import com.postoGasolina.model.Cliente_fisica;
 import com.postoGasolina.model.ConverterDate;
@@ -33,7 +31,6 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 
 	@Override
 	public void cadastrar(Cliente_fisica clienteFisica) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		// Prepara a conexão
 		// prepara conexão
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -103,11 +100,9 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 				statement.setString(2, telefone.getTelefone());
 				statement.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
-		;
 
 		statement.close();
 		connection.close();
@@ -168,7 +163,6 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 
 	@Override
 	public void alterar(Cliente_fisica clienteFisica) throws SQLException, ClassNotFoundException {
-
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		// Pessoa
@@ -214,12 +208,10 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 
 		statement.close();
 		connection.close();
-		// rs.close();
 	}
 
 	@Override
 	public void remover(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		sql = "delete from tb_telefone_cliente_fisica where id_cliente_fisica_fk=?";
@@ -246,14 +238,8 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 
 	}
 
-	void removerTelefone() {
-
-	}
-
 	@Override
 	public ObservableList<Cliente_fisica> listar() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
 		listaclientes = FXCollections.observableArrayList();
 
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -266,41 +252,15 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 		while (rs.next()) {
 
 			if (rs.getDate("data_nascimento") == null) {
-				listaclientes.add(new Cliente_fisica(rs.getInt("id_cliente_fisica"),
-						new Pessoa(rs.getInt("id_pessoa"), rs.getString("nome"), rs.getString("cpf")),
-						new Endereco(rs.getInt("id_endereco"), rs.getString("uf"))));
-			} else {
-				ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
-				ResultSet rs2;
-				sql = "select * from tb_telefone_cliente_fisica where id_cliente_fisica_fk=?";
-				statement = connection.prepareStatement(sql);
-				statement.setInt(1, rs.getInt("id_cliente_fisica"));
-				rs2 = statement.executeQuery();
-				while (rs2.next()) {
-					lista_telefones.add(new Telefone(rs2.getInt("id_cliente_fisica_fk"), rs2.getString("telefone")));
-				}
 				listaclientes.add(
-						// um cliente
-                        //new Cliente_fisica.Builder(rs.getInt("id_cliente_fisica"));
-
-						new Cliente_fisica(rs.getInt("id_cliente_fisica"),
-
-								// uma pessoa
-								new Pessoa(rs.getInt("id_pessoa"), rs.getString("nome"),
-										ConverterDate.toLocalDate(rs.getDate("data_nascimento")),
-										Character.valueOf(rs.getString("sexo").charAt(0)), rs.getString("estado_civil"),
-										rs.getString("rg"), rs.getString("cpf")),
-
-								// tem um endereco
-								new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-										rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-										rs.getString("cidade"), rs.getString("uf")),
-								rs.getString("pai"), rs.getString("mae"), rs.getString("email"),
-								rs.getString("informacao"),
-
-								// adicionar telefones
-								lista_telefones));
-				rs2.close();
+						new Cliente_fisica.Builder()
+							.id(rs.getInt("id_cliente_fisica"))
+							.pessoa(new Pessoa(rs.getInt("id_pessoa"), rs.getString("nome"), rs.getString("cpf")))
+							.endereco(new Endereco(rs.getInt("id_endereco"), rs.getString("uf")))
+							.build()
+				);
+			} else {
+				clientesFisica();
 			}
 		}
 		connection.close();
@@ -311,7 +271,6 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 	}
 
 	public ObservableList<Cliente_fisica> pesquisar(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
 		listaclientes = FXCollections.observableArrayList();
 
@@ -323,34 +282,7 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 		statement.setInt(1, id);
 		rs = statement.executeQuery();
 		while (rs.next()) {
-			ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
-			ResultSet rs2;
-			sql = "select * from tb_telefone_cliente_fisica where id_cliente_fisica_fk=?";
-			statement = connection.prepareStatement(sql);
-			statement.setInt(1, rs.getInt("id_cliente_fisica"));
-			rs2 = statement.executeQuery();
-			while (rs2.next()) {
-				lista_telefones.add(new Telefone(rs2.getInt("id_cliente_fisica_fk"), rs2.getString("telefone")));
-			}
-			listaclientes.add(
-					// um cliente
-					new Cliente_fisica(rs.getInt("id_cliente_fisica"),
-
-							// uma pessoa
-							new Pessoa(rs.getInt("id_pessoa"), rs.getString("nome"),
-									ConverterDate.toLocalDate(rs.getDate("data_nascimento")),
-									Character.valueOf(rs.getString("sexo").charAt(0)), rs.getString("estado_civil"),
-									rs.getString("rg"), rs.getString("cpf")),
-
-							// tem um endereco
-							new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-									rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-									rs.getString("cidade"), rs.getString("uf")),
-							rs.getString("pai"), rs.getString("mae"), rs.getString("email"), rs.getString("informacao"),
-
-							// adicionar telefones
-							lista_telefones));
-			rs2.close();
+			clientesFisica();
 		}
 		connection.close();
 		statement.close();
@@ -359,24 +291,73 @@ public class ClienteFisicaDao implements InterfaceDao<Cliente_fisica> {
 		return listaclientes;
 	}
 
+	public void clientesFisica() throws SQLException {
+
+		ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
+		ResultSet rs2;
+		sql = "select * from tb_telefone_cliente_fisica where id_cliente_fisica_fk=?";
+		statement = connection.prepareStatement(sql);
+		statement.setInt(1, rs.getInt("id_cliente_fisica"));
+		rs2 = statement.executeQuery();
+		while (rs2.next()) {
+			lista_telefones.add(new Telefone(rs2.getInt("id_cliente_fisica_fk"), rs2.getString("telefone")));
+		}
+
+		Pessoa pessoa = new Pessoa(
+				rs.getInt("id_pessoa"),
+				rs.getString("nome"),
+				ConverterDate.toLocalDate(rs.getDate("data_nascimento")),
+				Character.valueOf(rs.getString("sexo").charAt(0)),
+				rs.getString("estado_civil"),
+				rs.getString("rg"),
+				rs.getString("cpf")
+		);
+
+		Endereco endereco = new Endereco.Builder()
+				.idEndereco(rs.getInt("id_endereco"))
+				.cep(rs.getString("cep"))
+				.endereco(rs.getString("endereco"))
+				.numero(rs.getString("numero"))
+				.complemento(rs.getString("complemento"))
+				.bairro(rs.getString("bairro"))
+				.cidade(rs.getString("cidade"))
+				.estado(rs.getString("uf"))
+				.build();
+
+
+		Cliente_fisica cliente = new Cliente_fisica.Builder()
+				.id(rs.getInt("id_cliente_fisica"))
+				.pessoa(pessoa)
+				.endereco(endereco)
+				.pai(rs.getString("pai"))
+				.mae(rs.getString("mae"))
+				.email(rs.getString("email"))
+				.informacao(rs.getString("informacao"))
+				.telefone(lista_telefones)
+				.build();
+
+		listaclientes.add(cliente);
+		rs2.close();
+
+	}
+
 	public void excluirTelefone(Telefone telefone) throws SQLException, ClassNotFoundException {
 
 		sql = "delete from tb_telefone_cliente_fisica where ? and telefone = ?";
 
-		connection = ConexaoUtil.getInstance().getConnection();
-
-		statement = connection.prepareStatement(sql);
-		statement.setInt(1, telefone.getId_responsavel_telefone());
-		statement.setString(2, telefone.getTelefone());
-		statement.execute();
-
-		connection.close();
-		statement.close();
+		alterarTelefone(telefone);
 
 	}
 
 	public void adicionarTelefone(Telefone telefone) throws ClassNotFoundException, SQLException {
+
 		sql = "insert into tb_telefone_cliente_fisica(id_cliente_fisica_fk, telefone)values(?,?)";
+
+		alterarTelefone(telefone);
+
+	}
+
+	public void alterarTelefone(Telefone telefone) throws ClassNotFoundException, SQLException {
 
 		connection = ConexaoUtil.getInstance().getConnection();
 

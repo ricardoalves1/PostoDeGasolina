@@ -42,7 +42,6 @@ public class TelaCadastrarDesconto implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		carregarComponents();
 		carregarEventos();
 	}
@@ -53,7 +52,6 @@ public class TelaCadastrarDesconto implements Initializable {
 			Stage stage = (Stage) btnVoltar.getScene().getWindow();
 			stage.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -73,7 +71,6 @@ public class TelaCadastrarDesconto implements Initializable {
 			Stage stage = (Stage) btnVoltar.getScene().getWindow();
 			stage.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -126,7 +123,6 @@ public class TelaCadastrarDesconto implements Initializable {
 	}
 
 	private void carregarEventos() {
-		// TODO Auto-generated method stub
 		campoSubTotal.setNumber(TelaVendaController.RecebePedido.getTotal_pagar());
 		campoTotalFinalApagar.setNumber(campoSubTotal.getNumber());
 
@@ -134,7 +130,6 @@ public class TelaCadastrarDesconto implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				campoDescontoReais.setNumber(BigDecimal.ZERO);
 				try {
 					if (!newValue.replaceAll("[% ]", "").isEmpty()) {
@@ -148,7 +143,7 @@ public class TelaCadastrarDesconto implements Initializable {
 						campoTotalFinalApagar.setNumber(campoSubTotal.getNumber());
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
+					//
 				}
 			}
 		});
@@ -156,7 +151,6 @@ public class TelaCadastrarDesconto implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				campoDescontoPorcentagem.setNumber(BigDecimal.ZERO);
 				try {
 					if (!newValue.replaceAll("[R$ ]", "").isEmpty()) {
@@ -167,7 +161,7 @@ public class TelaCadastrarDesconto implements Initializable {
 						campoTotalFinalApagar.setNumber(campoSubTotal.getNumber());
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
+					//
 				}
 			}
 		});

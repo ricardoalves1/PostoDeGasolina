@@ -50,7 +50,6 @@ public class TelaFecharCaixaController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
 		String style = getClass().getResource("/com/postoGasolina/style/Caixa.css").toExternalForm();
 
@@ -83,14 +82,11 @@ public class TelaFecharCaixaController implements Initializable {
 				
 				Stage stage = (Stage) gridPaneBottom.getScene().getWindow();
 				stage.close();
-				//System.out.println(Fluxo_caixa.getData_hora_inicial().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
 			} else {
 				s = new JFXSnackbar(gridPaneBottom);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				s.show("Campos Obrigatórios não informado", 4000);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

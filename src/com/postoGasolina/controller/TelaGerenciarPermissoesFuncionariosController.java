@@ -109,16 +109,12 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		preencherComboBox();
 		try {
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
-
 	}
 
 	@FXML
@@ -133,15 +129,12 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 				limparCampos();
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Permissão removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona permissão na tabela", 4000);
 		}
 	}
@@ -162,38 +155,38 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 
 					try {
 
-						new PermissoesDao().cadastrar(new Login(0, comboBoxFuncionario.getValue(), campoEmail.getText(),
-								campoSenha.getText(), tbGerenciarAutorizacoes.isSelected(), tbGerenciarOrgao.isSelected(),
-								tbGerenciarFornecedores.isSelected(), tbGerenciarClientes.isSelected(),
-								tbGerenciarFuncionarios.isSelected(), tbGerenciarFidelizacao.isSelected(),
-								tbGerenciarCompra.isSelected(), tbGerenciarVenda.isSelected(),
-								tbGerenciarCombustiveis.isSelected(), tbGerenciarProdutos.isSelected(),
-								tbGerenciarCaixa.isSelected(), tbGerenciarPermissoes.isSelected(),
-								textAreaInformacao.getText(),
-								comboBoxNivelAcesso.getValue()));
+						new PermissoesDao().cadastrar(
+								new Login(
+										0,
+										comboBoxFuncionario.getValue(), campoEmail.getText(),
+										campoSenha.getText(), tbGerenciarAutorizacoes.isSelected(),
+										tbGerenciarOrgao.isSelected(), tbGerenciarFornecedores.isSelected(),
+										tbGerenciarClientes.isSelected(), tbGerenciarFuncionarios.isSelected(),
+										tbGerenciarFidelizacao.isSelected(), tbGerenciarCompra.isSelected(),
+										tbGerenciarVenda.isSelected(), tbGerenciarCombustiveis.isSelected(),
+										tbGerenciarProdutos.isSelected(), tbGerenciarCaixa.isSelected(),
+										tbGerenciarPermissoes.isSelected(), textAreaInformacao.getText(),
+										comboBoxNivelAcesso.getValue()
+								)
+						);
 						carregarTabela();
 						limparCampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Permissão cadastrado com sucesso", 4000);
 
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -207,28 +200,29 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 					&& !campoEmail.getText().isEmpty() && !campoSenha.getText().isEmpty()){
 
 				try {
-					new PermissoesDao().alterar(new Login(idLogin, comboBoxFuncionario.getValue(), campoEmail.getText(),
-							campoSenha.getText(), tbGerenciarAutorizacoes.isSelected(), tbGerenciarOrgao.isSelected(),
-							tbGerenciarFornecedores.isSelected(), tbGerenciarClientes.isSelected(),
-							tbGerenciarFuncionarios.isSelected(), tbGerenciarFidelizacao.isSelected(),
-							tbGerenciarCompra.isSelected(), tbGerenciarVenda.isSelected(),
-							tbGerenciarCombustiveis.isSelected(), tbGerenciarProdutos.isSelected(),
-							tbGerenciarCaixa.isSelected(), tbGerenciarPermissoes.isSelected(),
-							textAreaInformacao.getText(),
-							comboBoxNivelAcesso.getValue()));
+					new PermissoesDao().alterar(
+							new Login(
+									idLogin, comboBoxFuncionario.getValue(), campoEmail.getText(),
+									campoSenha.getText(), tbGerenciarAutorizacoes.isSelected(),
+									tbGerenciarOrgao.isSelected(), tbGerenciarFornecedores.isSelected(),
+									tbGerenciarClientes.isSelected(), tbGerenciarFuncionarios.isSelected(),
+									tbGerenciarFidelizacao.isSelected(), tbGerenciarCompra.isSelected(),
+									tbGerenciarVenda.isSelected(), tbGerenciarCombustiveis.isSelected(),
+									tbGerenciarProdutos.isSelected(), tbGerenciarCaixa.isSelected(),
+									tbGerenciarPermissoes.isSelected(), textAreaInformacao.getText(),
+									comboBoxNivelAcesso.getValue()
+							)
+					);
 
 					carregarTabela();
 					limparCampos();
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Permissão alterado com sucesso", 4000);
 
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -236,7 +230,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos obrigatórios não informado", 4000);
 			}
 
@@ -245,8 +238,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 	}
 
 	private void visualizarDados() {
-		// TODO Auto-generated method stub
-
 		treeTableViewLogins.setOnMouseClicked(event -> {
 			if (treeTableViewLogins.getSelectionModel().getSelectedIndex() != -1) {
 				String[] ids = treeTableViewLogins.getSelectionModel().getSelectedItem().getValue().toString()
@@ -279,7 +270,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -305,18 +295,21 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 			else
 				return colunaId.getComputedValue(param);
 		});
+
 		colunaNome.setCellValueFactory((TreeTableColumn.CellDataFeatures<PermissaoClass, String> param) -> {
 			if (colunaNome.validateValue(param))
 				return param.getValue().getValue().nome;
 			else
 				return colunaNome.getComputedValue(param);
 		});
+
 		colunaNivelAcesso.setCellValueFactory((TreeTableColumn.CellDataFeatures<PermissaoClass, String> param) -> {
 			if (colunaNivelAcesso.validateValue(param))
 				return param.getValue().getValue().nivelAcesso;
 			else
 				return colunaNivelAcesso.getComputedValue(param);
 		});
+
 		ObservableList<PermissaoClass> lista_logins = FXCollections.observableArrayList();
 
 		// carregando registros com os campos da coluna da classe anônima
@@ -326,7 +319,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 						permissao.getNivel_acesso()));
 			});
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -373,7 +365,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewLogins);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -387,52 +378,37 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 				comboBoxFuncionario.setPromptText("");
 				try {
 					comboBoxFuncionario.setItems(new FuncionarioDao().listar());
-					// comboBoxFuncionario.setRecords(new
-					// SqlFuncionario().listar());
-					// comboBoxFuncionario.setOnlyAllowPredefinedItems(true);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
 				comboBoxFuncionario.setPromptText("Pesquisar Funcionário ...");
 			}
 		});
+
 		comboBoxNivelAcesso.valueProperty().addListener((observable, oldValue, newValue)->{
 			if(newValue != null){
-				if(newValue.equals("Administrador")){
-					tbGerenciarAutorizacoes.setSelected(true);;
-					tbGerenciarCaixa.setSelected(true);
-					tbGerenciarClientes.setSelected(true);
-					tbGerenciarCombustiveis.setSelected(true);
-					tbGerenciarCompra.setSelected(true);
-					tbGerenciarFidelizacao.setSelected(true);
-					tbGerenciarFornecedores.setSelected(true);
-					tbGerenciarFuncionarios.setSelected(true);
-					tbGerenciarOrgao.setSelected(true);
-					tbGerenciarPermissoes.setSelected(true);
-					tbGerenciarVenda.setSelected(true);
-					tbGerenciarProdutos.setSelected(true);
-				}else if(newValue.equals("Gerente")){
-					tbGerenciarAutorizacoes.setSelected(true);;
-					tbGerenciarCaixa.setSelected(true);
-					tbGerenciarClientes.setSelected(true);
-					tbGerenciarCombustiveis.setSelected(true);
-					tbGerenciarCompra.setSelected(true);
-					tbGerenciarFidelizacao.setSelected(true);
-					tbGerenciarFornecedores.setSelected(true);
-					tbGerenciarFuncionarios.setSelected(true);
-					tbGerenciarOrgao.setSelected(true);
+
+				tbGerenciarAutorizacoes.setSelected(true);;
+				tbGerenciarCaixa.setSelected(true);
+				tbGerenciarClientes.setSelected(true);
+				tbGerenciarCombustiveis.setSelected(true);
+				tbGerenciarCompra.setSelected(true);
+				tbGerenciarFidelizacao.setSelected(true);
+				tbGerenciarFornecedores.setSelected(true);
+				tbGerenciarFuncionarios.setSelected(true);
+				tbGerenciarOrgao.setSelected(true);
+				tbGerenciarPermissoes.setSelected(true);
+				tbGerenciarVenda.setSelected(true);
+				tbGerenciarProdutos.setSelected(true);
+
+				if(newValue.equals("Gerente")){
 					tbGerenciarPermissoes.setSelected(false);
-					tbGerenciarVenda.setSelected(true);
-					tbGerenciarProdutos.setSelected(true);
 				}else if(newValue.equals("Atendente")){
 					tbGerenciarAutorizacoes.setSelected(false);;
 					tbGerenciarCaixa.setSelected(false);
-					tbGerenciarClientes.setSelected(true);
 					tbGerenciarCombustiveis.setSelected(false);
 					tbGerenciarCompra.setSelected(false);
 					tbGerenciarFidelizacao.setSelected(false);
@@ -440,7 +416,6 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 					tbGerenciarFuncionarios.setSelected(false);
 					tbGerenciarOrgao.setSelected(false);
 					tbGerenciarPermissoes.setSelected(false);
-					tbGerenciarVenda.setSelected(true);
 					tbGerenciarProdutos.setSelected(false);
 				}
 
@@ -459,6 +434,7 @@ public class TelaGerenciarPermissoesFuncionariosController implements Initializa
 		tbGerenciarPermissoes.setOnAction(e->comboBoxNivelAcesso.setValue("Personalizado"));
 		tbGerenciarVenda.setOnAction(e->comboBoxNivelAcesso.setValue("Personalizado"));
 		tbGerenciarProdutos.setOnAction(e->comboBoxNivelAcesso.setValue("Personalizado"));
+
 	}
 
 	void limparCampos() {

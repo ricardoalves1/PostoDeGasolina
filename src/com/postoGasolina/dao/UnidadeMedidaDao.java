@@ -16,25 +16,20 @@ public class UnidadeMedidaDao implements InterfaceDao<Unidade_medida>{
 	private PreparedStatement statement;
 	private String sql;
 	private ResultSet rs;
-	
-	
+
 	public void cadastrar(Unidade_medida unidadeMedida) throws ClassNotFoundException, SQLException{ 
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
 		sql = "insert into tb_unidade_medida(nome)values(?)";
 		
 		statement = connetion.prepareStatement(sql);
-		
 		statement.setString(1, unidadeMedida.getNome());
-		
 		statement.execute();
 		
 		connetion.close();
 		statement.close();
-		
-		
-		
 	}
+
 	public void remover(int id) throws ClassNotFoundException, SQLException{
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
@@ -47,19 +42,17 @@ public class UnidadeMedidaDao implements InterfaceDao<Unidade_medida>{
 		
 		statement.close();
 		connetion.close();
-		
 	}
+
 	public ObservableList<Unidade_medida> listar() throws ClassNotFoundException, SQLException{
 		ObservableList<Unidade_medida> lista_unidade_medida = FXCollections.observableArrayList();
 		
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
 		sql = "select * from tb_unidade_medida";
-		
 		statement = connetion.prepareStatement(sql);
 		
 		rs = statement.executeQuery();
-		
 		while (rs.next()) {
 			lista_unidade_medida.add(new Unidade_medida(rs.getInt("id_unidade_medida"), rs.getString("nome")));
 		}
@@ -70,11 +63,10 @@ public class UnidadeMedidaDao implements InterfaceDao<Unidade_medida>{
 		
 		return lista_unidade_medida;
 	}
+
 	@Override
 	public void alterar(Unidade_medida t) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		
 	}
-
 
 }

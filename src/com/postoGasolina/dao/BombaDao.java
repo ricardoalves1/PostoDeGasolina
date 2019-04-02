@@ -44,7 +44,6 @@ public class BombaDao implements InterfaceDao<Bomba>{
 				statement.setString(2, bico.getDescricao());
 				statement.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -53,7 +52,6 @@ public class BombaDao implements InterfaceDao<Bomba>{
 		connetion.close();
 		statement.close();
 		rs.close();
-
 	}
 
 	public void alterar(Bomba bomba) throws ClassNotFoundException, SQLException {
@@ -69,7 +67,6 @@ public class BombaDao implements InterfaceDao<Bomba>{
 
 		connetion.close();
 		statement.close();
-
 	}
 
 	public void remover(int id) throws ClassNotFoundException, SQLException {
@@ -87,7 +84,6 @@ public class BombaDao implements InterfaceDao<Bomba>{
 
 		statement.close();
 		connetion.close();
-
 	}
 
 	public ObservableList<Bomba> listar() throws ClassNotFoundException, SQLException {

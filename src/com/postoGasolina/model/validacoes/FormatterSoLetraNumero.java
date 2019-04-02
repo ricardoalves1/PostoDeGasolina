@@ -16,10 +16,10 @@ public class FormatterSoLetraNumero extends PlainDocument {
 
 	@Override
 	public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-		// se str n„o for null e o documento n„o tiver mais que "max"
+		// se str n√£o for null e o documento n√£o tiver mais que "max"
 		// caracteres,
 		// insere o novo caracter
 		if (str != null && getLength() < quantidadeMaxima)
-			super.insertString(offset, str.replaceAll("[^a-z|^A-Z|^0-9|^ ·‚ÈÌı˙Á„‡ÍÛÙ¸¡¬…Õ’⁄«√¿ ”‘‹]", ""), attr);
+			super.insertString(offset, str.replaceAll("[^a-z|^A-Z|^0-9|^ √°√¢√©√≠√µ√∫√ß√£√†√™√≥√¥√º√Å√Ç√â√ç√ï√ö√á√É√Ä√ä√ì√î√ú]", ""), attr);
 	}
 }

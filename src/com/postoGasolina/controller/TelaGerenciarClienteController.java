@@ -145,21 +145,18 @@ public class TelaGerenciarClienteController implements Initializable {
  
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		formataCampos();
 		preencherComboBox();
 		
 		validacaoCampos();
 		try{
 			carregarTabela();
-			}catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void visualizarDados() {
-		// TODO Auto-generated method stub
 
 		treeTableViewClienteFisica.setOnMouseClicked(event -> {
 			if (treeTableViewClienteFisica.getSelectionModel().getSelectedIndex() != -1) {
@@ -191,13 +188,11 @@ public class TelaGerenciarClienteController implements Initializable {
 							comboBoxSexo.setValue(cliente.getPessoa().getSexo() == 'M' ? "Masculino" : "Feminino");
 							textAreaInformacao.setText(cliente.getInformacao());
 
-							// lista_telefones.clear();
 							lista_telefones = cliente.getListaTelefone();
 							listViewTelefones.setItems(lista_telefones);
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -218,19 +213,15 @@ public class TelaGerenciarClienteController implements Initializable {
 				limparCampos();
 				
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Cliente removido com sucesso", 4000); 
+				snackBar.show("Cliente removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Cliente sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona Cliente na tabela", 4000); 
+			snackBar.show("Seleciona Cliente na tabela", 4000);
 		}
 
 	}
@@ -246,36 +237,22 @@ public class TelaGerenciarClienteController implements Initializable {
 		if (treeTableViewClienteFisica.getSelectionModel().getSelectedIndex() == -1) {
 			try {
 
-				if (comboBoxDataNascimento.getValue() != null && comboBoxEstado.getValue() != null
-						&& comboBoxEstatadoCivil.getValue() != null && comboBoxSexo.getValue() != null
-						&& !campoNome.getText().isEmpty() && !campoCep.getText().isEmpty()
-						&& !campoCpf.getText().isEmpty()) {
+				if (checarCampos()) {
 
-					Cliente_fisica.cadastrar(new Cliente_fisica(0,
-							new Pessoa(0, campoNome.getText(), comboBoxDataNascimento.getValue(),
-									comboBoxSexo.getValue().charAt(0), comboBoxEstatadoCivil.getValue(),
-									campoRg.getText(), campoCpf.getText()),
-							new Endereco(0, campoCep.getText(), campoEndereco.getText(), campoNumero.getText(),
-									campoComplemento.getText(), campoBairro.getText(), campoCidade.getText(),
-									comboBoxEstado.getValue()),
-							campoPai.getText(), campoMae.getText(), campoEmail.getText(), textAreaInformacao.getText(),
-							lista_telefones));
+					Cliente_fisica.cadastrar(clienteFisica(0,0,0));
 
 					carregarTabela();
 					limparCampos();
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Cliente cadastrado com sucesso", 4000); 
+					snackBar.show("Cliente cadastrado com sucesso", 4000);
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -287,40 +264,73 @@ public class TelaGerenciarClienteController implements Initializable {
 			int idPessoa = Integer.parseInt(ids[1]);
 			int idEndereco = Integer.parseInt(ids[2]);
 
-			if (comboBoxDataNascimento.getValue() != null && comboBoxEstado.getValue() != null
-					&& comboBoxEstatadoCivil.getValue() != null && comboBoxSexo.getValue() != null
-					&& !campoNome.getText().isEmpty() && !campoCep.getText().isEmpty()
-					&& !campoCpf.getText().isEmpty()) {
+			if (checarCampos()) {
 
-				Cliente_fisica.alterar(new Cliente_fisica(idCliente,
-						new Pessoa(idPessoa, campoNome.getText(), comboBoxDataNascimento.getValue(),
-								comboBoxSexo.getValue().charAt(0), comboBoxEstatadoCivil.getValue(), campoRg.getText(),
-								campoCpf.getText()),
-						new Endereco(idEndereco, campoCep.getText(), campoEndereco.getText(), campoNumero.getText(),
-								campoComplemento.getText(), campoBairro.getText(), campoCidade.getText(),
-								comboBoxEstado.getValue()),
-						campoPai.getText(), campoMae.getText(), campoEmail.getText(), textAreaInformacao.getText(),
-						lista_telefones));
+				Cliente_fisica.alterar(clienteFisica(idCliente, idPessoa, idEndereco));
 
 				carregarTabela();
 				limparCampos();
 				
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Cliente alterado com sucesso", 4000); 
+				snackBar.show("Cliente alterado com sucesso", 4000);
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos obrigatórios não informado", 4000);
 			}
 
 		}
 	}
 
-	void formataCampos() {
+	private boolean checarCampos() {
 
-		// comboBoxDataNascimento.setBackground();
+		return (comboBoxDataNascimento.getValue() != null && comboBoxEstado.getValue() != null
+				&& comboBoxEstatadoCivil.getValue() != null && comboBoxSexo.getValue() != null
+				&& !campoNome.getText().isEmpty() && !campoCep.getText().isEmpty()
+				&& !campoCpf.getText().isEmpty());
+
+	}
+
+	private Cliente_fisica clienteFisica(int idCliente,int idPessoa, int idEndereco) {
+
+		Pessoa pessoa = new Pessoa(
+				idPessoa,
+				campoNome.getText(),
+				comboBoxDataNascimento.getValue(),
+				comboBoxSexo.getValue().charAt(0),
+				comboBoxEstatadoCivil.getValue(),
+				campoRg.getText(),
+				campoCpf.getText()
+		);
+
+		Endereco endereco = new Endereco.Builder()
+				.idEndereco(idEndereco)
+				.cep(campoCep.getText())
+				.endereco(campoEndereco.getText())
+				.numero(campoNumero.getText())
+				.complemento(campoComplemento.getText())
+				.bairro(campoBairro.getText())
+				.cidade(campoCidade.getText())
+				.estado(comboBoxEstado.getValue())
+				.build();
+
+
+		Cliente_fisica cliente = new Cliente_fisica.Builder()
+									.id(idCliente)
+									.pessoa(pessoa)
+									.endereco(endereco)
+									.pai(campoPai.getText())
+									.mae(campoMae.getText())
+									.email(campoEmail.getText())
+									.informacao(textAreaInformacao.getText())
+									.telefone(lista_telefones)
+									.build();
+
+		return cliente;
+
+	}
+
+	void formataCampos() {
 		comboBoxDataNascimento.setDefaultColor(Color.valueOf("#fcf0f0"));
 	}
 
@@ -410,7 +420,6 @@ public class TelaGerenciarClienteController implements Initializable {
 								.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Cadastro Incompleto"));
 			});
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -466,7 +475,6 @@ public class TelaGerenciarClienteController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewClienteFisica);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -503,7 +511,6 @@ public class TelaGerenciarClienteController implements Initializable {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		});
@@ -545,7 +552,6 @@ public class TelaGerenciarClienteController implements Initializable {
 					}).start();
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -561,14 +567,12 @@ public class TelaGerenciarClienteController implements Initializable {
 				lista_telefones.add(new Telefone(0, campoCelular.getText()));
 				campoCelular.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número cadastrado com sucesso", 4000);
 			}
 			if (!campoTelefone.getText().isEmpty()) {
 				lista_telefones.add(new Telefone(0, campoTelefone.getText()));
 				campoTelefone.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número cadastrado com sucesso", 4000);
 			}
 
@@ -584,13 +588,10 @@ public class TelaGerenciarClienteController implements Initializable {
 					sqlClienteFisica.adicionarTelefone(new Telefone(idCliente, campoCelular.getText()));
 					campoCelular.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Número cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -601,13 +602,10 @@ public class TelaGerenciarClienteController implements Initializable {
 					sqlClienteFisica.adicionarTelefone(new Telefone(idCliente, campoTelefone.getText()));
 					campoTelefone.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Número cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -649,27 +647,23 @@ public class TelaGerenciarClienteController implements Initializable {
 						lista_telefones.remove(i);
 						
 						snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Número removido com sucesso", 4000);
 					}
 				}
 				try {
 					sqlClienteFisica.excluirTelefone(new Telefone(idCliente, telefone));
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Seleciona número na tabela", 4000);
 			}
 
 			listViewTelefones.setItems(lista_telefones);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

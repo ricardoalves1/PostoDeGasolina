@@ -35,7 +35,6 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.CaixaDao;
 import com.postoGasolina.dao.CompraDao;
 import com.postoGasolina.dao.VendaDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Fluxo_caixa2;
@@ -122,12 +121,10 @@ public class TelaGerenciarCaixaController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 		carregarComponents();
 		carregarGrafico();
-
 	}
+
 	@FXML
     void tabPrincipal(MouseEvent event) {
     		System.out.println("entrou");
@@ -139,13 +136,13 @@ public class TelaGerenciarCaixaController implements Initializable {
 			atualizaG.setText("0");
 		}
     }
+
 	private void carregarGrafico() {
 
-		// TODO Auto-generated method stub
 		XYChart.Series<String, BigDecimal> set1 = new XYChart.Series<>();
 		set1.getData().add(new XYChart.Data<String, BigDecimal>("Janeiro", BigDecimal.ZERO));
 		set1.getData().add(new XYChart.Data<String, BigDecimal>("Fevereiro", BigDecimal.ZERO));
-		set1.getData().add(new XYChart.Data<String, BigDecimal>("Mar�o", BigDecimal.ZERO));
+		set1.getData().add(new XYChart.Data<String, BigDecimal>("Março", BigDecimal.ZERO));
 		set1.getData().add(new XYChart.Data<String, BigDecimal>("Abril", BigDecimal.ZERO));
 		set1.getData().add(new XYChart.Data<String, BigDecimal>("Maio", BigDecimal.ZERO));
 		set1.getData().add(new XYChart.Data<String, BigDecimal>("Junho", BigDecimal.ZERO));
@@ -162,43 +159,11 @@ public class TelaGerenciarCaixaController implements Initializable {
 				if (caixa.getData_hora_final() != null) {
 					if (caixa.getData_hora_final().getYear() == LocalDate.now().getYear()) {
 
-						if (caixa.getData_hora_final().getMonthValue() == 1) {
-							set1.getData().get(0)
-									.setYValue((set1.getData().get(0).getYValue().add(caixa.getSaldo_final()))); // janeiro
-						} else if (caixa.getData_hora_final().getMonthValue() == 2) {
-							set1.getData().get(1)
-									.setYValue((set1.getData().get(1).getYValue().add(caixa.getSaldo_final()))); // fevereiro
-						} else if (caixa.getData_hora_final().getMonthValue() == 3) {
-							set1.getData().get(2)
-									.setYValue((set1.getData().get(2).getYValue().add(caixa.getSaldo_final()))); // mar�o
-						} else if (caixa.getData_hora_final().getMonthValue() == 4) {
-							set1.getData().get(3)
-									.setYValue((set1.getData().get(3).getYValue().add(caixa.getSaldo_final()))); // abril
-						} else if (caixa.getData_hora_final().getMonthValue() == 5) {
-							set1.getData().get(4)
-									.setYValue((set1.getData().get(4).getYValue().add(caixa.getSaldo_final()))); // maio
-						} else if (caixa.getData_hora_final().getMonthValue() == 6) {
-							set1.getData().get(5)
-									.setYValue(set1.getData().get(5).getYValue().add(caixa.getSaldo_final())); // junho
-						} else if (caixa.getData_hora_final().getMonthValue() == 7) {
-							set1.getData().get(6)
-									.setYValue((set1.getData().get(6).getYValue().add(caixa.getSaldo_final()))); // julho
-						} else if (caixa.getData_hora_final().getMonthValue() == 8) {
-							set1.getData().get(7)
-									.setYValue((set1.getData().get(7).getYValue().add(caixa.getSaldo_final()))); // agosto
-						} else if (caixa.getData_hora_final().getMonthValue() == 9) {
-							set1.getData().get(8)
-									.setYValue((set1.getData().get(8).getYValue().add(caixa.getSaldo_final()))); // setembro
-						} else if (caixa.getData_hora_final().getMonthValue() == 10) {
-							set1.getData().get(9)
-									.setYValue((set1.getData().get(9).getYValue().add(caixa.getSaldo_final()))); // outubro
-						} else if (caixa.getData_hora_final().getMonthValue() == 11) {
-							set1.getData().get(10)
-									.setYValue((set1.getData().get(10).getYValue().add(caixa.getSaldo_final()))); // novembro
-						} else if (caixa.getData_hora_final().getMonthValue() == 12) {
-							set1.getData().get(11)
-									.setYValue((set1.getData().get(11).getYValue().add(caixa.getSaldo_final()))); // dezembro
-						}
+						int mes = caixa.getData_hora_final().getMonthValue() - 1;
+
+						set1.getData().get(mes)
+								.setYValue((set1.getData().get(mes).getYValue().add(caixa.getSaldo_final())));
+
 					}
 				}
 
@@ -206,10 +171,8 @@ public class TelaGerenciarCaixaController implements Initializable {
 
 			GraficoMensal.getData().addAll(set1);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -220,8 +183,7 @@ public class TelaGerenciarCaixaController implements Initializable {
 			new Tela().carregarTelaAbrirCaixa();
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("J� possui caixa aberto", 4000);
+			snackBar.show("Já possui caixa aberto", 4000);
 		
 		}
 	}
@@ -232,8 +194,7 @@ public class TelaGerenciarCaixaController implements Initializable {
 			new Tela().carregarTelaFecharCaixa();
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("N�o possui caixa aberto", 4000);
+			snackBar.show("Não possui caixa aberto", 4000);
 		
 		}
 
@@ -249,12 +210,12 @@ public class TelaGerenciarCaixaController implements Initializable {
 
 			document.open();
 
-			// par�grafo
+			// parágrafo
 			Paragraph paragraph = new Paragraph();
 
 			// nova linha
 			paragraph.add(new Paragraph(" "));
-			paragraph.add(new Paragraph("                    RELAT�RIO DE CAIXAS ENCERRADOS",
+			paragraph.add(new Paragraph("                    RELATÓRIO DE CAIXAS ENCERRADOS",
 					new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD)));
 			paragraph.add(new Paragraph(
 					"                                        "
@@ -315,8 +276,7 @@ public class TelaGerenciarCaixaController implements Initializable {
 			Desktop.getDesktop().open(new File("RelatorioVendas.pdf"));
 			
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Relat�rio gerado com sucesso", 4000); 
+			snackBar.show("Relatório gerado com sucesso", 4000);
 
 		} catch (Exception e) {
 
@@ -341,7 +301,6 @@ public class TelaGerenciarCaixaController implements Initializable {
 			gripaneBottom.add(campoTotalVenda, 1, 1);
 			gripaneBottom.setMargin(campoTotalVenda, new Insets(15, 60, 0, 0));
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -350,11 +309,11 @@ public class TelaGerenciarCaixaController implements Initializable {
 
 		atualizarTabela();
 		// Criando as colunas da tabela
-		JFXTreeTableColumn<CaixaClass, String> colunaFuncionario = new JFXTreeTableColumn<>("Funcion�rio");
+		JFXTreeTableColumn<CaixaClass, String> colunaFuncionario = new JFXTreeTableColumn<>("Funcionário");
 		colunaFuncionario.setPrefWidth(150);
 		JFXTreeTableColumn<CaixaClass, String> colunaProduto = new JFXTreeTableColumn<>("Produto");
 		colunaProduto.setPrefWidth(230);
-		JFXTreeTableColumn<CaixaClass, String> colunaPreco = new JFXTreeTableColumn<>("Pre�o");
+		JFXTreeTableColumn<CaixaClass, String> colunaPreco = new JFXTreeTableColumn<>("Preço");
 		colunaPreco.setPrefWidth(110);
 		JFXTreeTableColumn<CaixaClass, String> colunaTipo = new JFXTreeTableColumn<>("Tipo(C/V)");
 		colunaTipo.setPrefWidth(105);
@@ -413,9 +372,13 @@ public class TelaGerenciarCaixaController implements Initializable {
 		try {
 
 			if (Fluxo_caixa.getStatus().equals("Aberto")) {
+
 				for (Pedido_venda pedido : new VendaDao().pesquisar(Fluxo_caixa.getId_fluxo_caixa())) {
+
 					for (Item_pedido item : pedido.getItens_pedido()) {
+
 						if (item.getTipo_produto().equals("combustivel")) {
+
 							lista_produtos.add(new CaixaClass(pedido.getFuncionario().getPessoa().getNome(),
 									item.getProduto_loja().getCombustivel().getTipoCombustivel().getNome(), "Venda",
 									item.getPreco_unitario(),
@@ -423,17 +386,20 @@ public class TelaGerenciarCaixaController implements Initializable {
 									pedido.getCliente().getTipoCliente().equals("cliente_fisica")
 											? pedido.getCliente().getCliente_fisica().getPessoa().getNome()
 											: pedido.getCliente().getTipoCliente().equals("cliente_juridica")
-													? pedido.getCliente().getCliente_juridica().getNome() : "An�nimo",
+													? pedido.getCliente().getCliente_juridica().getNome() : "Anônimo",
 									item.getQuantidade(), item.getTotal()));
+
 						} else if (item.getTipo_produto().equals("produto")) {
+
 							lista_produtos.add(new CaixaClass(pedido.getFuncionario().getPessoa().getNome(),
 									item.getProduto_loja().getProduto().getDescricao(), "Venda",
 									item.getPreco_unitario(),
 									pedido.getCliente().getTipoCliente().equals("cliente_fisica")
 											? pedido.getCliente().getCliente_fisica().getPessoa().getNome()
 											: pedido.getCliente().getTipoCliente().equals("cliente_juridica")
-													? pedido.getCliente().getCliente_juridica().getNome() : "An�nimo",
+													? pedido.getCliente().getCliente_juridica().getNome() : "Anônimo",
 									item.getQuantidade(), item.getTotal()));
+
 						}
 
 						// adicionando no total
@@ -524,7 +490,6 @@ public class TelaGerenciarCaixaController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewCaixa);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -571,7 +536,7 @@ public class TelaGerenciarCaixaController implements Initializable {
 
 		ObservableList<CaixaFClass> lista_caixas = FXCollections.observableArrayList();
 
-		// carregando registros com os campos da coluna da classe an�nima
+		// carregando registros com os campos da coluna da classe anônima
 		try {
 			ObservableList<Fluxo_caixa2> listaCaixasDao = new CaixaDao().listar();
 
@@ -590,8 +555,7 @@ public class TelaGerenciarCaixaController implements Initializable {
 					return 0;
 				}
 			});
-			
-			//
+
 			for (Fluxo_caixa2 caixa : listaCaixasDao) {
 
 				if (caixa.getData_hora_final() != null) {
@@ -601,7 +565,6 @@ public class TelaGerenciarCaixaController implements Initializable {
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -659,7 +622,6 @@ public class TelaGerenciarCaixaController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela2.setCenter(treeTableViewCaixaAnteriores);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

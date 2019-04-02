@@ -5,12 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.postoGasolina.model.Cliente;
-import com.postoGasolina.model.Fluxo_caixa;
-import com.postoGasolina.model.Item_pedido;
-import com.postoGasolina.model.Pedido_compra;
-import com.postoGasolina.model.Pedido_venda;
-import com.postoGasolina.model.Produto_loja;
+import com.postoGasolina.model.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,14 +48,17 @@ public class CompraDao {
 				sql = "insert into tb_item_pedido_compra(id_pedido_compra_fk, id_produto_fk,id_combustivel_fk, tipo_produto, preco_unitario, quantidade, total) values(?,?,?,?,?,?,?)";
 				statement = connetion.prepareStatement(sql);
 				statement.setInt(1, idPedido);
+
 				if (itemPedido.getProduto_loja().getProduto() != null)
 					statement.setInt(2, itemPedido.getProduto_loja().getProduto().getId_produto());
 				else
 					statement.setNull(2, java.sql.Types.INTEGER);
+
 				if (itemPedido.getProduto_loja().getCombustivel() != null)
 					statement.setInt(3, itemPedido.getProduto_loja().getCombustivel().getId_combustivel());
 				else
 					statement.setNull(3, java.sql.Types.INTEGER);
+
 				statement.setString(4, itemPedido.getTipo_produto());
 				statement.setBigDecimal(5, itemPedido.getPreco_unitario());
 				statement.setBigDecimal(6, itemPedido.getQuantidade());
@@ -68,7 +66,6 @@ public class CompraDao {
 
 				statement.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -109,13 +106,16 @@ public class CompraDao {
 
 					statement.close();
 					rs.close();
+
 				} else if (item.getTipo_produto().equals("produto")) {
+
 					if (!item.getProduto_loja().getProduto().isNao_controlar_estoque()) {
 						sql = "select estoque_disponivel,(estoque_disponivel+?) as estoqueAtualizado from tb_produto  where id_produto =?;";
 						statement = connetion.prepareStatement(sql);
 						statement.setBigDecimal(1, item.getQuantidade());
 						statement.setInt(2, item.getProduto_loja().getProduto().getId_produto());
 						rs = statement.executeQuery();
+
 						if (rs.next()) {
 							sql = "update tb_produto set estoque_disponivel=? where id_produto=?";
 							statement = connetion.prepareStatement(sql);
@@ -128,9 +128,7 @@ public class CompraDao {
 						rs.close();
 					}
 				}
-
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -158,39 +156,47 @@ public class CompraDao {
 			statement = connetion.prepareStatement(sql);
 			statement.setInt(1, rs.getInt("id_pedido_compra"));
 			rs2 = statement.executeQuery();
-			
+
 			while (rs2.next()) {
-						itens_pedido.add(new Item_pedido(
-								new Produto_loja( 
-								new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")).size() != 0 ?
-								new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")).get(0) :
-									null,
-								new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")).size() != 0 ?
-								new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")).get(0) : null,
-								rs2.getString("tipo_produto")),
-								rs2.getInt("id_pedido_compra_fk"), 
-								rs2.getBigDecimal("preco_unitario"), rs2.getBigDecimal("quantidade"),
-								rs2.getString("tipo_produto"), rs2.getBigDecimal("total"), 0));
+
+				Produto_loja produtoLoja = new Produto_loja(
+						(Combustivel) Existencia.objeto(new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")), 0),
+						(Produto) Existencia.objeto(new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")), 0),
+						rs2.getString("tipo_produto")
+				);
+
+				Item_pedido itemPedido = new Item_pedido.Builder()
+						.produtoLoja(produtoLoja)
+						.idPedido(rs2.getInt("id_pedido_compra_fk"))
+						.precoUnitario(rs2.getBigDecimal("preco_unitario"))
+						.quantidade(rs2.getBigDecimal("quantidade"))
+						.tipoProduto(rs2.getString("tipo_produto"))
+						.total(rs2.getBigDecimal("total"))
+						.idItem(0)
+						.build();
+
+				itens_pedido.add(itemPedido);
 			}
-				
-			lista_pedidos.add(new Pedido_compra(rs.getInt("id_pedido_compra"), 
+
+			Pedido_compra pedidoCompra = new Pedido_compra(
+					rs.getInt("id_pedido_compra"),
 					new FornecedoresDao().pesquisar(rs.getInt("id_fornecedor_fk")).get(0),
 					new CaixaDao().pesquisar(rs.getInt("id_fluxo_caixa_fk")).get(0),
 					rs.getString("nome_responsavel"),
-					rs.getBigDecimal("total_pagar"), rs.getBigDecimal("desconto"),
-					
-					itens_pedido));
-			
-			
-			rs2.close();
+					rs.getBigDecimal("total_pagar"),
+					rs.getBigDecimal("desconto"),
+					itens_pedido
+			);
 
+			lista_pedidos.add(pedidoCompra);
+
+			rs2.close();
 		}
 		
 		statement.close();
 		rs.close();
 		connetion.close();
-		
-		
+
 		return lista_pedidos; 
 		
 	}

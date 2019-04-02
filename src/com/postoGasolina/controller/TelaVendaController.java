@@ -2,21 +2,13 @@ package com.postoGasolina.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.FuncionarioDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Cliente;
 import com.postoGasolina.model.Fluxo_caixa;
@@ -26,8 +18,6 @@ import com.postoGasolina.model.Produto_loja;
 import com.postoGasolina.util.AutoShowComboBoxHelper;
 import com.postoGasolina.util.NumeroTextField;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,99 +29,26 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class TelaVendaController implements Initializable {
+public class TelaVendaController extends CompraVenda implements Initializable {
 
 	@FXML
 	private ImageView btnCliente;
 
-	@FXML
-	private JFXButton btnAdicionar;
-
-	@FXML
-	private BorderPane borderPaneTabela;
-
-	@FXML
-	private ImageView btnExcluir;
-
-	@FXML
-	private JFXButton btnDesconto;
-
-	@FXML
-	private JFXButton btnFechamento;
-
-	private NumeroTextField campoPreco = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
-	private NumeroTextField campoTotal = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
-	private NumeroTextField campoDesconto = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
 	private NumeroTextField campoTotalVenda = new NumeroTextField(BigDecimal.ZERO,
 			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
 
-	private JFXTextField campoQuantidade = new JFXTextField("0");
-
 	@FXML
-	private GridPane gridPaneBottom;
-
-	@FXML
-	private GridPane gridPaneTop;
-
-	@FXML
-	private JFXTreeTableView<VendaClass> treeTableViewVenda;
+	private JFXTreeTableView<CompraVendaClass> treeTableViewVenda;
 
 	private JFXSnackbar snackBar;
-
-	private int idTipoCombustivel;
-
-	// private AutoFillComboBox<Cliente> comboBoxCliente = new
-	// AutoFillComboBox<>();
-
-	// private AutoFillComboBox<Funcionario> comboBoxFuncionario = new
-	// AutoFillComboBox<>();
-
-	// private AutoFillComboBox<Produto_loja> comboBoxProduto = new
-	// AutoFillComboBox<>();
-
-	ComboBox<Produto_loja> comboBoxProduto = new ComboBox<>();
 
 	ComboBox<Cliente> comboBoxCliente = new ComboBox<>();
 
 	ComboBox<Funcionario> comboBoxFuncionario = new ComboBox<>();
-
-	private ObservableList<Item_pedido> lista_itensPedido = FXCollections.observableArrayList();
-	private static int idItemPedido;
-	private static int idtabela = 1;
-	private BigDecimal totalCalculado = new BigDecimal("0");
-
-	static JFXTextField mensagem = new JFXTextField("0");
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		try {
-			carregarComponentes();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			carregarTabela();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
-
 
 	@FXML
 	void mouseEventCompra(MouseEvent event) {
@@ -144,31 +61,23 @@ public class TelaVendaController implements Initializable {
 		}
 		if(mensagem.getText().equals("1")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Venda efetuada com sucesso", 4000);
 			mensagem.setText("0");
 		}
 		if(mensagem.getText().equals("3")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Desconto adicionado com sucesso", 4000);
 			mensagem.setText("0");
 		}
 		if(mensagem.getText().equals("4")){
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Cliente cadastrado com sucesso", 4000);
 			mensagem.setText("0");
 		}
 	}
 
-	@FXML
-	void btnNovo(ActionEvent event) {
-		limparcamposCompleto();
-	}
-
-	private void limparcamposCompleto() {
-		// TODO Auto-generated method stub
+	@Override
+	void limparcamposCompleto() {
 		lista_itensPedido.clear();
 		carregarTabela();
 		RecebePedido.setDesconto(BigDecimal.ZERO);
@@ -188,7 +97,6 @@ public class TelaVendaController implements Initializable {
 
 				boolean qtdProduto;
 				boolean qtdCombustivel;
-				boolean entrou = false;
 				BigDecimal qtdAtualizado = new BigDecimal("0");
 				qtdProduto = true;
 				qtdCombustivel = true;
@@ -211,7 +119,6 @@ public class TelaVendaController implements Initializable {
 					}
 
 					if (qtdAtualizado.compareTo(new BigDecimal(campoQuantidade.getText())) == -1) { /// é
-						System.out.println("entou 3"); /// menorr
 						qtdCombustivel = false;
 
 					}
@@ -240,10 +147,17 @@ public class TelaVendaController implements Initializable {
 				}
 
 				if (qtdProduto && qtdCombustivel) {
-					lista_itensPedido.add(new Item_pedido(comboBoxProduto.getSelectionModel().getSelectedItem(), 0,
-							campoPreco.getNumber(), new BigDecimal(campoQuantidade.getText()),
-							comboBoxProduto.getSelectionModel().getSelectedItem().getTipo_produto(),
-							campoPreco.getNumber().multiply(new BigDecimal(campoQuantidade.getText())), idtabela++));
+					lista_itensPedido.add(
+							new Item_pedido.Builder()
+									.produtoLoja(comboBoxProduto.getSelectionModel().getSelectedItem())
+									.idPedido(0)
+									.precoUnitario(campoPreco.getNumber())
+									.quantidade(new BigDecimal(campoQuantidade.getText()))
+									.tipoProduto(comboBoxProduto.getSelectionModel().getSelectedItem().getTipo_produto())
+									.total(campoPreco.getNumber().multiply(new BigDecimal(campoQuantidade.getText())))
+									.idItem(idtabela++)
+									.build()
+					);
 
 					limparcampos();
 					carregarTabela();
@@ -251,11 +165,9 @@ public class TelaVendaController implements Initializable {
 					carregarTotalVenda();
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Produto adicionado com sucesso", 4000);
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Essa quandidade não possui em estoque", 4000);
 
 				}
@@ -263,28 +175,18 @@ public class TelaVendaController implements Initializable {
 			} else {
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Informa quantidade", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona um produto", 4000);
 		}
 
 	}
 
 	private void carregarTotalVenda() {
-		// TODO Auto-generated method stub
-		totalCalculado = new BigDecimal("0");
 
-		lista_itensPedido.forEach(item -> {
-			totalCalculado = totalCalculado.add(item.getTotal());
-		});
-
-		totalCalculado = totalCalculado.subtract(campoDesconto.getNumber());
-
-		campoTotalVenda.setNumber(totalCalculado);
+		campoTotalVenda.setNumber(carregarTotal());
 
 	}
 
@@ -302,7 +204,6 @@ public class TelaVendaController implements Initializable {
 
 			new Tela().carregarTelaFecharVenda();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
@@ -326,23 +227,22 @@ public class TelaVendaController implements Initializable {
 						carregarTotalVenda();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Produto removido com sucesso", 4000);
 
 						break;
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				//
 			}
 
 		}else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona produto na tabela", 4000);
 		}
 	}
 
+	@Override
 	void carregarComponentes() throws SQLException, ClassNotFoundException {
 
 		String style = getClass().getResource("/com/postoGasolina/style/TelaVenda.css").toExternalForm();
@@ -405,8 +305,6 @@ public class TelaVendaController implements Initializable {
 		// COMBOBOX PESQUISAR
 
 		comboBoxCliente.setItems(new Cliente().listar());
-		// comboBoxCliente.setRecords(new Cliente().listar());
-		// comboBoxCliente.setOnlyAllowPredefinedItems(true);
 
 		style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionarioComboBox.css")
 				.toExternalForm();
@@ -426,8 +324,6 @@ public class TelaVendaController implements Initializable {
 				comboBoxCliente.setPromptText("");
 
 				comboBoxCliente.setItems(new Cliente().listar());
-				// comboBoxCliente.setRecords(new Cliente().listar());
-				// comboBoxCliente.setOnlyAllowPredefinedItems(true);
 			} else {
 				comboBoxCliente.setPromptText("Pesquisar Cliente ...");
 			}
@@ -435,8 +331,6 @@ public class TelaVendaController implements Initializable {
 		});
 
 		comboBoxFuncionario.setItems(new FuncionarioDao().listar());
-		// comboBoxFuncionario.setRecords(new SqlFuncionario().listar());
-		// comboBoxFuncionario.setOnlyAllowPredefinedItems(true);
 
 		style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionarioComboBox.css")
 				.toExternalForm();
@@ -455,14 +349,9 @@ public class TelaVendaController implements Initializable {
 				comboBoxFuncionario.setPromptText("");
 				try {
 					comboBoxFuncionario.setItems(new FuncionarioDao().listar());
-					// comboBoxFuncionario.setRecords(new
-					// SqlFuncionario().listar());
-					// comboBoxFuncionario.setOnlyAllowPredefinedItems(true);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
@@ -471,8 +360,6 @@ public class TelaVendaController implements Initializable {
 		});
 
 		comboBoxProduto.setItems(new Produto_loja().listar());
-		// comboBoxProduto.setRecords(new Produto_loja().listar());
-		// comboBoxProduto.setOnlyAllowPredefinedItems(true);
 
 		style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionarioComboBox.css")
 				.toExternalForm();
@@ -490,8 +377,6 @@ public class TelaVendaController implements Initializable {
 			if (comboBoxProduto.isFocused()) {
 				comboBoxProduto.setPromptText("");
 				comboBoxProduto.setItems(new Produto_loja().listar());
-				// comboBoxProduto.setRecords(new Produto_loja().listar());
-				// comboBoxProduto.setOnlyAllowPredefinedItems(true);
 				campoQuantidade.setText("0");
 			} else {
 				comboBoxProduto.setPromptText("Pesquisar Produtos ...");
@@ -514,13 +399,13 @@ public class TelaVendaController implements Initializable {
 						if (comboBoxProduto.getSelectionModel() != null) {
 							if (comboBoxProduto.getSelectionModel().getSelectedIndex() != -1) {
 								if (comboBoxProduto.getSelectionModel().getSelectedItem()
-										.getTipo_produto() == "combustivel") {
+										.getTipo_produto().equals("combustivel")) {
 									campoQuantidade.setEditable(true);
 									BigDecimal preco = comboBoxProduto.getSelectionModel().getSelectedItem()
 											.getCombustivel().getPreco_venda();
 									campoPreco.setNumber(preco);
 								} else if (comboBoxProduto.getSelectionModel().getSelectedItem()
-										.getTipo_produto() == "produto") {
+										.getTipo_produto().equals("produto")) {
 									BigDecimal preco = comboBoxProduto.getSelectionModel().getSelectedItem()
 											.getProduto().getPreco_venda();
 									campoPreco.setNumber(preco);
@@ -539,8 +424,7 @@ public class TelaVendaController implements Initializable {
 				}
 			});
 		} catch (Exception e2) {
-			// TODO: handle exception
-
+			//
 		}
 
 		campoQuantidade.setOnKeyTyped(event -> {
@@ -555,7 +439,6 @@ public class TelaVendaController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				try {
 					if (!newValue.isEmpty()) {
 						final NumeroTextField preco = new NumeroTextField(campoPreco.getNumber());
@@ -565,7 +448,6 @@ public class TelaVendaController implements Initializable {
 						campoTotal.setNumber(BigDecimal.ZERO);
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 
@@ -576,133 +458,19 @@ public class TelaVendaController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				carregarTotalVenda();
 				campoDesconto.setNumber(RecebePedido.getDesconto());
 			}
 		});
-		campoTotalVenda.textProperty().addListener(new ChangeListener<String>() {
-
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
-				// campoDesconto.setNumber(DescontoAtualizado);
-			}
-		});
 
 	}
 
-	public void limparcampos() {
-
-		// campoPesquisar.setText("");
-		campoQuantidade.setText("0");
-		comboBoxProduto.setValue(null);
-		campoTotal.setNumber(BigDecimal.ZERO);
-		campoPreco.setNumber(BigDecimal.ZERO);
-
-	}
-
+	@Override
 	void carregarTabela() {
 
 		atualizarTabela();
+		tabela(treeTableViewVenda);
 
-		// Criando as colunas da tabela
-		JFXTreeTableColumn<VendaClass, String> colunaId = new JFXTreeTableColumn<>("ID");
-		colunaId.setPrefWidth(150);
-		JFXTreeTableColumn<VendaClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRIÇÃO");
-		colunaNome.setPrefWidth(300);
-		JFXTreeTableColumn<VendaClass, String> colunaQuantidade = new JFXTreeTableColumn<>("QUANTIDADE");
-		colunaQuantidade.setPrefWidth(200);
-		JFXTreeTableColumn<VendaClass, String> colunaPreco = new JFXTreeTableColumn<>("PREÇO");
-		colunaPreco.setPrefWidth(150);
-		JFXTreeTableColumn<VendaClass, String> colunaTotal = new JFXTreeTableColumn<>("TOTAL");
-		colunaTotal.setPrefWidth(150);
-
-		colunaId.setCellValueFactory((TreeTableColumn.CellDataFeatures<VendaClass, String> param) -> {
-			if (colunaId.validateValue(param))
-				return param.getValue().getValue().id;
-			else
-				return colunaId.getComputedValue(param);
-		});
-		colunaNome.setCellValueFactory((TreeTableColumn.CellDataFeatures<VendaClass, String> param) -> {
-			if (colunaNome.validateValue(param))
-				return param.getValue().getValue().nome;
-			else
-				return colunaNome.getComputedValue(param);
-		});
-		colunaQuantidade.setCellValueFactory((TreeTableColumn.CellDataFeatures<VendaClass, String> param) -> {
-			if (colunaQuantidade.validateValue(param))
-				return param.getValue().getValue().quantidade;
-			else
-				return colunaQuantidade.getComputedValue(param);
-		});
-
-		colunaPreco.setCellValueFactory((TreeTableColumn.CellDataFeatures<VendaClass, String> param) -> {
-			if (colunaPreco.validateValue(param))
-				return param.getValue().getValue().preco;
-			else
-				return colunaPreco.getComputedValue(param);
-		});
-		colunaTotal.setCellValueFactory((TreeTableColumn.CellDataFeatures<VendaClass, String> param) -> {
-			if (colunaTotal.validateValue(param))
-				return param.getValue().getValue().total;
-			else
-				return colunaTotal.getComputedValue(param);
-		});
-
-		ObservableList<VendaClass> lista_ItensTabela = FXCollections.observableArrayList();
-		lista_itensPedido.forEach(itens -> {
-			if (itens.getProduto_loja().getTipo_produto().equals("combustivel")) {
-
-				lista_ItensTabela.add(new VendaClass(itens.getIdItem(),
-						itens.getProduto_loja().getCombustivel().getTipoCombustivel().getNome(), itens.getQuantidade(),
-						itens.getPreco_unitario(), itens.getTotal(),
-						itens.getProduto_loja().getCombustivel().getId_combustivel()));
-			} else if (itens.getProduto_loja().getTipo_produto().equals("produto")) {
-				lista_ItensTabela
-						.add(new VendaClass(itens.getIdItem(), itens.getProduto_loja().getProduto().getDescricao(),
-								itens.getQuantidade(), itens.getPreco_unitario(), itens.getTotal(),
-								itens.getProduto_loja().getProduto().getId_produto()));
-			}
-		});
-
-		treeTableViewVenda
-				.setRoot(new RecursiveTreeItem<VendaClass>(lista_ItensTabela, RecursiveTreeObject::getChildren));
-
-		treeTableViewVenda.getColumns().setAll(colunaId, colunaNome, colunaQuantidade, colunaPreco, colunaTotal);
-		treeTableViewVenda.setShowRoot(false);
-
-	}
-
-	// criando uma classe anonima para ser consumida pela tabela
-	class VendaClass extends RecursiveTreeObject<VendaClass> {
-
-		StringProperty id;
-		StringProperty nome;
-		StringProperty quantidade;
-		StringProperty preco;
-		StringProperty total;
-		StringProperty idProduto;
-
-		public VendaClass(int id, String nome, BigDecimal quantidade, BigDecimal preco, BigDecimal total,
-						  int idProduto) {
-			super();
-			this.id = new SimpleStringProperty(String.valueOf(id));
-			this.nome = new SimpleStringProperty(nome);
-			this.quantidade = new SimpleStringProperty(String.valueOf(quantidade));
-			this.preco = new SimpleStringProperty(String.valueOf(
-					new NumeroTextField(preco, NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))).getText()));
-			this.total = new SimpleStringProperty(String.valueOf(
-					new NumeroTextField(total, NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))).getText()));
-			this.idProduto = new SimpleStringProperty(String.valueOf(idProduto));
-		}
-
-		// retorna o id do funcionario com isso posso alterar e remover qualquer
-		// funcionario do banco de dados
-		@Override
-		public String toString() {
-			return String.valueOf(id.getValue());
-		}
 	}
 
 	void atualizarTabela() {
@@ -712,7 +480,6 @@ public class TelaVendaController implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewVenda);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -730,9 +497,6 @@ public class TelaVendaController implements Initializable {
 		private static int limparVenda;
 		private static ObservableList<Item_pedido> itens_pedido = FXCollections.observableArrayList();
 
-		public RecebePedido() {
-			// TODO Auto-generated constructor stub
-		}
 
 		public RecebePedido(int id_pedido_venda, Funcionario funcionario, Cliente cliente, Fluxo_caixa fluxoCaixa,
 							BigDecimal total_pagar, BigDecimal desconto, String forma_pagamento,
@@ -745,14 +509,6 @@ public class TelaVendaController implements Initializable {
 			RecebePedido.desconto = desconto;
 			RecebePedido.forma_pagamento = forma_pagamento;
 			RecebePedido.itens_pedido = itens_pedido;
-		}
-
-		public static int getId_pedido_venda() {
-			return id_pedido_venda;
-		}
-
-		public static void setId_pedido_venda(int id_pedido_venda) {
-			RecebePedido.id_pedido_venda = id_pedido_venda;
 		}
 
 		public static Funcionario getFuncionario() {
@@ -769,14 +525,6 @@ public class TelaVendaController implements Initializable {
 
 		public static void setCliente(Cliente cliente) {
 			RecebePedido.cliente = cliente;
-		}
-
-		public static Fluxo_caixa getFluxoCaixa() {
-			return fluxoCaixa;
-		}
-
-		public static void setFluxoCaixa(Fluxo_caixa fluxoCaixa) {
-			RecebePedido.fluxoCaixa = fluxoCaixa;
 		}
 
 		public static BigDecimal getTotal_pagar() {
@@ -803,20 +551,8 @@ public class TelaVendaController implements Initializable {
 			}
 		}
 
-		public static String getForma_pagamento() {
-			return forma_pagamento;
-		}
-
-		public static void setForma_pagamento(String forma_pagamento) {
-			RecebePedido.forma_pagamento = forma_pagamento;
-		}
-
 		public static ObservableList<Item_pedido> getItens_pedido() {
 			return itens_pedido;
-		}
-
-		public static void setItens_pedido(ObservableList<Item_pedido> itens_pedido) {
-			RecebePedido.itens_pedido = itens_pedido;
 		}
 
 		public static int getLimparVenda() {

@@ -3,6 +3,7 @@ package com.postoGasolina.model;
 import java.math.BigDecimal;
 
 public class Tipo_combustivel {
+
 	private int id_tipo_combustivel;
 	private Unidade_medida unidade_medida;
 	private String nome;
@@ -32,16 +33,8 @@ public class Tipo_combustivel {
 		return id_tipo_combustivel;
 	}
 
-	public void setId_tipo_combustivel(int id_tipo_combustivel) {
-		this.id_tipo_combustivel = id_tipo_combustivel;
-	}
-
 	public Unidade_medida getUnidade_medida() {
 		return unidade_medida;
-	}
-
-	public void setUnidade_medida(Unidade_medida unidade_medida) {
-		this.unidade_medida = unidade_medida;
 	}
 
 	public String getNome() {
@@ -64,15 +57,8 @@ public class Tipo_combustivel {
 		return estoque_maximo;
 	}
 
-	public void setEstoque_maximo(BigDecimal estoque_maximo) {
-		this.estoque_maximo = estoque_maximo;
-	}
-
 	public BigDecimal getEstoque_minimo() {
 		return estoque_minimo;
 	}
 
-	public void setEstoque_minimo(BigDecimal estoque_minimo) {
-		this.estoque_minimo = estoque_minimo;
-	}
 }

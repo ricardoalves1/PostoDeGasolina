@@ -10,7 +10,6 @@ import com.postoGasolina.model.Unidade_medida;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sun.security.timestamp.Timestamper;
 
 public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 	
@@ -19,8 +18,7 @@ public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 	private String sql;
 	private ResultSet rs;
 	private ResultSet rs2;
-	
-	
+
 	public void cadastrar(Tipo_combustivel tipo_combustivel) throws ClassNotFoundException, SQLException{
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
@@ -38,10 +36,9 @@ public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 		
 		connetion.close();
 		statement.close();
-		
-		
-		
+
 	}
+
 	public void alterar(Tipo_combustivel tipo_combustivel) throws ClassNotFoundException, SQLException{
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
@@ -60,10 +57,8 @@ public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 		
 		connetion.close();
 		statement.close();
-		
-		
-		
 	}
+
 	public void remover(int id) throws ClassNotFoundException, SQLException{
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
@@ -76,19 +71,17 @@ public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 		
 		statement.close();
 		connetion.close();
-		
 	}
+
 	public ObservableList<Tipo_combustivel> listar() throws ClassNotFoundException, SQLException{
 		ObservableList<Tipo_combustivel> lista_tipo_combustivel = FXCollections.observableArrayList();
 		
 		connetion = ConexaoUtil.getInstance().getConnection();
 		
 		sql = "select * from tb_tipo_combustivel";
-		
 		statement = connetion.prepareStatement(sql);
 		
 		rs = statement.executeQuery();
-		
 		while (rs.next()) {
 			
 			sql = "select * from tb_unidade_medida where id_unidade_medida=?";
@@ -110,6 +103,5 @@ public class TipoCombustivelDao implements InterfaceDao<Tipo_combustivel>{
 		
 		return lista_tipo_combustivel;
 	}
-
 
 }

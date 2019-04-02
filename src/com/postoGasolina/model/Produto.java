@@ -16,8 +16,8 @@ public class Produto {
 	
 	public Produto(int id_produto, String codigo_produto, Categoria categoria, Unidade_medida unidade_medida,
 			String descricao, BigDecimal estoque_disponivel, BigDecimal preco_venda, BigDecimal estoque_max,
-			BigDecimal estoque_min, boolean nao_controlar_estoque) {
-		super();
+			BigDecimal estoque_min, boolean nao_controlar_estoque)
+	{
 		this.id_produto = id_produto;
 		this.codigo_produto = codigo_produto;
 		this.categoria = categoria;
@@ -42,24 +42,12 @@ public class Produto {
 		return codigo_produto;
 	}
 
-	public void setCodigo_produto(String codigo_produto) {
-		this.codigo_produto = codigo_produto;
-	}
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
 	public Unidade_medida getUnidade_medida() {
 		return unidade_medida;
-	}
-
-	public void setUnidade_medida(Unidade_medida unidade_medida) {
-		this.unidade_medida = unidade_medida;
 	}
 
 	public String getDescricao() {
@@ -74,39 +62,20 @@ public class Produto {
 		return estoque_disponivel;
 	}
 
-	public void setEstoque_disponivel(BigDecimal estoque_disponivel) {
-		this.estoque_disponivel = estoque_disponivel;
-	}
-
 	public BigDecimal getPreco_venda() {
 		return preco_venda;
-	}
-
-	public void setPreco_venda(BigDecimal preco_venda) {
-		this.preco_venda = preco_venda;
 	}
 
 	public BigDecimal getEstoque_max() {
 		return estoque_max;
 	}
 
-	public void setEstoque_max(BigDecimal estoque_max) {
-		this.estoque_max = estoque_max;
-	}
-
 	public BigDecimal getEstoque_min() {
 		return estoque_min;
-	}
-
-	public void setEstoque_min(BigDecimal estoque_min) {
-		this.estoque_min = estoque_min;
 	}
 
 	public boolean isNao_controlar_estoque() {
 		return nao_controlar_estoque;
 	}
 
-	public void setNao_controlar_estoque(boolean nao_controlar_estoque) {
-		this.nao_controlar_estoque = nao_controlar_estoque;
-	}
 }

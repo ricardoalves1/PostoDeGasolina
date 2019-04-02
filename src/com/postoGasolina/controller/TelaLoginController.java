@@ -13,7 +13,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
 import com.postoGasolina.dao.PermissoesDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Login;
 
@@ -103,6 +102,7 @@ public class TelaLoginController implements Initializable {
 	void onActionBtnEntrar(ActionEvent event) throws ClassNotFoundException, SQLException {
 		validarLogin();
 	}
+
 	void validarLogin(){
 		boolean result;
 		try {
@@ -115,14 +115,11 @@ public class TelaLoginController implements Initializable {
 				new Tela().carregarTelaPrincipal();
 			} else{
 				snackBar = new JFXSnackbar(borderPaneCenter);
-				//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("E-mail e/ou senha inválidos", 4000);
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -188,31 +185,9 @@ public class TelaLoginController implements Initializable {
 		} else {
 			posicaoSlideShow++;
 		}
-		if (posicaoSlideShow == 1) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/bombaCombustivel.png\");");
 
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 2) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/galao.png\");");
+		mudarSlide();
 
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 3) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/car.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		}
 	}
 
 	@FXML
@@ -222,31 +197,29 @@ public class TelaLoginController implements Initializable {
 		} else {
 			posicaoSlideShow--;
 		}
+
+		mudarSlide();
+
+	}
+
+	private void mudarSlide() {
+
 		if (posicaoSlideShow == 1) {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/bombaCombustivel.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
 		} else if (posicaoSlideShow == 2) {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/galao.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
 		} else if (posicaoSlideShow == 3) {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/car.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
 		}
+
+		FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
+		fadein.setFromValue(0);
+		fadein.setToValue(1);
+		fadein.play();
+
 	}
 
 	void logoTransition() {
@@ -254,7 +227,6 @@ public class TelaLoginController implements Initializable {
 		rotateTransition.setFromAngle(0);
 		rotateTransition.setToAngle(10 * 720);
 		rotateTransition.play();
-
 	}
 
 	@FXML
@@ -262,7 +234,6 @@ public class TelaLoginController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://pt-br.facebook.com/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -272,7 +243,6 @@ public class TelaLoginController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.instagram.com/?hl=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -282,7 +252,6 @@ public class TelaLoginController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.snapchat.com/l/pt-br/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -292,7 +261,6 @@ public class TelaLoginController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://twitter.com/signup?lang=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -38,7 +38,6 @@ public class TelaCadastrarCargoController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		carregarAcoes();
 		carregarLista();
 	}
@@ -47,8 +46,6 @@ public class TelaCadastrarCargoController implements Initializable{
     	btnAdcionarCargo.setOnMouseClicked(event ->{
     		
     		try {
-				
-				
 				if(!campoDescricao.getText().isEmpty()){
 					sqlCargo.cadastrar(new Cargo(0, campoDescricao.getText()));
 					
@@ -56,29 +53,22 @@ public class TelaCadastrarCargoController implements Initializable{
 					limparCampo();
 					
 					snackBar = new JFXSnackbar(borderPane);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Cargo cadastrado com sucesso", 4000); 
+					snackBar.show("Cargo cadastrado com sucesso", 4000);
 				} else {
 					snackBar = new JFXSnackbar(borderPane);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
-				
-				
+
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		
-    		
+
     	});
+
     	btnRemoverCargo.setOnMouseClicked(event ->{
     		try {
-    			
-				
 				if(listViewCargo.getSelectionModel().getSelectedIndex() != -1){
 					int id = listViewCargo.getSelectionModel().getSelectedItem().getId_cargo();
 					sqlCargo.remover(id);
@@ -86,43 +76,37 @@ public class TelaCadastrarCargoController implements Initializable{
 					limparCampo();		
 					
 					snackBar = new JFXSnackbar(borderPane);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Cargo removido com sucesso", 4000); 
+					snackBar.show("Cargo removido com sucesso", 4000);
 				} else {
 					snackBar = new JFXSnackbar(borderPane);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Seleciona cargo na tabela", 4000); 
+					snackBar.show("Seleciona cargo na tabela", 4000);
 				}
 				
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPane);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Cargo sendo utilizado", 4000);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPane);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Cargo sendo utilizado", 4000);
 			}
     	});
     	
     }
+
     void carregarLista(){
     	try {
 			listViewCargo.setItems(sqlCargo.listar());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+
     void limparCampo(){
-    	campoDescricao.setText("");
+		campoDescricao.setText("");
     }
 
 }

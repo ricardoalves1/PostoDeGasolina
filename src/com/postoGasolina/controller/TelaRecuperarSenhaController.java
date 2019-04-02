@@ -18,7 +18,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
 import com.postoGasolina.dao.PermissoesDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.model.Email;
 import com.postoGasolina.model.Login;
 
@@ -162,31 +161,9 @@ public class TelaRecuperarSenhaController implements Initializable {
 		} else {
 			posicaoSlideShow++;
 		}
-		if (posicaoSlideShow == 1) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/bombaCombustivel.png\");");
 
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 2) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/galao.png\");");
+		mudarSlide();
 
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 3) {
-			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
-					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/car.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		}
 	}
 
 	@FXML
@@ -196,31 +173,31 @@ public class TelaRecuperarSenhaController implements Initializable {
 		} else {
 			posicaoSlideShow--;
 		}
+
+		mudarSlide();
+
+	}
+
+	private void mudarSlide() {
+
 		if (posicaoSlideShow == 1) {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/bombaCombustivel.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 2) {
+		}
+		else if (posicaoSlideShow == 2) {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/galao.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
-		} else if (posicaoSlideShow == 3) {
+		}
+		else {
 			borderPaneCenter.setStyle("-fx-background-position: center ;-fx-background-repeat: no-repeat;"
 					+ "-fx-background-image: url(\"/com/postoGasolina/img/TelaLogin/car.png\");");
-
-			FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
-			fadein.setFromValue(0);
-			fadein.setToValue(1);
-			fadein.play();
 		}
+
+		FadeTransition fadein = new FadeTransition(Duration.seconds(5), borderPaneCenter);
+		fadein.setFromValue(0);
+		fadein.setToValue(1);
+		fadein.play();
+
 	}
 
 	void logoTransition() {
@@ -236,7 +213,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://pt-br.facebook.com/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -246,7 +222,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.instagram.com/?hl=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -256,7 +231,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://www.snapchat.com/l/pt-br/"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -266,7 +240,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 		try {
 			Desktop.getDesktop().browse(new URI("https://twitter.com/signup?lang=pt-br"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -289,27 +262,27 @@ public class TelaRecuperarSenhaController implements Initializable {
 		if (!campoEmail.getText().isEmpty()) {
 
 			new Thread(new Runnable() {
-
 				@Override
 				public void run() {
 					try {
 						boolean result = new PermissoesDao().validarEmail(campoEmail.getText());
 						if (result) {
-
 							try {
 								if (consegueConectar("http://www.google.com.br")) {
 
 									// gera uma nova senha
 									String novaSenha = new Email().geradorSenhaAutomatico();
-									// atualiza no banco de dados
-									new PermissoesDao().AtualizarSenha(campoEmail.getText(), novaSenha);
+
 									// litando dados do login
 									Login l = !new PermissoesDao().pesquisar(campoEmail.getText()).isEmpty()
 											? new PermissoesDao().pesquisar(campoEmail.getText()).get(0) : null;
-									// envia o email pro usuário com a nova
-									// senha
+
+									// envia o email pro usuário com a nova senha
 									new Email().enviarNovaSenha(campoEmail.getText(),
 											l != null ? l.getFuncionario().getPessoa().getNome() : "", novaSenha);
+
+									// atualiza no banco de dados
+									new PermissoesDao().AtualizarSenha(campoEmail.getText(), novaSenha);
 
 									String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css")
 											.toExternalForm();
@@ -331,7 +304,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 								}
 
 							} catch (EmailException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 
 								String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css")
@@ -342,7 +314,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 									imgLoad.setImage(null);
 								});
 							} catch (ClassNotFoundException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 
 								String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css")
@@ -353,7 +324,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 									imgLoad.setImage(null);
 								});
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 								javafx.application.Platform.runLater(() -> {
 									snackBar = new JFXSnackbar(borderPaneCenter);
@@ -374,7 +344,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 
 						}
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 
 						String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
@@ -384,7 +353,6 @@ public class TelaRecuperarSenhaController implements Initializable {
 							imgLoad.setImage(null);
 						});
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 
 						String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();

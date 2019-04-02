@@ -16,7 +16,7 @@ public class FormatterSoNumero  extends PlainDocument {
 
 	@Override
 	public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-		// se str n„o for null e o documento n„o tiver mais que "max"
+		// se str n√£o for null e o documento n√£o tiver mais que "max"
 		// caracteres,
 		// insere o novo caracter
 		if (str != null && getLength() < quantidadeMaxima)

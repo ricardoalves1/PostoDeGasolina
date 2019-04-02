@@ -77,7 +77,6 @@ public class TelaPrincipalController implements Initializable {
 
 	static Login login = null;
 
-
 	// menu
 	@FXML
 	private VBox menuBox = new VBox(-5);
@@ -159,26 +158,32 @@ public class TelaPrincipalController implements Initializable {
 
 		menuData2.add(new Pair<String, Runnable>("Funcionários", () -> {
 			carregarTelaGerenciarFuncionarios();
-
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Clientes", () -> {
 			carregarTelaGerenciarClientes();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("fidelização de clientes", () -> {
 			carregarTelaGerenciarFidelizacaoClientes();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Fornecedores", () -> {
 			carregarTelaFornecedor();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Órgãos", () -> {
 			carregarTelaGerenciaOrgãoGovernamental();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Permissões", () -> {
 			carregarTelaGerenciarPermissoesFuncionarios();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Autorizações e licenças", () -> {
 			carregarTelaGerenciaLicencasAutorizacoes();
 		}));
+
 		menuData2.add(new Pair<String, Runnable>("Voltar", () -> createContentMenuGerenciar(1) ));
 
 		validarPermissao();
@@ -186,7 +191,6 @@ public class TelaPrincipalController implements Initializable {
 		createContent();
 
 		TelaGerenciarClienteController.t.textProperty().addListener(new ChangeListener<String>() {
-
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if (newValue.equals("1")) {
@@ -198,7 +202,6 @@ public class TelaPrincipalController implements Initializable {
 		});
 
 		TelaAbrirCaixaController.AbrirTela.textProperty().addListener(new ChangeListener<String>() {
-
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				System.out.println(newValue);

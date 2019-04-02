@@ -24,40 +24,33 @@ public class Combustivel {
 	public int getId_combustivel() {
 		return id_combustivel;
 	}
-	public void setId_combustivel(int id_combustivel) {
-		this.id_combustivel = id_combustivel;
-	}
+
 	public Tipo_combustivel getTipoCombustivel() {
 		return tipoCombustivel;
 	}
-	public void setTipoCombustivel(Tipo_combustivel tipoCombustivel) {
-		this.tipoCombustivel = tipoCombustivel;
-	}
+
 	public Bomba getBomba() {
 		return bomba;
 	}
-	public void setBomba(Bomba bomba) {
-		this.bomba = bomba;
-	}
+
 	public Bico getBico() {
 		return bico;
 	}
+
 	public void setBico(Bico bico) {
 		this.bico = bico;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public BigDecimal getPreco_venda() {
 		return preco_venda;
 	}
-	public void setPreco_venda(BigDecimal preco_venda) {
-		this.preco_venda = preco_venda;
-	}
-	
-		
 	
 }

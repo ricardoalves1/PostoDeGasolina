@@ -1,17 +1,11 @@
 package com.postoGasolina.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import com.postoGasolina.model.ConverterDate;
-import com.postoGasolina.model.Endereco;
 import com.postoGasolina.model.Login;
-import com.postoGasolina.model.Login;
-import com.postoGasolina.model.Telefone;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,10 +19,10 @@ public class PermissoesDao implements InterfaceDao<Login>{
 	private ObservableList<Login> listaLogins;
 
 	public void cadastrar(Login login) throws ClassNotFoundException, SQLException {
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection();
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "insert into tb_login(id_funcionario_fk, email, senha, g_autorizacao_licenca, "
 				+ "g_orgao, g_fornecedores, g_clientes, g_funcionarios, g_fidelizacao, "
 				+ "g_compra_produtos, g_venda_produtos, g_combustivel, g_produtos, g_caixa, "
@@ -60,10 +54,10 @@ public class PermissoesDao implements InterfaceDao<Login>{
 	}
 
 	public void alterar(Login login) throws SQLException, ClassNotFoundException {
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection();
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "update tb_login set id_funcionario_fk=?, email=?, senha=?, g_autorizacao_licenca=?, "
 				+ "g_orgao=?, g_fornecedores=?, g_clientes=?, g_funcionarios=?, g_fidelizacao=?, "
 				+ "g_compra_produtos=?, g_venda_produtos=?, g_combustivel=?, g_produtos=?, g_caixa=?, "
@@ -96,7 +90,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 	}
 
 	public void remover(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		sql = "delete from tb_login where id_login=?";
@@ -106,12 +99,9 @@ public class PermissoesDao implements InterfaceDao<Login>{
 
 		connection.close();
 		statement.close();
-
 	}
 
 	public ObservableList<Login> listar() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
 		listaLogins = FXCollections.observableArrayList();
 
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -141,7 +131,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 	}
 
 	public boolean validarLogin(String email, String senha) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		sql = "select * from tb_login where email=? and senha=?";
@@ -158,8 +147,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 		return false;
 	}
 	public ObservableList<Login> pesquisar(String email, String senha) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
 		listaLogins = FXCollections.observableArrayList();
 
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -190,7 +177,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 		return listaLogins;
 	}
 	public boolean validarEmail(String email) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		sql = "select * from tb_login where email=?";
@@ -206,7 +192,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 		return false;
 	}
 	public void AtualizarSenha(String email, String novaSenha) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		connection = ConexaoUtil.getInstance().getConnection();
 
 		sql = "update tb_login set senha=? where email=?";
@@ -219,8 +204,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 		statement.close();
 	}
 	public ObservableList<Login> pesquisar(String email) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
 		listaLogins = FXCollections.observableArrayList();
 
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -250,8 +233,6 @@ public class PermissoesDao implements InterfaceDao<Login>{
 		return listaLogins;
 	}
 	public ObservableList<Login> pesquisar(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-
 		listaLogins = FXCollections.observableArrayList();
 
 		connection = ConexaoUtil.getInstance().getConnection();

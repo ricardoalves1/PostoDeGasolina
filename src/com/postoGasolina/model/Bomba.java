@@ -13,32 +13,30 @@ public class Bomba {
 		this.descricao = descricao;
 		this.lista_bicos = lista_bicos;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return descricao;
 	}
 
-
-
 	public int getId_bomba() {
 		return id_bomba;
 	}
+
 	public void setId_bomba(int id_bomba) {
 		this.id_bomba = id_bomba;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public ObservableList<Bico> getLista_bicos() {
 		return lista_bicos;
 	}
-	public void setLista_bicos(ObservableList<Bico> lista_bicos) {
-		this.lista_bicos = lista_bicos;
-	}	
+
 }

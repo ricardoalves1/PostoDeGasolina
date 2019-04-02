@@ -18,7 +18,6 @@ public class BuscaCnpj {
 					.ignoreContentType(true).execute().body();
 			dados = new JSONObject(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -152,11 +151,4 @@ public class BuscaCnpj {
 		System.out.println(new BuscaCnpj("60.628.922/0001-70").getNome());
 	}
 
-	/* 
-	 *	Gson gson = new Gson();
-	 *	Person johnDoe = gson.fromJson(json,Person.class); json p/ obj java
-	 *	Car audi = new Car("Audi", "A4", 1.8); 
-	 * 	Gson gson = new Gson(); 
-	 * 	String json = gson.toJson(audi);  obj java p/ json
-	 */
 }

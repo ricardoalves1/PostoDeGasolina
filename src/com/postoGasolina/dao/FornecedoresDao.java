@@ -26,10 +26,10 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 
 	public void cadastrar(Fornecedor fornecedor) throws ClassNotFoundException, SQLException {
 
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection();
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "insert into tb_endereco(cep, endereco, numero, complemento, bairro, uf, cidade)values(?,?,?,?,?,?,?)";
 
 		statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -92,10 +92,10 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 
 	public void alterar(Fornecedor fornecedor) throws SQLException, ClassNotFoundException {
 
-		// prepara conexão
+		// prepara conexÃ£o
 		connection = ConexaoUtil.getInstance().getConnection();
 
-		// ADICIONA ENDEREÇO
+		// ADICIONA ENDEREÃ‡O
 		sql = "update tb_endereco set cep=?, endereco=?, numero=?, complemento=?, bairro=?,"
 				+ " uf=?, cidade=? where id_endereco=?";
 
@@ -156,7 +156,6 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 	}
 
 	public ObservableList<Fornecedor> listar() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
 		listaclientes = FXCollections.observableArrayList();
 
@@ -166,44 +165,12 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 		sql = "SELECT * FROM tb_fornecedor fornecedor inner join tb_endereco endereco on(fornecedor.id_endereco_fk = endereco.id_endereco)";
 		statement = connection.prepareStatement(sql);
 
-		rs = statement.executeQuery();
-		while (rs.next()) {
-			ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
-			ResultSet rs2;
-			sql = "select * from tb_telefone_fornecedor where id_fornecedor_fk=?";
-			statement = connection.prepareStatement(sql);
-			statement.setInt(1, rs.getInt("id_fornecedor"));
-			rs2 = statement.executeQuery();
-			while (rs2.next()) {
-				lista_telefones.add(new Telefone(rs2.getInt("id_fornecedor_fk"), rs2.getString("telefone")));
-			}
-			listaclientes.add(
-					// é um cliente			
-					new Fornecedor(rs.getInt("id_fornecedor"),
-
-							// tem um endereco
-							new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-									rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-									rs.getString("cidade"), rs.getString("uf")),
-
-							rs.getString("razao_social"), rs.getString("cnpj"), rs.getString("ie"),
-							rs.getString("email"), rs.getString("site"),rs.getString("status"),
-							rs.getString("observacoes"),ConverterDate.toLocalDate(rs.getDate("data_situacao")),
-
-							// adicionar telefones
-							lista_telefones));
-
-			rs2.close();
-		}
-		connection.close();
-		statement.close();
-		rs.close();
+		consultaFornecedor();
 
 		return listaclientes;
 	}
 	
 	public ObservableList<Fornecedor> pesquisar(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
 		listaclientes = FXCollections.observableArrayList();
 
@@ -214,6 +181,14 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 		statement = connection.prepareStatement(sql);
 		statement.setInt(1, id);
 
+		consultaFornecedor();
+
+		return listaclientes;
+	}
+
+	private void consultaFornecedor() throws SQLException {
+
+
 		rs = statement.executeQuery();
 		while (rs.next()) {
 			ObservableList<Telefone> lista_telefones = FXCollections.observableArrayList();
@@ -225,21 +200,7 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 			while (rs2.next()) {
 				lista_telefones.add(new Telefone(rs2.getInt("id_fornecedor_fk"), rs2.getString("telefone")));
 			}
-			listaclientes.add(
-					// é um cliente			
-					new Fornecedor(rs.getInt("id_fornecedor"),
-
-							// tem um endereco
-							new Endereco(rs.getInt("id_endereco"), rs.getString("cep"), rs.getString("endereco"),
-									rs.getString("numero"), rs.getString("complemento"), rs.getString("bairro"),
-									rs.getString("cidade"), rs.getString("uf")),
-
-							rs.getString("razao_social"), rs.getString("cnpj"), rs.getString("ie"),
-							rs.getString("email"), rs.getString("site"),rs.getString("status"),
-							rs.getString("observacoes"),ConverterDate.toLocalDate(rs.getDate("data_situacao")),
-
-							// adicionar telefones
-							lista_telefones));
+			listaclientes.add(fornecedor(lista_telefones));
 
 			rs2.close();
 		}
@@ -247,27 +208,53 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 		statement.close();
 		rs.close();
 
-		return listaclientes;
+	}
+
+	private Fornecedor fornecedor(ObservableList<Telefone> lista_telefones) throws SQLException {
+
+		Endereco endereco = new Endereco.Builder()
+							.idEndereco(rs.getInt("id_endereco"))
+							.endereco(rs.getString("endereco"))
+							.cep(rs.getString("cep"))
+							.numero(rs.getString("numero"))
+							.complemento(rs.getString("complemento"))
+							.bairro(rs.getString("bairro"))
+							.cidade(rs.getString("cidade"))
+							.estado(rs.getString("uf"))
+							.build();
+
+		return new Fornecedor(
+					rs.getInt("id_fornecedor"),
+					endereco,
+					rs.getString("razao_social"),
+					rs.getString("cnpj"),
+					rs.getString("ie"),
+					rs.getString("email"),
+					rs.getString("site"),
+					rs.getString("status"),
+					rs.getString("observacoes"),
+					ConverterDate.toLocalDate(rs.getDate("data_situacao")),
+					lista_telefones
+		);
+
 	}
 
 	public void excluirTelefone(Telefone telefone) throws SQLException, ClassNotFoundException {
 
 		sql = "delete from tb_telefone_fornecedor where ? and telefone = ?";
 
-		connection = ConexaoUtil.getInstance().getConnection();
-
-		statement = connection.prepareStatement(sql);
-		statement.setInt(1, telefone.getId_responsavel_telefone());
-		statement.setString(2, telefone.getTelefone());
-		statement.execute();
-
-		connection.close();
-		statement.close();
+		alterarTelefone(sql, telefone);
 
 	}
 
 	public void adicionarTelefone(Telefone telefone) throws ClassNotFoundException, SQLException {
 		sql = "insert into tb_telefone_fornecedor(id_fornecedor_fk, telefone)values(?,?)";
+
+		alterarTelefone(sql, telefone);
+
+	}
+
+	private void alterarTelefone(String sql,Telefone telefone) throws ClassNotFoundException, SQLException {
 
 		connection = ConexaoUtil.getInstance().getConnection();
 

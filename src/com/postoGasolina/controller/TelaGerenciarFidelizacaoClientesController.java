@@ -83,14 +83,11 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 		carregarComponents();
 		carregarTabela();
 	}
 
 	private void carregarComponents() {
-		// TODO Auto-generated method stub
 		rbDeHoje.setSelectedColor(Color.valueOf("#eb901a"));
 		rbDeHoje.setUnSelectedColor(Color.WHITE);
 
@@ -128,10 +125,8 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 					// Ordenando
 					lista_gasto.sort(new Comparator<Cliente_Gasto>() {
-
 						@Override
 						public int compare(Cliente_Gasto cliente1, Cliente_Gasto cliente2) {
-							// TODO Auto-generated method stub
 							if (cliente1.getDataNascimento() != null
 									&& cliente1.getDataNascimento().isBefore(cliente1.getDataNascimento()))
 								return 1;
@@ -152,17 +147,15 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -174,6 +167,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 			}
 
 		});
+
 		rbDessaSemana.setOnAction(e -> {
 			rbDeHoje.setSelected(false);
 			rbDesseMes.setSelected(false);
@@ -195,10 +189,8 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 					// Ordenando
 					lista_gasto.sort(new Comparator<Cliente_Gasto>() {
-
 						@Override
 						public int compare(Cliente_Gasto cliente1, Cliente_Gasto cliente2) {
-							// TODO Auto-generated method stub
 							if (cliente1.getDataNascimento() != null
 									&& cliente1.getDataNascimento().isBefore(cliente1.getDataNascimento()))
 								return 1;
@@ -209,29 +201,12 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 							return 0;
 						}
 					});
+
 					int dia = LocalDate.now().getDayOfMonth();
 					int contMax = 0;
-					if (LocalDate.now().getDayOfWeek().name().equals("SUNDAY")) {
-						contMax = dia + 6;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("MONDAY")) {
-						contMax = dia + 5;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("TUESDAY")) {
-						contMax = dia + 4;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("WEDNESDAY")) {
-						contMax = dia + 3;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("THURSDAY")) {
-						contMax = dia + 2;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("FRIDAY")) {
-						contMax = dia + 1;
-					}
-					if (LocalDate.now().getDayOfWeek().name().equals("SATURDAY")) {
-						contMax = dia;
-					}
+
+					int valorDia = DiaSemana.valueOf(LocalDate.now().getDayOfWeek().name()).ordinal();
+					contMax = dia + valorDia;
 
 					// Ordenado
 					for (Cliente_Gasto cliente : lista_gasto) {
@@ -242,7 +217,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 										cliente.getGastoAnual(), cliente.getGastoTotal(),
 										cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 												.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-												: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+												: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 														: "Cadastro Incompleto",
 										cliente.getTipo_cliente(), cliente.getEmail()));
 
@@ -254,10 +229,8 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -269,6 +242,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 			}
 
 		});
+
 		rbDesseMes.setOnAction(e -> {
 			rbDessaSemana.setSelected(false);
 			rbDeHoje.setSelected(false);
@@ -294,7 +268,6 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 						@Override
 						public int compare(Cliente_Gasto cliente1, Cliente_Gasto cliente2) {
-							// TODO Auto-generated method stub
 							if (cliente1.getDataNascimento() != null
 									&& cliente1.getDataNascimento().isBefore(cliente1.getDataNascimento()))
 								return 1;
@@ -314,17 +287,15 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -336,6 +307,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 			}
 
 		});
+
 		rbAcimaCincoMil.setOnAction(e -> {
 			rbDessaSemana.setSelected(false);
 			rbDesseMes.setSelected(false);
@@ -361,7 +333,6 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 						@Override
 						public int compare(Cliente_Gasto cliente1, Cliente_Gasto cliente2) {
-							// TODO Auto-generated method stub
 							if (cliente1.getGastoMensal().compareTo(cliente2.getGastoMensal()) == -1)
 								return 1;
 							if (cliente1.getGastoMensal().compareTo(cliente2.getGastoMensal()) == 1)
@@ -378,17 +349,15 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -400,6 +369,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 			}
 
 		});
+
 		rbAcimaDezMill.setOnAction(e -> {
 			rbDessaSemana.setSelected(false);
 			rbDesseMes.setSelected(false);
@@ -425,7 +395,6 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 
 						@Override
 						public int compare(Cliente_Gasto cliente1, Cliente_Gasto cliente2) {
-							// TODO Auto-generated method stub
 							if (cliente1.getGastoMensal().compareTo(cliente2.getGastoMensal()) == -1)
 								return 1;
 							if (cliente1.getGastoMensal().compareTo(cliente2.getGastoMensal()) == 1)
@@ -442,17 +411,15 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -463,6 +430,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 				carregarTabela();
 			}
 		});
+
 		rbAcimaMill.setOnAction(e -> {
 			rbDessaSemana.setSelected(false);
 			rbDesseMes.setSelected(false);
@@ -505,17 +473,15 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 									cliente.getGastoAnual(), cliente.getGastoTotal(),
 									cliente.getDataNascimento() != null ? cliente.getDataNascimento()
 											.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-											: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+											: cliente.getTipo_cliente().equals("cliente_juridica") ? "Não possui"
 													: "Cadastro Incompleto",
 									cliente.getTipo_cliente(), cliente.getEmail()));
 						}
 					}
 
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -551,24 +517,28 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 			else
 				return colunaCliente.getComputedValue(param);
 		});
+
 		colunaGastoMensal.setCellValueFactory((TreeTableColumn.CellDataFeatures<FidelizacaoClass, String> param) -> {
 			if (colunaGastoMensal.validateValue(param))
 				return param.getValue().getValue().gastoMensal;
 			else
 				return colunaGastoMensal.getComputedValue(param);
 		});
+
 		colunaGastoAnual.setCellValueFactory((TreeTableColumn.CellDataFeatures<FidelizacaoClass, String> param) -> {
 			if (colunaGastoAnual.validateValue(param))
 				return param.getValue().getValue().gastoAnual;
 			else
 				return colunaGastoAnual.getComputedValue(param);
 		});
+
 		colunaGastoTotal.setCellValueFactory((TreeTableColumn.CellDataFeatures<FidelizacaoClass, String> param) -> {
 			if (colunaGastoTotal.validateValue(param))
 				return param.getValue().getValue().gastoTotal;
 			else
 				return colunaGastoTotal.getComputedValue(param);
 		});
+
 		colunaDataNascimento.setCellValueFactory((TreeTableColumn.CellDataFeatures<FidelizacaoClass, String> param) -> {
 			if (colunaDataNascimento.validateValue(param))
 				return param.getValue().getValue().dataNascimento;
@@ -608,7 +578,7 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 				lista_clientes.add(new FidelizacaoClass(cliente.getCliente(), cliente.getGastoMensal(),
 						cliente.getGastoAnual(), cliente.getGastoTotal(), cliente.getDataNascimento() != null
 								? cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-								: cliente.getTipo_cliente().equals("cliente_juridica") ? "N�o possui"
+								: cliente.getTipo_cliente().equals("cliente_juridica") ? " Não possui"
 										: "Cadastro Incompleto",
 						cliente.getTipo_cliente(), cliente.getEmail()));
 			}
@@ -677,7 +647,6 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewFidelizacao);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -697,20 +666,16 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 					new Tela().carregarTelaGerarCupomDesconto();
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Esse cliente n�o possui cadastro completo", 4000);
+					snackBar.show("Esse cliente não possui cadastro completo", 4000);
 					
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		///		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Esse cliente n�o possui cadastro completo", 4000);
+				snackBar.show("Esse cliente não possui cadastro completo", 4000);
 			}
 
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona cliente na tabela", 4000);
 		}
 
@@ -732,25 +697,21 @@ public class TelaGerenciarFidelizacaoClientesController implements Initializable
 					new Tela().carregarTelaEnviarEmailAniversario();
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Esse cliente n�o possui E-mail", 4000);
+					snackBar.show("Esse cliente não possui E-mail", 4000);
 				
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Esse cliente n�o possui E-mail", 4000);
+				snackBar.show("Esse cliente não possui E-mail", 4000);
 			
 			}
 
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona o aniversariante na tabela", 4000);
 		
 		}
 
 	}
 
-} 
+}

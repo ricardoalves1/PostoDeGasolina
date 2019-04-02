@@ -24,20 +24,16 @@ public class CombustiveisDao implements InterfaceDao<Combustivel> {
 	private ResultSet rs4;
 	private ResultSet rs5;
 	private ObservableList<Combustivel> listaCombustiveis;
-	private int id_combustivel;
-	private int id_tipoCombustivel;
 
 	@Override
 	public void cadastrar(Combustivel Combustivel) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-	
-			// prepara conex„o
+
+			// prepara conex√£o
 			connection = ConexaoUtil.getInstance().getConnection();
 
-			// ADICIONA PESSOA
 			sql = "insert into tb_combustivel(id_tipo_combustivel_fk, id_bomba_fk, id_bico_fk, descricao, preco_venda)values(?,?,?,?,?)";
 
-			// chama a conex„o e retorna id
+			// chama a conex√£o e retorna id
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, Combustivel.getTipoCombustivel().getId_tipo_combustivel());
 			statement.setInt(2, Combustivel.getBomba().getId_bomba());
@@ -53,13 +49,12 @@ public class CombustiveisDao implements InterfaceDao<Combustivel> {
 	@Override
 	public void alterar(Combustivel Combustivel) throws SQLException, ClassNotFoundException {
 
-			// prepara conex„o
+			// prepara conex√£o
 			connection = ConexaoUtil.getInstance().getConnection();
 
-			// ADICIONA PESSOA
 			sql = "update tb_combustivel set id_tipo_combustivel_fk=?, id_bomba_fk=?, id_bico_fk=?, descricao=?, preco_venda=? where id_combustivel=?";
 
-			// chama a conex„o e retorna id
+			// chama a conex√£o e retorna id
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, Combustivel.getTipoCombustivel().getId_tipo_combustivel());
 			statement.setInt(2, Combustivel.getBomba().getId_bomba());

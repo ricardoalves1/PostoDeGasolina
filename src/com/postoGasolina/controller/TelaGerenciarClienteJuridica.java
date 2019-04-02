@@ -19,11 +19,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.ClienteJuridicaDao;
-import com.postoGasolina.model.BuscaCnpj;
-import com.postoGasolina.model.Cliente_juridica;
-import com.postoGasolina.model.Endereco;
-import com.postoGasolina.model.Telefone;
-import com.postoGasolina.model.WebServiceCep;
+import com.postoGasolina.model.*;
 import com.postoGasolina.util.CNPJ;
 import com.postoGasolina.util.TextFieldFormatter;
 
@@ -132,17 +128,13 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		preencherComboBox();
 		try {
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		validacaoCampos();
-
 	}
 
 	@FXML
@@ -165,18 +157,14 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 				carregarTabela();
 				limparCampos();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Cliente removido com sucesso", 4000); 
+				snackBar.show("Cliente removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Cliente sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona cliente na tabela", 4000);
 		}
 	}
@@ -197,38 +185,25 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 						&& !campoCep.getText().isEmpty()) {
 
 					try {
-						new ClienteJuridicaDao().cadastrar(new Cliente_juridica(0,
-								new Endereco(0, campoCep.getText().replaceAll("[.]", ""), campoEndereco.getText(), campoNumero.getText(),
-										campoComplemento.getText(), campoBairro.getText(), campoCidade.getText(),
-										comboBoxEstado.getValue()),
-								campoNome.getText(), campoCnpj.getText(), campoSituacao.getText(),
-								comboBoxDataSituacao.getValue(), campoIe.getText(), campoEmail.getText(),
-								textAreaInformacao.getText(), lista_telefones));
+						new ClienteJuridicaDao().cadastrar(clienteJuridica(0,0));
 						
 						carregarTabela();
 						limparCampos();
 						
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Cliente cadastrado com sucesso", 4000); 
+						snackBar.show("Cliente cadastrado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
-					
-
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatórios nao informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -244,40 +219,59 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					&& !campoCep.getText().isEmpty()) {
 
 				try {
-					new ClienteJuridicaDao().alterar(new Cliente_juridica(idCliente,
-							new Endereco(idEndereco, campoCep.getText().replaceAll("[.]", ""), campoEndereco.getText(), campoNumero.getText(),
-									campoComplemento.getText(), campoBairro.getText(), campoCidade.getText(),
-									comboBoxEstado.getValue()),
-							campoNome.getText(), campoCnpj.getText(), campoSituacao.getText(),
-							comboBoxDataSituacao.getValue(), campoIe.getText(), campoEmail.getText(),
-							textAreaInformacao.getText(), lista_telefones));
+					new ClienteJuridicaDao().alterar(clienteJuridica(idCliente, idEndereco));
 					
 					carregarTabela();
 					limparCampos();
 					
 					snackBar = new JFXSnackbar(borderPaneTabela);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Cliente alterado com sucesso", 4000); 
+					snackBar.show("Cliente alterado com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Cliente alterado com sucesso", 4000); 
+				snackBar.show("Cliente alterado com sucesso", 4000);
 			}
 
 		}
 
 	}
 
+	public Cliente_juridica clienteJuridica(int idCliente, int idEndereco) {
+
+		Endereco endereco = new Endereco.Builder()
+				.idEndereco(idEndereco)
+				.cep(campoCep.getText().replaceAll("[.]", ""))
+				.endereco(campoEndereco.getText())
+				.numero(campoNumero.getText())
+				.complemento(campoComplemento.getText())
+				.bairro(campoBairro.getText())
+				.cidade(campoCidade.getText())
+				.estado(comboBoxEstado.getValue())
+				.build();
+
+		Cliente_juridica cliente = new Cliente_juridica.Builder()
+				.idCliente(idCliente)
+				.endereco(endereco)
+				.nome(campoNome.getText())
+				.cnpj(campoCnpj.getText())
+				.situacao(campoSituacao.getText())
+				.dataSituacao(comboBoxDataSituacao.getValue())
+				.ie(campoIe.getText())
+				.email(campoEmail.getText())
+				.observacao(textAreaInformacao.getText())
+				.telefone(lista_telefones)
+				.build();
+
+		return cliente;
+
+	}
+
 	private void visualizarDados() {
-		// TODO Auto-generated method stub
 
 		treeTableViewClienteJuridica.setOnMouseClicked(event -> {
 			if (treeTableViewClienteJuridica.getSelectionModel().getSelectedIndex() != -1) {
@@ -311,7 +305,6 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -368,7 +361,6 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 						cliente.getCnpj(), cliente.getEndereco().getId_endereco(), cliente.getSituacao()));
 			});
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -421,7 +413,6 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewClienteJuridica);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -442,19 +433,15 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					boolean cpf = new CNPJ(campoCnpj.getText()).isCNPJ();
 					if(!cpf){
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("CNPJ Inválido", 6000);
 						campoCnpj.setText("");
 					}else{
 						new Thread(new Runnable() {
 							public void run() {
-								
 
 								BuscaCnpj empresa = new BuscaCnpj(campoCnpj.getText());
 
 								Platform.runLater(() -> {
-									
-									
 									comboBoxEstado.setValue(empresa.getUf());
 								});
 								
@@ -473,32 +460,24 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 								final LocalDate dataFormatada = LocalDate.parse(empresa.getDataAbertura(), formataData);
 								comboBoxDataSituacao.setValue(dataFormatada);
 								textAreaInformacao.setText(empresa.getTAtividadePrincipal());
-								try {
 
-									telefone1 ="";
-									for(String telefone : empresa.getListaTelefones()){
+								telefone1 ="";
+								for(String telefone : empresa.getListaTelefones()){
 
-										if (telefone.replaceAll(" ", "").equals(telefone1.replaceAll(" ", ""))) {
-											lista_telefones.add(new Telefone(0, telefone));
-											listViewTelefones.setItems(lista_telefones);
-										}
-
-										telefone1 = telefone;
+									if (telefone.replaceAll(" ", "").equals(telefone1.replaceAll(" ", ""))) {
+										lista_telefones.add(new Telefone(0, telefone));
+										listViewTelefones.setItems(lista_telefones);
 									}
-								} catch (Exception e) {
-									// TODO: handle exception
-									e.printStackTrace();
+
+									telefone1 = telefone;
 								}
 
 							}
 						}).start();
 					}
-					
-					
-					
+
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		});
@@ -540,7 +519,6 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					}).start();
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -556,14 +534,12 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 				lista_telefones.add(new Telefone(0, campoCelular.getText()));
 				campoCelular.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número cadastrado com sucesso", 4000);
 			}
 			if (!campoTelefone.getText().isEmpty()) {
 				lista_telefones.add(new Telefone(0, campoTelefone.getText()));
 				campoTelefone.setText("");
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Número cadastrado com sucesso", 4000);
 			}
 
@@ -579,13 +555,10 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					new ClienteJuridicaDao().adicionarTelefone(new Telefone(idCliente, campoCelular.getText()));
 					campoCelular.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Número cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -596,20 +569,16 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 					new ClienteJuridicaDao().adicionarTelefone(new Telefone(idCliente, campoTelefone.getText()));
 					campoTelefone.setText("");
 					snackBar = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Número cadastrado com sucesso", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Campos obrigatórios não informado", 4000);
 		}
 
@@ -626,7 +595,6 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 							.equals(listViewTelefones.getSelectionModel().getSelectedItem().toString())) {
 						lista_telefones.remove(i);
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Número removido com sucesso", 4000);
 					}
 				}
@@ -643,27 +611,23 @@ public class TelaGerenciarClienteJuridica implements Initializable {
 							.equals(listViewTelefones.getSelectionModel().getSelectedItem().toString())) {
 						lista_telefones.remove(i);
 						snackBar = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Número removido com sucesso", 4000);
 					}
 				}
 				try {
 					new ClienteJuridicaDao().excluirTelefone(new Telefone(idCliente, telefone));
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block 
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Seleciona número na tabela", 4000);
 			}
 
 			listViewTelefones.setItems(lista_telefones);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

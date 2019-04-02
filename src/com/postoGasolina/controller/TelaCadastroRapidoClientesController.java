@@ -39,11 +39,9 @@ public class TelaCadastroRapidoClientesController implements Initializable {
     
     private JFXSnackbar s;
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+
 		campoCpf.setOnKeyReleased(event -> {
 			TextFieldFormatter ttf = new TextFieldFormatter();
 			ttf.setCaracteresValidos("0123456789");
@@ -55,13 +53,11 @@ public class TelaCadastroRapidoClientesController implements Initializable {
 					boolean cpf = new CPF(campoCpf.getText()).isCPF();
 					if(!cpf){
 						s = new JFXSnackbar(borderPane);
-		//				String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						s.show("CPF Inválido", 6000);
 						campoCpf.setText(""); 
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		});
@@ -80,17 +76,13 @@ public class TelaCadastroRapidoClientesController implements Initializable {
 				stage.close();
 				
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
+
 		} else {
 		s = new JFXSnackbar(borderPane);
-	//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 		s.show("Campos obrigatórios não informado", 4000);
 		}
 	}

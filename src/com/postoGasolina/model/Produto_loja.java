@@ -19,7 +19,6 @@ public class Produto_loja {
 	}
 
 	public Produto_loja(Combustivel combustivel, Produto produto, String tipo_produto) {
-		super();
 		this.combustivel = combustivel;
 		this.produto = produto;
 		this.tipo_produto = tipo_produto;
@@ -40,10 +39,6 @@ public class Produto_loja {
 		return combustivel;
 	}
 
-	public void setCombustivel(Combustivel combustivel) {
-		this.combustivel = combustivel;
-	}
-
 	public Produto getProduto() {
 		return produto;
 	}
@@ -54,10 +49,6 @@ public class Produto_loja {
 
 	public String getTipo_produto() {
 		return tipo_produto;
-	}
-
-	public void setTipo_produto(String tipo_produto) {
-		this.tipo_produto = tipo_produto;
 	}
 
 	public ObservableList<Produto_loja> listar() {
@@ -73,12 +64,11 @@ public class Produto_loja {
 			});
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return lista_produtos;
 	}
 }

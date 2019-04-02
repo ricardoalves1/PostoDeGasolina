@@ -59,8 +59,7 @@ public class Cliente {
 
 	public ObservableList<Cliente> listar(){
 		ObservableList<Cliente> lista_clientes = FXCollections.observableArrayList();
-		
-		
+
 		try {
 			//listando cliente física
 			new ClienteFisicaDao().listar().forEach(clienteFisica ->{
@@ -73,10 +72,8 @@ public class Cliente {
 			});
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

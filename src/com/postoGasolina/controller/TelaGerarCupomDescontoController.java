@@ -62,7 +62,6 @@ public class TelaGerarCupomDescontoController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		campoNome.setText(TelaGerenciarFidelizacaoClientesController.nomeCliente.getText());
 
 		campoValor.getStyleClass().add("format-campo");
@@ -87,11 +86,9 @@ public class TelaGerarCupomDescontoController implements Initializable {
 		campoTipoServico.setOpacity(0.95);
 		campoTipoServico.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
 		campoTipoServico.setFocusTraversable(false);
-
 	}
 
 	void btnEnviar(ActionEvent event) {
-
 		new Email().enviarEmail();
 	}
 
@@ -148,21 +145,18 @@ public class TelaGerarCupomDescontoController implements Initializable {
 				Desktop.getDesktop().open(new File("CupomDesconto.pdf"));
 
 				snackBar = new JFXSnackbar(borderPane);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Relatório gerado com sucesso", 4000);
 
 				campoTipoServico.setText("");
 				campoValor.setNumber(BigDecimal.ZERO);
 			} else {
 				snackBar = new JFXSnackbar(borderPane);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos Obrigatórios não informado", 4000);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			JFXSnackbar s = new JFXSnackbar(borderPane);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			s.show("Cliente não possui cadastro completo", 4000);
 		}
 

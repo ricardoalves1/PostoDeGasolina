@@ -2,21 +2,16 @@ package com.postoGasolina.dao;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Observable;
 
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Fluxo_caixa2;
-import com.postoGasolina.model.Item_pedido;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import jdk.*;
-//import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 
 public class CaixaDao {
 
@@ -42,11 +37,9 @@ public class CaixaDao {
 		rs.close();
 		connetion.close();
 		statement.close();
-
 	}
 
 	public void fecharCaixa() throws ClassNotFoundException, SQLException {
-
 		connetion = ConexaoUtil.getInstance().getConnection();
 
 		sql = "update tb_fluxo_caixa set saldo_final=?, data_hora_final=? where id_fluxo_caixa=?";
@@ -58,7 +51,6 @@ public class CaixaDao {
 
 		connetion.close();
 		statement.close();
-
 	}
 
 	public ObservableList<Fluxo_caixa2> listar() throws ClassNotFoundException, SQLException {
@@ -70,22 +62,25 @@ public class CaixaDao {
 		statement = connetion.prepareStatement(sql);
 
 		rs = statement.executeQuery();
-
 		while (rs.next()) {
-			lista_caixas.add(new Fluxo_caixa2(rs.getInt("id_fluxo_caixa"), rs.getBigDecimal("saldo_atual"),
+
+			Fluxo_caixa2 fluxoCaixa = new Fluxo_caixa2(
+					rs.getInt("id_fluxo_caixa"),
+					rs.getBigDecimal("saldo_atual"),
 					rs.getTimestamp("data_hora_inicial").toLocalDateTime(),
 					rs.getTimestamp("data_hora_final") != null ?
 							rs.getTimestamp("data_hora_final").toLocalDateTime() : null,
-							rs.getBigDecimal("saldo_final") != null ? rs.getBigDecimal("saldo_final") :
-									BigDecimal.ZERO
-					));
+					rs.getBigDecimal("saldo_final") != null ?
+							rs.getBigDecimal("saldo_final") : BigDecimal.ZERO
+			);
+
+			lista_caixas.add(fluxoCaixa);
 		}
 
 		connetion.close();
 		statement.close();
 
 		return lista_caixas;
-
 	}
 
 	public ObservableList<Fluxo_caixa2> pesquisar(int id) throws ClassNotFoundException, SQLException {
@@ -98,7 +93,6 @@ public class CaixaDao {
 		statement.setInt(1, id); 
 
 		rs = statement.executeQuery();
-
 		while (rs.next()) {
 			lista_caixas.add(new Fluxo_caixa2(rs.getInt("id_fluxo_caixa"), rs.getBigDecimal("saldo_atual"),
 					rs.getTimestamp("data_hora_inicial").toLocalDateTime(),

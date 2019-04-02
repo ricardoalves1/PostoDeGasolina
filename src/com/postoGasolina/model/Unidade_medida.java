@@ -8,20 +8,26 @@ public class Unidade_medida {
 		this.id_unidade_medida = id_unidade_medida;
 		this.nome = nome;
 	}
+
 	@Override
 	public String toString() {
 		return nome;
 	}
+
 	public int getId_unidade_medida() {
 		return id_unidade_medida;
 	}
+
 	public void setId_unidade_medida(int id_unidade_medida) {
 		this.id_unidade_medida = id_unidade_medida;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
+
 }

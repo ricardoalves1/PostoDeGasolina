@@ -34,19 +34,15 @@ public class ProdutosDao implements InterfaceDao<Produto>{
 		statement.setBigDecimal(7, produto.getEstoque_max());
 		statement.setBigDecimal(8, produto.getEstoque_min());
 		statement.setBoolean(9, produto.isNao_controlar_estoque());
-		
-		
+
 		statement.execute();
 		
 		statement.close();
 		connection.close();
-		
-
 	}
 
-
 	public void alterar(Produto produto) throws SQLException, ClassNotFoundException {
-	connection = ConexaoUtil.getInstance().getConnection();
+		connection = ConexaoUtil.getInstance().getConnection();
 		
 		sql = "update tb_produto set codigo_produto=?,id_categoria_fk=?, id_unidade_medida_fk=?, descricao=?,estoque_disponivel=?,preco_venda=?, estoque_max=?, estoque_min=?, nao_controlar_estoque=? where id_produto=?";
 		
@@ -62,16 +58,14 @@ public class ProdutosDao implements InterfaceDao<Produto>{
 		statement.setBoolean(9, produto.isNao_controlar_estoque());
 		statement.setInt(10, produto.getId_produto());
 		
-		
 		statement.execute();
 		
 		statement.close();
 		connection.close();
 	}
 
-
 	public void remover(int id) throws ClassNotFoundException, SQLException {
-	connection = ConexaoUtil.getInstance().getConnection();
+		connection = ConexaoUtil.getInstance().getConnection();
 		
 		sql = "delete from tb_produto where id_produto=?";
 		statement = connection.prepareStatement(sql);
@@ -80,9 +74,7 @@ public class ProdutosDao implements InterfaceDao<Produto>{
 		
 		connection.close();
 		statement.close();
-
 	}
-
 
 	public ObservableList<Produto> listar() throws ClassNotFoundException, SQLException { 
 		connection = ConexaoUtil.getInstance().getConnection();
@@ -111,6 +103,7 @@ public class ProdutosDao implements InterfaceDao<Produto>{
 
 		return lista_produtos;
 	}
+
 	public ObservableList<Produto> pesquisar(int id) throws ClassNotFoundException, SQLException { 
 		connection = ConexaoUtil.getInstance().getConnection();
 		ObservableList<Produto> lista_produtos = FXCollections.observableArrayList();

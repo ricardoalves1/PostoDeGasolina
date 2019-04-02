@@ -5,14 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.postoGasolina.model.Cliente;
-import com.postoGasolina.model.Cliente_fisica;
-import com.postoGasolina.model.Fluxo_caixa;
-import com.postoGasolina.model.Fluxo_caixa2;
-import com.postoGasolina.model.Item_pedido;
-import com.postoGasolina.model.Pedido_venda;
-import com.postoGasolina.model.Produto_loja;
-import com.postoGasolina.model.Telefone;
+import com.postoGasolina.model.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,12 +34,11 @@ public class VendaDao{
 				statement.setInt(1, pedido.getCliente().getCliente_fisica().getId_cliente_fisica());
 			else
 				statement.setNull(1, java.sql.Types.INTEGER);
+
 			if (pedido.getCliente().getTipoCliente().equals("cliente_juridica"))
 				statement.setInt(2, pedido.getCliente().getCliente_juridica().getId_cliente_juridica());
 			else
 				statement.setNull(2, java.sql.Types.INTEGER);
-
-			
 		}
 
 		statement.setInt(3, pedido.getFuncionario().getId_funcionario());
@@ -64,7 +56,6 @@ public class VendaDao{
 		}
 
 		pedido.getItens_pedido().forEach(itemPedido -> {
-
 			try {
 				sql = "insert into tb_item_pedido_venda(id_pedido_venda_fk, id_produto_fk,id_combustivel_fk, tipo_produto, preco_unitario, quantidade, total) values(?,?,?,?,?,?,?)";
 				statement = connection.prepareStatement(sql);
@@ -84,10 +75,8 @@ public class VendaDao{
 
 				statement.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		});
 
 		// Atualiza estoque
@@ -146,10 +135,8 @@ public class VendaDao{
 				}
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		});
 
 		connection.close();
@@ -158,7 +145,7 @@ public class VendaDao{
 
 	public ObservableList<Pedido_venda> pesquisar(int idCaixa) throws ClassNotFoundException, SQLException{
 		ObservableList<Pedido_venda> lista_pedidos = FXCollections.observableArrayList();
-		connection = ConexaoUtil.getInstance().getConnection(); 
+		connection = ConexaoUtil.getInstance().getConnection();
 		
 		sql="SELECT * FROM db_posto_gasolina.tb_pedido_venda where"
 				+ " db_posto_gasolina.tb_pedido_venda.id_fluxo_caixa_fk=?";
@@ -177,46 +164,51 @@ public class VendaDao{
 			rs2 = statement.executeQuery();
 			
 			while (rs2.next()) {
-						itens_pedido.add(new Item_pedido(
-								new Produto_loja( 
-								new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")).size() != 0 ?
-								new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")).get(0) :
-									null,
-								new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")).size() != 0 ?
-								new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")).get(0) : null,
-								rs2.getString("tipo_produto")),
-								rs2.getInt("id_pedido_venda_fk"), 
-								rs2.getBigDecimal("preco_unitario"), rs2.getBigDecimal("quantidade"),
-								rs2.getString("tipo_produto"), rs2.getBigDecimal("total"), 0));
+
+				Produto_loja produto = new Produto_loja(
+						(Combustivel) Existencia.objeto(new CombustiveisDao().pesquisar(rs2.getInt("id_combustivel_fk")), 0),
+						(Produto) Existencia.objeto(new ProdutosDao().pesquisar(rs2.getInt("id_produto_fk")), 0),
+						rs2.getString("tipo_produto")
+				);
+
+				Item_pedido itemPedido = new Item_pedido.Builder()
+						.produtoLoja(produto)
+						.idPedido(rs2.getInt("id_pedido_venda_fk"))
+						.precoUnitario(rs2.getBigDecimal("preco_unitario"))
+						.quantidade(rs2.getBigDecimal("quantidade"))
+						.tipoProduto(rs2.getString("tipo_produto"))
+						.total(rs2.getBigDecimal("total"))
+						.idItem(0)
+						.build();
+
+				itens_pedido.add(itemPedido);
 			}
 
-			lista_pedidos.add(
-					new Pedido_venda(
-						rs.getInt("id_pedido_venda"),
-						new FuncionarioDao().pesquisarId(rs.getInt("id_funcionario_fk")).get(0),
-						new Cliente(
-								new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).size() != 0 ?
+			Pedido_venda pedidoVenda = new Pedido_venda(
+					rs.getInt("id_pedido_venda"),
+					new FuncionarioDao().pesquisarId(rs.getInt("id_funcionario_fk")).get(0),
+					new Cliente(
+							new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).size() != 0 ?
 									new ClienteFisicaDao().pesquisar(rs.getInt("id_cliente_fisica_fk")).get(0) :
 									new ClienteJuridicaDao().pesquisar(rs.getInt("id_cliente_juridica_fk")).get(0),
-								rs.getString("tipo_cliente")
-						),
-						new CaixaDao().pesquisar(rs.getInt("id_fluxo_caixa_fk")).get(0),
-						rs.getBigDecimal("total_pagar"),
-						rs.getBigDecimal("desconto"),
-						rs.getString("forma_pagamento"),
-						itens_pedido
-					)
+							rs.getString("tipo_cliente")
+					),
+					new CaixaDao().pesquisar(rs.getInt("id_fluxo_caixa_fk")).get(0),
+					rs.getBigDecimal("total_pagar"),
+					rs.getBigDecimal("desconto"),
+					rs.getString("forma_pagamento"),
+					itens_pedido
 			);
+
+			lista_pedidos.add(pedidoVenda);
 			
 			rs2.close();
-
 		}
 		
 		statement.close();
 		rs.close();
 		connection.close();
-		
-		
+
 		return lista_pedidos; 
 		
 	}

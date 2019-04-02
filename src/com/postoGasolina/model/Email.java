@@ -1,14 +1,7 @@
 package com.postoGasolina.model;
 
-import java.util.Properties;
 import java.util.Random;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.apache.commons.mail.EmailException;
@@ -24,14 +17,14 @@ public class Email {
 		// Utilize o hostname do seu provedor de email
 		// alterando hostname...
 		email.setHostName("smtp.gmail.com");
-		// smtp.gmail.com porta 465 -- padr�o gmail
+		// smtp.gmail.com porta 465 -- padrão gmail
 		email.setSmtpPort(465);
-		// Email do destinat�rio
+		// Email do destinatário
 		email.addTo(emailDestinatario.toLowerCase().replaceAll(" ", ""), nome);
 		// Email do remetente
-		email.setFrom("admin@fsm.com.br", "Fuel Station Manager (Gerenciador de Postos de Combust�veis)");
+		email.setFrom("admin@fsm.com.br", "Fuel Station Manager (Gerenciador de Postos de Combustíveis)");
 		// Nome do assunto
-		email.setSubject("Anivers�rio");
+		email.setSubject("Aniversário");
 
 		// Adicione a mensagem do email
 		email.setMsg(mensagem);
@@ -48,12 +41,12 @@ public class Email {
 		// Utilize o hostname do seu provedor de email
 		// alterando hostname...
 		email.setHostName("smtp.gmail.com");
-		// smtp.gmail.com porta 465 -- padr�o gmail
+		// smtp.gmail.com porta 465 -- padrão gmail
 		email.setSmtpPort(465);
-		// Email do destinat�rio
+		// Email do destinatário
 		email.addTo(emailDestinatario.toLowerCase().replaceAll(" ", ""), nome);
 		// Email do remetente
-		email.setFrom("admin@fsm.com.br", "Fuel Station Manager (Gerenciador de Postos de Combust�veis) - ");
+		email.setFrom("admin@fsm.com.br", "Fuel Station Manager (Gerenciador de Postos de Combustíveis) - ");
 		// Nome do assunto
 		email.setSubject("Nova senha");
 		// Adicione a mensagem do email
@@ -89,7 +82,7 @@ public class Email {
 		// cria a string novaSenha
 		String novaSenha = "";
 		for (int i = 0; i < 10; ++i) {
-			// gera um numero aleat�rio de acordo com a quantidade maxima da
+			// gera um numero aleatório de acordo com a quantidade maxima da
 			// string caracteres
 			int gerador = aleatorio.nextInt(caracteres.length());
 			// concatena o caractere selecionado na nova senha

@@ -19,7 +19,6 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.CategoriaDao;
 import com.postoGasolina.dao.ProdutosDao;
 import com.postoGasolina.dao.UnidadeMedidaDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Categoria;
 import com.postoGasolina.model.Produto;
@@ -107,13 +106,12 @@ public class TelaGerenciarProdutos implements Initializable {
 	}
 
 	void carregarComponents() {
-		// TODO Auto-generated method stub
 		try {
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
+
 		String style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionario.css")
 				.toExternalForm();
 
@@ -158,7 +156,7 @@ public class TelaGerenciarProdutos implements Initializable {
 		});
 		btnCategoria.setOnMouseClicked(event ->{
 			new Tela().carregarTelaCategoria();
-		});;
+		});
 
 
 		comboboxCategoria.focusedProperty().addListener((observable, oldValue, newValue) ->{
@@ -166,10 +164,8 @@ public class TelaGerenciarProdutos implements Initializable {
 				try {
 					comboboxCategoria.setItems(new CategoriaDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -179,14 +175,12 @@ public class TelaGerenciarProdutos implements Initializable {
 				try {
 					comboboxUnidadeMedida.setItems(new UnidadeMedidaDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-		});;
+		});
 
 		campoCodigoProduto.setOnKeyReleased(event -> {
 			TextFieldFormatter ttf = new TextFieldFormatter();
@@ -212,18 +206,14 @@ public class TelaGerenciarProdutos implements Initializable {
 				limparcampos();
 
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Produto removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Produto sendo utilizado", 4000);
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Seleciona produto na tabela", 4000);
 		}
 	}
@@ -234,7 +224,6 @@ public class TelaGerenciarProdutos implements Initializable {
 			limparcampos();
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
@@ -261,13 +250,10 @@ public class TelaGerenciarProdutos implements Initializable {
 						limparcampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						snackBar.show("Produto cadastrado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -275,12 +261,10 @@ public class TelaGerenciarProdutos implements Initializable {
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Campos obrigatï¿½rios nï¿½o informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -306,10 +290,8 @@ public class TelaGerenciarProdutos implements Initializable {
 					String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Produto alterado com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -317,7 +299,6 @@ public class TelaGerenciarProdutos implements Initializable {
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				snackBar.show("Campos obrigatï¿½rios nï¿½o informado", 4000);
 			}
 
@@ -348,6 +329,7 @@ public class TelaGerenciarProdutos implements Initializable {
 			else
 				return colunaId.getComputedValue(param);
 		});
+
 		colunaDescricao.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProdutoClass, String> param) -> {
 			if (colunaDescricao.validateValue(param))
 				return param.getValue().getValue().descricao;
@@ -361,18 +343,21 @@ public class TelaGerenciarProdutos implements Initializable {
 			else
 				return colunaEstoqueDisponivel.getComputedValue(param);
 		});
+
 		colunaPreco.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProdutoClass, String> param) -> {
 			if (colunaPreco.validateValue(param))
 				return param.getValue().getValue().preco;
 			else
 				return colunaPreco.getComputedValue(param);
 		});
+
 		colunaUnidadeMedida.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProdutoClass, String> param) -> {
 			if (colunaUnidadeMedida.validateValue(param))
 				return param.getValue().getValue().unidadeMedida;
 			else
 				return colunaUnidadeMedida.getComputedValue(param);
 		});
+
 		colunaCategoria.setCellValueFactory((TreeTableColumn.CellDataFeatures<ProdutoClass, String> param) -> {
 			if (colunaCategoria.validateValue(param))
 				return param.getValue().getValue().categoria;
@@ -449,7 +434,6 @@ public class TelaGerenciarProdutos implements Initializable {
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewProduto);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -470,8 +454,6 @@ public class TelaGerenciarProdutos implements Initializable {
 	}
 
 	public void carregarDados() {
-		// TODO Auto-generated method stub
-
 		treeTableViewProduto.setOnMouseClicked(event -> {
 			if (treeTableViewProduto.getSelectionModel().getSelectedIndex() != -1) {
 				idProduto = Integer.parseInt(String.valueOf(
@@ -495,7 +477,6 @@ public class TelaGerenciarProdutos implements Initializable {
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

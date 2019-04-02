@@ -27,11 +27,8 @@ import com.postoGasolina.dao.FuncionarioDao;
 import com.postoGasolina.dao.LicencaAutorizacaoDao;
 import com.postoGasolina.dao.OrgaoGovernamentalDao;
 import com.postoGasolina.main.Main;
-//import com.postoGasolina.model.Funcionario;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.*;
-//import com.postoGasolina.model.Licença_autorizacao;
-//import com.postoGasolina.model.Orgao_governamental;
 
 import javafx.application.HostServices;
 import javafx.beans.property.SimpleStringProperty;
@@ -116,13 +113,11 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
+
 		preencherComboBox();
 		try {
 			carregarTabela();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
@@ -143,16 +138,13 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 				carregarTabela();
 				limparCampos();
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Licen�a/Autoriza��o removido com sucesso", 4000);
+				snackBar.show("Licença/Autorização removido com sucesso", 4000);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("Seleciona Licen�a/Autoriza��o na tabela", 4000);
+			snackBar.show("Seleciona Licença/Autorização na tabela", 4000);
 		}
 	}
 
@@ -182,24 +174,20 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 						limparCampos();
 
 						snackBar = new JFXSnackbar(borderPaneTabela);
-						//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-						snackBar.show("Licen�a/Autoriza��o cadastrado com sucesso", 4000);
+						snackBar.show("Licença/Autorização cadastrado com sucesso", 4000);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 				} else {
 					snackBar = new JFXSnackbar(borderPaneTabela);
 					String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Campos obrigat�rios n�o informado", 4000);
+					snackBar.show("Campos obrigatórios não informado", 4000);
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
@@ -223,20 +211,17 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 					limparCampos();
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-					snackBar.show("Licen�a/Autoriza��o alterado com sucesso", 4000);
+					snackBar.show("Licençaa/Autorização alterado com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
 				String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Campos obrigat�rios n�o informado", 4000);
+				snackBar.show("Campos obrigatórios não informado", 4000);
 			}
 
 		}
@@ -244,8 +229,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 	}
 
 	private void visualizarDados() {
-		// TODO Auto-generated method stub
-
 		treeTableViewOrgao.setOnMouseClicked(event -> {
 			if (treeTableViewOrgao.getSelectionModel().getSelectedIndex() != -1) {
 				String[] ids = treeTableViewOrgao.getSelectionModel().getSelectedItem().getValue().toString()
@@ -270,7 +253,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 						}
 					});
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -285,12 +267,12 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 		// Criando as colunas da tabela
 		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaId = new JFXTreeTableColumn<>("ID");
 		colunaId.setPrefWidth(55);
-		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaDescricao = new JFXTreeTableColumn<>("Descri��o");
+		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaDescricao = new JFXTreeTableColumn<>("Descrição");
 		colunaDescricao.setPrefWidth(180);
-		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaOrgao = new JFXTreeTableColumn<>("Org�o");
+		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaOrgao = new JFXTreeTableColumn<>("Orgão");
 		colunaOrgao.setPrefWidth(120);
 		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaDataExpiracao = new JFXTreeTableColumn<>(
-				"Data Expira��o");
+				"Data Expiração");
 		colunaDataExpiracao.setPrefWidth(110);
 		JFXTreeTableColumn<LicencaAutorizacaoClass, String> colunaStatus = new JFXTreeTableColumn<>("Status");
 		colunaStatus.setPrefWidth(80);
@@ -330,7 +312,7 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 				});
 
 		ObservableList<LicencaAutorizacaoClass> lista_la = FXCollections.observableArrayList();
-		// carregando registros com os campos da coluna da classe an�nima
+		// carregando registros com os campos da coluna da classe anônima
 		try {
 			ObservableList<Licença_autorizacao> lista_laOrdenada = new LicencaAutorizacaoDao().listar();
 
@@ -343,10 +325,8 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 							new LicencaAutorizacaoDao().atualizaVStatus(la1.getData_expiracao());
 							la1.setStatus("Vencido");
 						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						return -1;
@@ -356,10 +336,8 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 							new LicencaAutorizacaoDao().atualizaAStatus(la1.getData_expiracao());
 							la1.setStatus("Ativo");
 						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						return 1;
@@ -375,7 +353,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 			});
 
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -430,7 +407,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewOrgao);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -440,7 +416,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 	void btnEnviarArquivoOnAction(ActionEvent event) {
 		try {
 			FileChooser fc = new FileChooser();
-			// fc.setInitialDirectory(new File("filesPdf"));
 			fc.getExtensionFilters().add(new ExtensionFilter("Arquivos PDF", "*.pdf"));
 			Stage stage = (Stage) borderPaneTabela.getScene().getWindow();
 			File arquivoSelecionado = fc.showOpenDialog(stage);
@@ -456,18 +431,15 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 					informacaoArquivo.setText(diretorioArquivo.getName());
 
 					snackBar = new JFXSnackbar(borderPaneTabela);
-					//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					snackBar.show("Arquivo enviado com sucesso", 4000);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			} else {
 				snackBar = new JFXSnackbar(borderPaneTabela);
-				//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				snackBar.show("Esse arquivo � inv�lido", 4000);
+				snackBar.show("Esse arquivo é inválido", 4000);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -480,13 +452,11 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 			hostServices.showDocument(diretorioArquivo.getPath());
 
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Arquivo abriu com sucesso", 4000);
 
 		} else {
 			snackBar = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-			snackBar.show("N�o foi possivel abrir arquivo", 4000);
+			snackBar.show("Não foi possivel abrir arquivo", 4000);
 		}
 	}
 
@@ -499,10 +469,8 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 				try {
 					comboBoxOrgao.setItems(new OrgaoGovernamentalDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -514,13 +482,10 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 				try {
 					comboboxFuncionario.setItems(new FuncionarioDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		});
 
@@ -537,7 +502,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 		textAreaInformacao.setText("");
 		diretorioArquivo = null;
 		informacaoArquivo.setText("");
-
 	}
 
 	@FXML
@@ -545,7 +509,6 @@ public class TelaGerenciaLicencasAutorizacoesController implements Initializable
 		try {
 			Desktop.getDesktop().open(new File("filesPdf/ComoRenovar.pdf"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

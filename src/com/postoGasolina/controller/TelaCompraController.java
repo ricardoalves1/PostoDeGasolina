@@ -2,22 +2,15 @@ package com.postoGasolina.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.postoGasolina.dao.CompraDao;
 import com.postoGasolina.dao.FornecedoresDao;
-import com.postoGasolina.main.Main;
 import com.postoGasolina.main.Tela;
 import com.postoGasolina.model.Fluxo_caixa;
 import com.postoGasolina.model.Fluxo_caixa2;
@@ -28,8 +21,6 @@ import com.postoGasolina.model.Produto_loja;
 import com.postoGasolina.util.AutoShowComboBoxHelper;
 import com.postoGasolina.util.NumeroTextField;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -41,97 +32,27 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class TelaCompraController implements Initializable {
+public class TelaCompraController extends CompraVenda implements Initializable {
 
 	@FXML
 	private ImageView btnFornecedor;
 
-	@FXML
-	private JFXButton btnAdicionar;
-
-	@FXML
-	private BorderPane borderPaneTabela;
-
-	@FXML
-	private ImageView btnExcluir;
-
-	@FXML
-	private JFXButton btnDesconto;
-
-	@FXML
-	private JFXButton btnFechamento;
-
-	private NumeroTextField campoPreco = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
-	private NumeroTextField campoTotal = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
-	private NumeroTextField campoDesconto = new NumeroTextField(BigDecimal.ZERO,
-			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
 	private NumeroTextField campoTotalCompra = new NumeroTextField(BigDecimal.ZERO,
 			NumberFormat.getCurrencyInstance(new Locale("pt", "BR")));
 
-	private JFXTextField campoQuantidade = new JFXTextField("0");
-
 	@FXML
-	private GridPane gridPaneBottom;
-
-	@FXML
-	private GridPane gridPaneTop;
-
-	@FXML
-	private JFXTreeTableView<CompraClass> treeTableViewCompra;
-
-	private int idTipoCombustivel;
-
-	// private AutoFillComboBox<Cliente> comboBoxCliente = new
-	// AutoFillComboBox<>();
-
-	// private AutoFillComboBox<Funcionario> comboBoxFuncionario = new
-	// AutoFillComboBox<>();
-
-	// private AutoFillComboBox<Produto_loja> comboBoxProduto = new
-	// AutoFillComboBox<>();
-
-	ComboBox<Produto_loja> comboBoxProduto = new ComboBox<>();
+	private JFXTreeTableView<CompraVendaClass> treeTableViewCompra;
 
 	ComboBox<Fornecedor> comboBoxFornecedor = new ComboBox<>();
+
 	@FXML
 	private JFXTextField campoResponsavel;
-	private ObservableList<Item_pedido> lista_itensPedido = FXCollections.observableArrayList();
-	private static int idItemPedido;
-	private static int idtabela = 1;
-	private BigDecimal totalCalculado = new BigDecimal("0");
-	
-	static JFXTextField mensagem = new JFXTextField("0");
-	
-	private JFXSnackbar s;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		try {
-			carregarComponentes();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			carregarTabela();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
+	private JFXSnackbar s;
 
 	@FXML
 	void mouseEventCompra(MouseEvent event) { 
@@ -140,19 +61,13 @@ public class TelaCompraController implements Initializable {
 		}
 		if(mensagem.getText().equals("1")){
 			s = new JFXSnackbar(borderPaneTabela);
-			//String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			s.show("Desconto adicionado com sucesso", 4000);
 			mensagem.setText("0");
 		}
 	}
 
-	@FXML
-	void btnNovo(ActionEvent event) {
-		limparcamposCompleto();
-	}
-
-	private void limparcamposCompleto() {
-		// TODO Auto-generated method stub
+	@Override
+	void limparcamposCompleto() {
 		lista_itensPedido.clear();
 		carregarTabela();
 		RecebePedidoCompra.setDesconto(BigDecimal.ZERO);
@@ -169,10 +84,17 @@ public class TelaCompraController implements Initializable {
 		if (comboBoxProduto.getValue() != null) {
 			if (!campoQuantidade.getText().isEmpty() && !campoQuantidade.getText().equals("0")) {
 
-				lista_itensPedido.add(new Item_pedido(comboBoxProduto.getSelectionModel().getSelectedItem(), 0,
-						campoPreco.getNumber(), new BigDecimal(campoQuantidade.getText()),
-						comboBoxProduto.getSelectionModel().getSelectedItem().getTipo_produto(),
-						campoPreco.getNumber().multiply(new BigDecimal(campoQuantidade.getText())), idtabela++));
+				Item_pedido itemPedido = new Item_pedido.Builder()
+						.idPedido(0)
+						.produtoLoja(comboBoxProduto.getSelectionModel().getSelectedItem())
+						.precoUnitario(campoPreco.getNumber())
+						.quantidade(new BigDecimal(campoQuantidade.getText()))
+						.tipoProduto(comboBoxProduto.getSelectionModel().getSelectedItem().getTipo_produto())
+						.total(campoPreco.getNumber().multiply(new BigDecimal(campoQuantidade.getText())))
+						.idItem(idtabela++)
+						.build();
+
+				lista_itensPedido.add(itemPedido);
 
 				limparcampos();
 				carregarTabela();
@@ -180,34 +102,21 @@ public class TelaCompraController implements Initializable {
 				carregarTotalCompra();
 				
 				s = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				s.show("Produto adicionado com sucesso", 4000);
 
 			} else {
 				s = new JFXSnackbar(borderPaneTabela);
-			//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				s.show("Informa quantidade", 4000);
 			}
 		} else {
 			s = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			s.show("Seleciona um produto", 4000);
 		}
 
 	}
 
 	private void carregarTotalCompra() {
-		// TODO Auto-generated method stub
-		totalCalculado = new BigDecimal("0");
-
-		lista_itensPedido.forEach(item -> {
-			totalCalculado = totalCalculado.add(item.getTotal());
-		});
-
-		totalCalculado = totalCalculado.subtract(campoDesconto.getNumber());
-
-		campoTotalCompra.setNumber(totalCalculado);
-
+		campoTotalCompra.setNumber(carregarTotal());
 	}
 
 	@FXML
@@ -226,29 +135,33 @@ public class TelaCompraController implements Initializable {
 				try {
 
 					new CompraDao()
-							.finalizar(new Pedido_compra(0, RecebePedidoCompra.getFornecedor(), new Fluxo_caixa2(),
-									RecebePedidoCompra.getCampoResponsavel(), RecebePedidoCompra.getTotal_pagar(),
-									RecebePedidoCompra.getDesconto(), RecebePedidoCompra.getItens_pedido()));
+							.finalizar(
+									new Pedido_compra(
+											0,
+											RecebePedidoCompra.getFornecedor(),
+											new Fluxo_caixa2(),
+											RecebePedidoCompra.getCampoResponsavel(),
+											RecebePedidoCompra.getTotal_pagar(),
+											RecebePedidoCompra.getDesconto(),
+											RecebePedidoCompra.getItens_pedido()
+									)
+							);
 
 					limparcamposCompleto();
 					
 					s = new JFXSnackbar(borderPaneTabela);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					s.show("Compra registrada com sucesso", 4000);
 
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 
 			} else {
 				s = new JFXSnackbar(borderPaneTabela);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
-				s.show("Campos obrigat�rios n�o informado", 4000);
+				s.show("Campos obrigatórios não informado", 4000);
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
@@ -273,22 +186,21 @@ public class TelaCompraController implements Initializable {
 						carregarTotalCompra();
 						
 						s = new JFXSnackbar(borderPaneTabela);
-			//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 						s.show("Produto removido com sucesso", 4000);
 						break;
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				//
 			}
 
 		} else {
 			s = new JFXSnackbar(borderPaneTabela);
-		//	String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			s.show("Seleciona produto na tabela", 4000);
 		}
 	}
 
+	@Override
 	void carregarComponentes() throws SQLException, ClassNotFoundException {
 
 		String style = getClass().getResource("/com/postoGasolina/style/TelaVenda.css").toExternalForm();
@@ -344,7 +256,7 @@ public class TelaCompraController implements Initializable {
 		campoPreco.setLabelFloat(true);
 		campoTotal.setLabelFloat(true);
 		campoQuantidade.setLabelFloat(true);
-		campoPreco.setPromptText("Pre�o");
+		campoPreco.setPromptText("Preço");
 		campoTotal.setPromptText("Total");
 		campoQuantidade.setPromptText("Quantidade *");
 		
@@ -352,13 +264,11 @@ public class TelaCompraController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				try {
 					if (!newValue.isEmpty()) {
 						campoTotal.setNumber(campoPreco.getNumber().multiply(new BigDecimal(campoQuantidade.getText())));
 					} 
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 
@@ -366,10 +276,7 @@ public class TelaCompraController implements Initializable {
 		});
 
 		// COMBOBOX PESQUISAR
-
 		comboBoxFornecedor.setItems(new FornecedoresDao().listar());
-		// comboBoxCliente.setRecords(new Cliente().listar());
-		// comboBoxCliente.setOnlyAllowPredefinedItems(true);
 
 		style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionarioComboBox.css")
 				.toExternalForm();
@@ -393,14 +300,10 @@ public class TelaCompraController implements Initializable {
 				try {
 					comboBoxFornecedor.setItems(new FornecedoresDao().listar());
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				// comboBoxCliente.setRecords(new Cliente().listar());
-				// comboBoxCliente.setOnlyAllowPredefinedItems(true);
 			} else {
 				comboBoxFornecedor.setPromptText("Pesquisar Fornecedor ...");
 			}
@@ -408,8 +311,6 @@ public class TelaCompraController implements Initializable {
 		});
 
 		comboBoxProduto.setItems(new Produto_loja().listar());
-		// comboBoxProduto.setRecords(new Produto_loja().listar());
-		// comboBoxProduto.setOnlyAllowPredefinedItems(true);
 
 		style = getClass().getResource("/com/postoGasolina/style/TelaGerenciarFuncionarioComboBox.css")
 				.toExternalForm();
@@ -428,8 +329,6 @@ public class TelaCompraController implements Initializable {
 			if (comboBoxProduto.isFocused()) {
 				comboBoxProduto.setPromptText("");
 				comboBoxProduto.setItems(new Produto_loja().listar());
-				// comboBoxProduto.setRecords(new Produto_loja().listar());
-				// comboBoxProduto.setOnlyAllowPredefinedItems(true);
 				campoQuantidade.setText("0");
 			} else {
 				comboBoxProduto.setPromptText("Pesquisar Produtos ...");
@@ -453,14 +352,14 @@ public class TelaCompraController implements Initializable {
 
 							if (comboBoxProduto.getSelectionModel().getSelectedIndex() != -1) {
 								if (comboBoxProduto.getSelectionModel().getSelectedItem()
-										.getTipo_produto() == "combustivel") {
+										.getTipo_produto().equals("combustivel")) {
 									campoQuantidade.setEditable(true);
 									btnAdicionar.setDisable(false);
 									BigDecimal preco = comboBoxProduto.getSelectionModel().getSelectedItem()
 											.getCombustivel().getPreco_venda();
 									campoPreco.setNumber(preco);
 								} else if (comboBoxProduto.getSelectionModel().getSelectedItem()
-										.getTipo_produto() == "produto") {
+										.getTipo_produto().equals("produto")) {
 									BigDecimal preco = comboBoxProduto.getSelectionModel().getSelectedItem()
 											.getProduto().getPreco_venda();
 									campoPreco.setNumber(preco);
@@ -481,7 +380,7 @@ public class TelaCompraController implements Initializable {
 				}
 			});
 		} catch (Exception e2) {
-			// TODO: handle exception
+			//
 
 		}
 
@@ -497,7 +396,6 @@ public class TelaCompraController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				try {
 					if (!newValue.isEmpty()) {
 						final NumeroTextField preco = new NumeroTextField(campoPreco.getNumber());
@@ -507,7 +405,6 @@ public class TelaCompraController implements Initializable {
 						campoTotal.setNumber(BigDecimal.ZERO);
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 
@@ -518,146 +415,27 @@ public class TelaCompraController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
 				carregarTotalCompra();
 				campoDesconto.setNumber(RecebePedidoCompra.getDesconto());
 			}
 		});
-		campoTotalCompra.textProperty().addListener(new ChangeListener<String>() {
-
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				// TODO Auto-generated method stub
-				// campoDesconto.setNumber(DescontoAtualizado);
-			}
-		});
-
-	}
-
-	public void limparcampos() {
-
-		// campoPesquisar.setText("");
-		campoQuantidade.setText("0");
-		comboBoxProduto.setValue(null);
-		campoTotal.setNumber(BigDecimal.ZERO);
-		campoPreco.setNumber(BigDecimal.ZERO);
 
 	}
 
 	void carregarTabela() {
-
 		atualizarTabela();
-
-		// Criando as colunas da tabela
-		JFXTreeTableColumn<CompraClass, String> colunaId = new JFXTreeTableColumn<>("ID");
-		colunaId.setPrefWidth(150);
-		JFXTreeTableColumn<CompraClass, String> colunaNome = new JFXTreeTableColumn<>("DESCRI��O");
-		colunaNome.setPrefWidth(300);
-		JFXTreeTableColumn<CompraClass, String> colunaQuantidade = new JFXTreeTableColumn<>("QUANTIDADE");
-		colunaQuantidade.setPrefWidth(200);
-		JFXTreeTableColumn<CompraClass, String> colunaPreco = new JFXTreeTableColumn<>("PRE�O");
-		colunaPreco.setPrefWidth(150);
-		JFXTreeTableColumn<CompraClass, String> colunaTotal = new JFXTreeTableColumn<>("TOTAL");
-		colunaTotal.setPrefWidth(150);
-
-		colunaId.setCellValueFactory((TreeTableColumn.CellDataFeatures<CompraClass, String> param) -> {
-			if (colunaId.validateValue(param))
-				return param.getValue().getValue().id;
-			else
-				return colunaId.getComputedValue(param);
-		});
-		colunaNome.setCellValueFactory((TreeTableColumn.CellDataFeatures<CompraClass, String> param) -> {
-			if (colunaNome.validateValue(param))
-				return param.getValue().getValue().nome;
-			else
-				return colunaNome.getComputedValue(param);
-		});
-		colunaQuantidade.setCellValueFactory((TreeTableColumn.CellDataFeatures<CompraClass, String> param) -> {
-			if (colunaQuantidade.validateValue(param))
-				return param.getValue().getValue().quantidade;
-			else
-				return colunaQuantidade.getComputedValue(param);
-		});
-
-		colunaPreco.setCellValueFactory((TreeTableColumn.CellDataFeatures<CompraClass, String> param) -> {
-			if (colunaPreco.validateValue(param))
-				return param.getValue().getValue().preco;
-			else
-				return colunaPreco.getComputedValue(param);
-		});
-		colunaTotal.setCellValueFactory((TreeTableColumn.CellDataFeatures<CompraClass, String> param) -> {
-			if (colunaTotal.validateValue(param))
-				return param.getValue().getValue().total;
-			else
-				return colunaTotal.getComputedValue(param);
-		});
-
-		ObservableList<CompraClass> lista_ItensTabela = FXCollections.observableArrayList();
-		lista_itensPedido.forEach(itens -> {
-			if (itens.getProduto_loja().getTipo_produto().equals("combustivel")) {
-
-				lista_ItensTabela.add(new CompraClass(itens.getIdItem(),
-						itens.getProduto_loja().getCombustivel().getTipoCombustivel().getNome(), itens.getQuantidade(),
-						itens.getPreco_unitario(), itens.getTotal(),
-						itens.getProduto_loja().getCombustivel().getId_combustivel()));
-			} else if (itens.getProduto_loja().getTipo_produto().equals("produto")) {
-				lista_ItensTabela
-						.add(new CompraClass(itens.getIdItem(), itens.getProduto_loja().getProduto().getDescricao(),
-								itens.getQuantidade(), itens.getPreco_unitario(), itens.getTotal(),
-								itens.getProduto_loja().getProduto().getId_produto()));
-			}
-		});
-
-		treeTableViewCompra
-				.setRoot(new RecursiveTreeItem<CompraClass>(lista_ItensTabela, RecursiveTreeObject::getChildren));
-
-		treeTableViewCompra.getColumns().setAll(colunaId, colunaNome, colunaQuantidade, colunaPreco, colunaTotal);
-		treeTableViewCompra.setShowRoot(false);
-
+		tabela(treeTableViewCompra);
 	}
 
-	// criando uma classe anonima para ser consumida pela tabela
-	class CompraClass extends RecursiveTreeObject<CompraClass> {
-
-		StringProperty id;
-		StringProperty nome;
-		StringProperty quantidade;
-		StringProperty preco;
-		StringProperty total;
-		StringProperty idProduto;
-
-		public CompraClass(int id, String nome, BigDecimal quantidade, BigDecimal preco, BigDecimal total,
-				int idProduto) {
-			super();
-			this.id = new SimpleStringProperty(String.valueOf(id));
-			this.nome = new SimpleStringProperty(nome);
-			this.quantidade = new SimpleStringProperty(String.valueOf(quantidade));
-			this.preco = new SimpleStringProperty(String.valueOf(
-					new NumeroTextField(preco, NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))).getText()));
-			this.total = new SimpleStringProperty(String.valueOf(
-					new NumeroTextField(total, NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))).getText()));
-			this.idProduto = new SimpleStringProperty(String.valueOf(idProduto));
-		}
-
-		// retorna o id do funcionario com isso posso alterar e remover qualquer
-		// funcionario do banco de dados
-		@Override
-		public String toString() {
-			return String.valueOf(id.getValue());
-		}
-	}
 
 	void atualizarTabela() {
-
 		try {
 			treeTableViewCompra = FXMLLoader
 					.load(getClass().getClassLoader().getResource("com/postoGasolina/view/TreeTableviewModelo.fxml"));
 			borderPaneTabela.setCenter(treeTableViewCompra);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public static class RecebePedidoCompra {
@@ -671,13 +449,10 @@ public class TelaCompraController implements Initializable {
 		private static int limparCompra;
 		private static ObservableList<Item_pedido> itens_pedido = FXCollections.observableArrayList();
 
-		public RecebePedidoCompra() {
-			// TODO Auto-generated constructor stub
-		}
-
 		public RecebePedidoCompra(int id_pedido_compra, Fornecedor fornecedor, Fluxo_caixa fluxoCaixa,
-				BigDecimal total_pagar, BigDecimal desconto, String campoResponsavel,
-				ObservableList<Item_pedido> itens_pedido) {
+								BigDecimal total_pagar, BigDecimal desconto, String campoResponsavel,
+								ObservableList<Item_pedido> itens_pedido)
+		{
 			RecebePedidoCompra.id_pedido_compra = id_pedido_compra;
 			RecebePedidoCompra.fornecedor = fornecedor;
 			RecebePedidoCompra.fluxoCaixa = fluxoCaixa;
@@ -687,28 +462,8 @@ public class TelaCompraController implements Initializable {
 			RecebePedidoCompra.itens_pedido = itens_pedido;
 		}
 
-		public static int getId_pedido_compra() {
-			return id_pedido_compra;
-		}
-
-		public static void setId_pedido_compra(int id_pedido_compra) {
-			RecebePedidoCompra.id_pedido_compra = id_pedido_compra;
-		}
-
 		public static Fornecedor getFornecedor() {
 			return fornecedor;
-		}
-
-		public static void setFornecedor(Fornecedor fornecedor) {
-			RecebePedidoCompra.fornecedor = fornecedor;
-		}
-
-		public static Fluxo_caixa getFluxoCaixa() {
-			return fluxoCaixa;
-		}
-
-		public static void setFluxoCaixa(Fluxo_caixa fluxoCaixa) {
-			RecebePedidoCompra.fluxoCaixa = fluxoCaixa;
 		}
 
 		public static BigDecimal getTotal_pagar() {
@@ -739,24 +494,8 @@ public class TelaCompraController implements Initializable {
 			return campoResponsavel;
 		}
 
-		public static void setForma_pagamento(String forma_pagamento) {
-			RecebePedidoCompra.campoResponsavel = forma_pagamento;
-		}
-
 		public static ObservableList<Item_pedido> getItens_pedido() {
 			return itens_pedido;
-		}
-
-		public static void setItens_pedido(ObservableList<Item_pedido> itens_pedido) {
-			RecebePedidoCompra.itens_pedido = itens_pedido;
-		}
-
-		public static int getLimparCompra() {
-			return limparCompra;
-		}
-
-		public static void setLimparCompra(int limparCompra) {
-			RecebePedidoCompra.limparCompra = limparCompra;
 		}
 
 	}

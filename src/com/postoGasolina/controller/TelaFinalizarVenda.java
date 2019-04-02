@@ -55,7 +55,6 @@ public class TelaFinalizarVenda implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
 		String style = getClass().getResource("/com/postoGasolina/style/TelaVenda.css").toExternalForm();
 
@@ -96,10 +95,18 @@ public class TelaFinalizarVenda implements Initializable {
 		if ( (checkBoxCredito.isSelected() || checkBoxDebito.isSelected() || checkBoxDinheiro.isSelected() ) && RecebePedido.getFuncionario() != null
 				&& !RecebePedido.getItens_pedido().isEmpty()) {
 			try {
-				new VendaDao().finalizar(new Pedido_venda(0, RecebePedido.getFuncionario(), RecebePedido.getCliente(),
-						new Fluxo_caixa2(), RecebePedido.getTotal_pagar(), RecebePedido.getDesconto(),
-						checkBoxCredito.isSelected() ? "credito" : checkBoxDebito.isSelected() ? "debito" : "dinheiro",
-						RecebePedido.getItens_pedido()));
+				new VendaDao().finalizar(
+						new Pedido_venda(
+								0,
+								RecebePedido.getFuncionario(),
+								RecebePedido.getCliente(),
+								new Fluxo_caixa2(),
+								RecebePedido.getTotal_pagar(),
+								RecebePedido.getDesconto(),
+								checkBoxCredito.isSelected() ? "credito" : checkBoxDebito.isSelected() ? "debito" : "dinheiro",
+								RecebePedido.getItens_pedido()
+						)
+				);
 				
 				RecebePedido.setLimparVenda(1);
 				
@@ -108,13 +115,11 @@ public class TelaFinalizarVenda implements Initializable {
 				Stage stage = (Stage) btnFinalizer.getScene().getWindow();
 				stage.close();
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 
 		} else {
 			snackBar = new JFXSnackbar(borderPane);
-	//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 			snackBar.show("Campos obrigatórios não informado", 4000);
 		}
 	}

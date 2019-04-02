@@ -2,14 +2,13 @@ package com.postoGasolina.model;
 
 import java.time.LocalDate;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sun.security.acl.WorldGroupImpl;
 
 public class Cliente_juridica {
+
 	private int id_cliente_juridica;
 	private Endereco endereco;
 	private String nome;
@@ -22,27 +21,90 @@ public class Cliente_juridica {
 	
 	private ObservableList<Telefone> listaTelefone = FXCollections.observableArrayList();
 
-	public Cliente_juridica(int id_cliente_juridica, Endereco endereco, String nome, String cnpj, String situacao,
-			LocalDate data_situacao, String ie, String email, String observacao,
-			ObservableList<Telefone> listaTelefone) {
-		this.id_cliente_juridica = id_cliente_juridica;
-		this.endereco = endereco;
-		this.nome = WordUtils.capitalize(nome.toLowerCase()); 
-		this.cnpj = cnpj;
-		this.situacao = situacao;
-		this.data_situacao = data_situacao;
-		this.ie = ie;
-		this.email = email;
-		this.observacao = observacao;
-		this.listaTelefone = listaTelefone;
+	public Cliente_juridica(Builder builder) {
+		this.id_cliente_juridica = builder.id_cliente_juridica;
+		this.endereco = builder.endereco;
+		this.nome = builder.nome;
+		this.cnpj = builder.cnpj;
+		this.situacao = builder.situacao;
+		this.data_situacao = builder.data_situacao;
+		this.ie = builder.ie;
+		this.email = builder.email;
+		this.observacao = builder.observacao;
+		this.listaTelefone = builder.listaTelefone;
+	}
+
+	public static class Builder {
+
+		private int id_cliente_juridica;
+		private Endereco endereco;
+		private String nome;
+		private String cnpj;
+		private String situacao;
+		private LocalDate data_situacao;
+		private String ie;
+		private String email;
+		private String observacao;
+		private ObservableList<Telefone> listaTelefone = FXCollections.observableArrayList();
+
+		public Builder idCliente(int id_cliente_juridica) {
+			this.id_cliente_juridica = id_cliente_juridica;
+			return this;
+		}
+
+		public Builder endereco(Endereco endereco) {
+			this.endereco = endereco;
+			return this;
+		}
+
+		public Builder nome(String nome) {
+			this.nome = WordUtils.capitalize(nome.toLowerCase());
+			return this;
+		}
+
+		public Builder cnpj(String cnpj) {
+			this.cnpj = cnpj;
+			return this;
+		}
+
+		public Builder situacao(String situacao) {
+			this.situacao = situacao;
+			return this;
+		}
+
+		public Builder dataSituacao(LocalDate data_situacao) {
+			this.data_situacao = data_situacao;
+			return this;
+		}
+
+		public Builder ie(String ie) {
+			this.ie = ie;
+			return this;
+		}
+
+		public Builder email(String email) {
+			this.email = email;
+			return this;
+		}
+
+		public Builder observacao(String observacao) {
+			this.observacao = observacao;
+			return this;
+		}
+
+		public Builder telefone(ObservableList<Telefone> listaTelefone) {
+			this.listaTelefone = listaTelefone;
+			return this;
+		}
+
+		public Cliente_juridica build() {
+			return new Cliente_juridica(this);
+		}
+
 	}
 
 	public int getId_cliente_juridica() {
 		return id_cliente_juridica;
-	}
-
-	public void setId_cliente_juridica(int id_cliente_juridica) {
-		this.id_cliente_juridica = id_cliente_juridica;
 	}
 
 	public Endereco getEndereco() {
@@ -73,24 +135,12 @@ public class Cliente_juridica {
 		return situacao;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
-	}
-
 	public LocalDate getData_situacao() {
 		return data_situacao;
 	}
 
-	public void setData_situacao(LocalDate data_situacao) {
-		this.data_situacao = data_situacao;
-	}
-
 	public String getIe() {
 		return ie;
-	}
-
-	public void setIe(String ie) {
-		this.ie = ie;
 	}
 
 	public String getEmail() {
@@ -113,7 +163,4 @@ public class Cliente_juridica {
 		return listaTelefone;
 	}
 
-	public void setListaTelefone(ObservableList<Telefone> listaTelefone) {
-		this.listaTelefone = listaTelefone;
-	}
 }

@@ -35,7 +35,6 @@ public class TelaCadastrarCategoria implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		carregarAcoes();
 		carregarLista();
 	}
@@ -50,18 +49,14 @@ public class TelaCadastrarCategoria implements Initializable {
 					limparCampo();
 
 					s = new JFXSnackbar(borderPane);
-			//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					s.show("Categoria cadastrada com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
 				s = new JFXSnackbar(borderPane);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				s.show("Campos obrigatórios não informado", 4000);
 			}
 
@@ -76,24 +71,18 @@ public class TelaCadastrarCategoria implements Initializable {
 					limparCampo();
 
 					s = new JFXSnackbar(borderPane);
-		//			String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 					s.show("Categoria removida com sucesso", 4000);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					s = new JFXSnackbar(borderPane);
-    		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
     				s.show("Categoria sendo utilizada", 4000);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					s = new JFXSnackbar(borderPane);
-    		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
     				s.show("Categoria sendo utilizada", 4000);
 				}
 			} else {
 				s = new JFXSnackbar(borderPane);
-		//		String style = getClass().getResource("/com/postoGasolina/style/SnackBar.css").toExternalForm();
 				s.show("Selecione categoria na tabela", 4000);
 			}
 		});
@@ -104,10 +93,8 @@ public class TelaCadastrarCategoria implements Initializable {
 		try {
 			listViewCategoria.setItems(new CategoriaDao().listar());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
