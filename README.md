@@ -54,3 +54,8 @@ Depois só executar o arquivo Main.java
 * Iterator
   * MenuDataIterator
     * [TelaPrincipalController](src/com/postoGasolina/controller/TelaPrincipalController.java#L569)
+    
+* Singleton
+  * ConexaoUtil
+    * Afeta todas as classes em [dao](src/com/postoGasolina/dao)
+  
