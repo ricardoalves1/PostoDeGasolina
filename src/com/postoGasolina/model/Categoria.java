@@ -5,7 +5,6 @@ public class Categoria {
 	private String nome;
 	
 	public Categoria(int id_categoria, String nome) {
-		super();
 		this.id_categoria = id_categoria;
 		this.nome = nome;
 	}

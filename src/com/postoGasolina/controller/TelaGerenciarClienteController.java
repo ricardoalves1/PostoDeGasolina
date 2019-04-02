@@ -316,15 +316,15 @@ public class TelaGerenciarClienteController implements Initializable {
 
 
 		Cliente_fisica cliente = new Cliente_fisica.Builder()
-									.id(idCliente)
-									.pessoa(pessoa)
-									.endereco(endereco)
-									.pai(campoPai.getText())
-									.mae(campoMae.getText())
-									.email(campoEmail.getText())
-									.informacao(textAreaInformacao.getText())
-									.telefone(lista_telefones)
-									.build();
+				.id(idCliente)
+				.pessoa(pessoa)
+				.endereco(endereco)
+				.pai(campoPai.getText())
+				.mae(campoMae.getText())
+				.email(campoEmail.getText())
+				.informacao(textAreaInformacao.getText())
+				.telefone(lista_telefones)
+				.build();
 
 		return cliente;
 

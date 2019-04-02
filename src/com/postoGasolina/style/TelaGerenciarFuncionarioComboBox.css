@@ -1,9 +1,7 @@
-
 .combo-box-base {
     -fx-background-color: transparent;
     -fx-border-color: #fff;
 	-fx-border-width: 0 0 1 0;
-	
 }
 .combo-box .text-field {
     -fx-prompt-text-fill: white ;
@@ -44,18 +42,6 @@
 {
  -fx-background-image: url(/com/postoGasolina/img/TelaPrincipal/fundogrid4.jpg);
 }    
-
-
-
-
-
-
-
-
-
-
-
-
 .combo-box-base:editable .text-field {
 
     -fx-text-fill: white;
@@ -64,32 +50,20 @@
 }
 
 .combo-box-base:editable .text-field:focused {
-
      -fx-text-fill: white;
     -fx-prompt-text-fill: white;
-    
 }
-
 .combo-box-base:editable:focused {
-
      -fx-text-fill: white;
     -fx-prompt-text-fill: white;
-    
 }
-
-
 /* ------- OPEN BUTTON ------- */
 .combo-box-base .arrow-button {
     -fx-background-color: transparent;
 }
- 
-
- 
- 
- .formata-campo{
+.formata-campo{
 	-fx-font-family: "Roboto";
 	-fx-font-size: 15px;
 	-fx-text-fill: white;
 	-fx-prompt-text-fill:white;
-	
 }

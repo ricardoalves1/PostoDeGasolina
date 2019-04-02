@@ -213,15 +213,15 @@ public class FornecedoresDao implements InterfaceDao<Fornecedor>{
 	private Fornecedor fornecedor(ObservableList<Telefone> lista_telefones) throws SQLException {
 
 		Endereco endereco = new Endereco.Builder()
-							.idEndereco(rs.getInt("id_endereco"))
-							.endereco(rs.getString("endereco"))
-							.cep(rs.getString("cep"))
-							.numero(rs.getString("numero"))
-							.complemento(rs.getString("complemento"))
-							.bairro(rs.getString("bairro"))
-							.cidade(rs.getString("cidade"))
-							.estado(rs.getString("uf"))
-							.build();
+				.idEndereco(rs.getInt("id_endereco"))
+				.endereco(rs.getString("endereco"))
+				.cep(rs.getString("cep"))
+				.numero(rs.getString("numero"))
+				.complemento(rs.getString("complemento"))
+				.bairro(rs.getString("bairro"))
+				.cidade(rs.getString("cidade"))
+				.estado(rs.getString("uf"))
+				.build();
 
 		return new Fornecedor(
 					rs.getInt("id_fornecedor"),

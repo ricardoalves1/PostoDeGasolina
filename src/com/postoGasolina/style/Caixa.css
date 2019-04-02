@@ -11,10 +11,7 @@
 	-fx-font-size: 15px;
 	-fx-text-fill: black;
 	-fx-prompt-text-fill:black;
-	
-	
 }
-
 .formata-campo .date-picker-popup > .month-year-pane {
     -fx-padding: 0.588883em 0.5em 0.666667em 0.5em; /* 7 6 8 6 */
  	-fx-background-image: url(/com/postoGasolina/img/TelaPrincipal/fundogrid4.jpg);
@@ -23,7 +20,6 @@
 }
 .formata-campo .date-picker-popup {
      -fx-background-color:#f3f3f3;
-     
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
     -fx-alignment: CENTER; /* VBox */
@@ -41,13 +37,10 @@
     -fx-text-fill: black;
     -fx-fill-height: false;
     -fx-background-color: transparent;
-    
-    
 }
 .jfx-date-picker .input-line {
     -fx-background-color: black;
     -fx-text-fill: black;
-    
 }
 .jfx-date-picker .input-focused-line {
     -fx-background-color: black;
@@ -56,14 +49,12 @@
 .jfx-date-picker {
     -fx-text-inner-color: black;
     -fx-opacity: 0.53;
-    
 }
 
 .jfx-date-picker .day-cell {
     -fx-text-fill: black;
     -fx-background-color: transparent;
 }
-
 .jfx-date-picker .today{
     -fx-text-fill: red;
 }
@@ -72,10 +63,7 @@
 }
 .jfx-time-picker .time-pane {
 	-fx-background-image: url(/com/postoGasolina/img/TelaPrincipal/fundogrid4.jpg);
-	
 }
-
-
 .formata-campo .jfx-time-picker  .popup {
 	-fx-prompt-text-fill:red;
 	-fx-text-inner-color:red;

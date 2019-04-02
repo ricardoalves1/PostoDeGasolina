@@ -1,8 +1,6 @@
-
 @font-face {
     src: url('../fonts/Roboto-Regular.ttf');
 }
-
 .fundoBorderPane{
 	-fx-background-image: url(/com/postoGasolina/img/TelaVenda/fundo1.jpg);
 	-fx-background-repeat: no-repeat;
@@ -15,7 +13,6 @@
 	-fx-text-fill: #333;
 	-fx-opacity: 0.73;
 	-fx-prompt-text-fill:#333;
-	
 }
 .format-campo3{
 	-fx-font-family: "Roboto";
@@ -23,7 +20,6 @@
 	-fx-text-fill: #333;
 	-fx-opacity: 0.95;
 	-fx-prompt-text-fill:#333;
-	
 }
 .format-campo4{
 	-fx-font-family: "Roboto";
@@ -31,7 +27,6 @@
 	-fx-text-fill: #333;
 	-fx-opacity: 0.73;
 	-fx-prompt-text-fill:#333;
-	
 }
 .format-campo2{
 	-fx-font-family: "Roboto";
