@@ -18,8 +18,8 @@ public class ConexaoUtil {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		String url = "jdbc:mysql://localhost/db_posto_gasolina";
-        String usuario = "root";
-        String senha = "";
+        	String usuario = "root";
+        	String senha = "";
 
 		return DriverManager.getConnection(url, usuario, senha);
 	}
